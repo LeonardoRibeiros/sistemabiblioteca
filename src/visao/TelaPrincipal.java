@@ -57,12 +57,10 @@ public class TelaPrincipal extends JFrame {
 
 		JMenuItem mntmNewMenuItem = new JMenuItem("Cliente");
 		mntmNewMenuItem.setFont(new Font("Dialog", Font.PLAIN, 14));
-		mntmNewMenuItem.setIcon(new ImageIcon(TelaPrincipal.class.getResource("/imagens/seta.png")));
 		mnNewMenu.add(mntmNewMenuItem);
 
 		JMenuItem mntmNewMenuItem_1 = new JMenuItem("Funcion\u00E1rio");
 		mntmNewMenuItem_1.setFont(new Font("Dialog", Font.PLAIN, 14));
-		mntmNewMenuItem_1.setIcon(new ImageIcon(TelaPrincipal.class.getResource("/imagens/seta.png")));
 		mnNewMenu.add(mntmNewMenuItem_1);
 		contentPane = new JPanel();
 		contentPane.setBackground(Color.DARK_GRAY);
@@ -83,7 +81,6 @@ public class TelaPrincipal extends JFrame {
 			}
 		});
 		btnNewButton.setHorizontalAlignment(SwingConstants.LEFT);
-		btnNewButton.setIcon(new ImageIcon(TelaPrincipal.class.getResource("/imagens/seta.png")));
 		btnNewButton.setForeground(Color.DARK_GRAY);
 		btnNewButton.setBackground(SystemColor.menu);
 		btnNewButton.setFont(new Font("Dialog", Font.PLAIN, 13));
@@ -92,7 +89,6 @@ public class TelaPrincipal extends JFrame {
 
 		JButton btnNewButton_1 = new JButton("Multas");
 		btnNewButton_1.setHorizontalAlignment(SwingConstants.LEFT);
-		btnNewButton_1.setIcon(new ImageIcon(TelaPrincipal.class.getResource("/imagens/seta.png")));
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				// Fecha a tela atual
@@ -121,7 +117,6 @@ public class TelaPrincipal extends JFrame {
 			}
 		});
 		btnNewButton_2.setHorizontalAlignment(SwingConstants.LEFT);
-		btnNewButton_2.setIcon(new ImageIcon(TelaPrincipal.class.getResource("/imagens/seta.png")));
 		btnNewButton_2.setForeground(Color.DARK_GRAY);
 		btnNewButton_2.setBackground(SystemColor.menu);
 		btnNewButton_2.setFont(new Font("Dialog", Font.PLAIN, 13));

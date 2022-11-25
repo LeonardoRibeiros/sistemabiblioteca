@@ -36,7 +36,6 @@ public class TelaMulta extends JFrame {
 	private JButton btnNewButton_1;
 	private JButton btnNewButton_3;
 
-
 	/**
 	 * Create the frame.
 	 */
@@ -54,7 +53,11 @@ public class TelaMulta extends JFrame {
 		JButton btnNewButton_2 = new JButton("Cancelar");
 		btnNewButton_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+				dispose();
+
+				TelaPrincipal frame = new TelaPrincipal();
+				frame.setLocationRelativeTo(null);
+				frame.setVisible(true);
 			}
 		});
 		btnNewButton_2.setBackground(SystemColor.menu);

@@ -131,6 +131,15 @@ public class TelaCliente extends JFrame {
 		contentPane.add(btnNewButton_1);
 
 		JButton btnNewButton_2 = new JButton("Cancelar");
+		btnNewButton_2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+
+				TelaPrincipal frame = new TelaPrincipal();
+				frame.setLocationRelativeTo(null);
+				frame.setVisible(true);
+			}
+		});
 		btnNewButton_2.setBackground(SystemColor.menu);
 		btnNewButton_2.setForeground(Color.DARK_GRAY);
 		btnNewButton_2.setFont(new Font("Dialog", Font.PLAIN, 13));
