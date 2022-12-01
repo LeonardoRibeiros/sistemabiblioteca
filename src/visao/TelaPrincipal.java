@@ -22,6 +22,8 @@ import javax.swing.JPanel;
 import javax.swing.JPopupMenu;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
+import java.awt.Rectangle;
+import java.awt.Dimension;
 
 public class TelaPrincipal extends JFrame {
 
@@ -51,18 +53,21 @@ public class TelaPrincipal extends JFrame {
 		setJMenuBar(menuBar);
 
 		JMenu mnNewMenu = new JMenu("Cadastrar");
+		mnNewMenu.setBounds(new Rectangle(0, 0, 0, 11));
 		mnNewMenu.setBackground(Color.BLACK);
-		mnNewMenu.setFont(new Font("Dialog", Font.PLAIN, 14));
+		mnNewMenu.setFont(new Font("Estrangelo Edessa", Font.PLAIN, 17));
 		menuBar.add(mnNewMenu);
 
 		JMenuItem mntmNewMenuItem = new JMenuItem("Cliente");
-		mntmNewMenuItem.setFont(new Font("Dialog", Font.PLAIN, 14));
+		mntmNewMenuItem.setFont(new Font("Estrangelo Edessa", Font.PLAIN, 15));
 		mnNewMenu.add(mntmNewMenuItem);
 
 		JMenuItem mntmNewMenuItem_1 = new JMenuItem("Funcion\u00E1rio");
-		mntmNewMenuItem_1.setFont(new Font("Dialog", Font.PLAIN, 14));
+		mntmNewMenuItem_1.setFont(new Font("Estrangelo Edessa", Font.PLAIN, 15));
 		mnNewMenu.add(mntmNewMenuItem_1);
 		contentPane = new JPanel();
+		contentPane.setSize(new Dimension(0, 60));
+		contentPane.setMaximumSize(new Dimension(32800, 32767));
 		contentPane.setBackground(Color.DARK_GRAY);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
@@ -80,15 +85,13 @@ public class TelaPrincipal extends JFrame {
 				telaEmprestimo.setVisible(true);
 			}
 		});
-		btnNewButton.setHorizontalAlignment(SwingConstants.LEFT);
 		btnNewButton.setForeground(Color.DARK_GRAY);
 		btnNewButton.setBackground(SystemColor.menu);
-		btnNewButton.setFont(new Font("Dialog", Font.PLAIN, 13));
+		btnNewButton.setFont(new Font("Estrangelo Edessa", Font.PLAIN, 16));
 		btnNewButton.setBounds(133, 89, 217, 34);
 		contentPane.add(btnNewButton);
 
 		JButton btnNewButton_1 = new JButton("Multas");
-		btnNewButton_1.setHorizontalAlignment(SwingConstants.LEFT);
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				// Fecha a tela atual
@@ -101,7 +104,7 @@ public class TelaPrincipal extends JFrame {
 		});
 		btnNewButton_1.setForeground(Color.DARK_GRAY);
 		btnNewButton_1.setBackground(SystemColor.menu);
-		btnNewButton_1.setFont(new Font("Dialog", Font.PLAIN, 13));
+		btnNewButton_1.setFont(new Font("Estrangelo Edessa", Font.PLAIN, 16));
 		btnNewButton_1.setBounds(133, 156, 217, 34);
 		contentPane.add(btnNewButton_1);
 
@@ -116,14 +119,14 @@ public class TelaPrincipal extends JFrame {
 				telaAcervo.setVisible(true);
 			}
 		});
-		btnNewButton_2.setHorizontalAlignment(SwingConstants.LEFT);
 		btnNewButton_2.setForeground(Color.DARK_GRAY);
 		btnNewButton_2.setBackground(SystemColor.menu);
-		btnNewButton_2.setFont(new Font("Dialog", Font.PLAIN, 13));
+		btnNewButton_2.setFont(new Font("Estrangelo Edessa", Font.PLAIN, 16));
 		btnNewButton_2.setBounds(133, 224, 217, 34);
 		contentPane.add(btnNewButton_2);
 
 		Button button = new Button("Sair");
+		button.setFont(new Font("Estrangelo Edessa", Font.PLAIN, 13));
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				System.exit(0);
@@ -137,7 +140,7 @@ public class TelaPrincipal extends JFrame {
 		JLabel lblNewLabel = new JLabel("BIBLIOTECA");
 		lblNewLabel.setBackground(SystemColor.menu);
 		lblNewLabel.setForeground(SystemColor.menu);
-		lblNewLabel.setFont(new Font("Dialog", Font.PLAIN, 32));
+		lblNewLabel.setFont(new Font("Estrangelo Edessa", Font.PLAIN, 40));
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel.setBounds(133, 21, 217, 34);
 		contentPane.add(lblNewLabel);
