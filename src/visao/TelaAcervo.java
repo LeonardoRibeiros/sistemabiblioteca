@@ -23,15 +23,15 @@ public class TelaAcervo extends JFrame {
 
 	private JPanel contentPane;
 	private JLabel lblNewLabel;
-	private JTextField NomelivroTXT;
-	private JButton btnNewButton;
-	private JButton btnNewButton_1;
+	private JTextField txtNomelivro;
+	private JButton salvarBT;
+	private JButton LimparBT;
 	private JTable table;
 	private JLabel lblNewLabel_1;
-	private JTextField AutorTXT;
+	private JTextField txtAutor;
 	private JLabel lblNewLabel_2;
 	private JLabel lblNewLabel_3;
-	private JTextField NumeropagTXT;
+	private JTextField txtNpaginas;
 	private JComboBox comboBox;
 	private JLabel lblNewLabel_4;
 	private JComboBox comboBox_1;
@@ -50,8 +50,8 @@ public class TelaAcervo extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 
-		JButton btnNewButton_2 = new JButton("Voltar");
-		btnNewButton_2.addActionListener(new ActionListener() {
+		JButton voltarBT = new JButton("Voltar");
+		voltarBT.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				dispose();
 
@@ -60,11 +60,11 @@ public class TelaAcervo extends JFrame {
 				frame.setVisible(true);
 			}
 		});
-		btnNewButton_2.setBackground(SystemColor.menu);
-		btnNewButton_2.setForeground(Color.DARK_GRAY);
-		btnNewButton_2.setFont(new Font("Dialog", Font.PLAIN, 16));
-		btnNewButton_2.setBounds(669, 440, 96, 23);
-		contentPane.add(btnNewButton_2);
+		voltarBT.setBackground(SystemColor.menu);
+		voltarBT.setForeground(Color.DARK_GRAY);
+		voltarBT.setFont(new Font("Dialog", Font.PLAIN, 16));
+		voltarBT.setBounds(669, 440, 96, 23);
+		contentPane.add(voltarBT);
 		
 		JLabel lblNewLabel_8 = new JLabel("Acervo");
 		lblNewLabel_8.setForeground(Color.WHITE);
@@ -90,27 +90,27 @@ public class TelaAcervo extends JFrame {
 				lblNewLabel.setForeground(Color.DARK_GRAY);
 				lblNewLabel.setFont(new Font("Dialog", Font.PLAIN, 18));
 				
-						NomelivroTXT = new JTextField();
-						NomelivroTXT.setForeground(Color.DARK_GRAY);
-						NomelivroTXT.setBounds(7, 45, 302, 25);
-						panel.add(NomelivroTXT);
-						NomelivroTXT.setFont(new Font("Dialog", Font.PLAIN, 16));
-						NomelivroTXT.setColumns(10);
-						NomelivroTXT.setBackground(SystemColor.menu);
+						txtNomelivro = new JTextField();
+						txtNomelivro.setForeground(Color.DARK_GRAY);
+						txtNomelivro.setBounds(7, 45, 302, 25);
+						panel.add(txtNomelivro);
+						txtNomelivro.setFont(new Font("Dialog", Font.PLAIN, 16));
+						txtNomelivro.setColumns(10);
+						txtNomelivro.setBackground(SystemColor.menu);
 														
-																btnNewButton = new JButton("Salvar");
-																btnNewButton.setBounds(7, 307, 96, 23);
-																panel.add(btnNewButton);
-																btnNewButton.setForeground(Color.DARK_GRAY);
-																btnNewButton.setFont(new Font("Dialog", Font.PLAIN, 16));
-																btnNewButton.setBackground(SystemColor.menu);
+																salvarBT = new JButton("Salvar");
+																salvarBT.setBounds(7, 307, 96, 23);
+																panel.add(salvarBT);
+																salvarBT.setForeground(Color.DARK_GRAY);
+																salvarBT.setFont(new Font("Dialog", Font.PLAIN, 16));
+																salvarBT.setBackground(SystemColor.menu);
 																
-																		btnNewButton_1 = new JButton("Limpar");
-																		btnNewButton_1.setBounds(113, 307, 96, 23);
-																		panel.add(btnNewButton_1);
-																		btnNewButton_1.setForeground(Color.DARK_GRAY);
-																		btnNewButton_1.setFont(new Font("Dialog", Font.PLAIN, 16));
-																		btnNewButton_1.setBackground(SystemColor.menu);
+																		LimparBT = new JButton("Limpar");
+																		LimparBT.setBounds(113, 307, 96, 23);
+																		panel.add(LimparBT);
+																		LimparBT.setForeground(Color.DARK_GRAY);
+																		LimparBT.setFont(new Font("Dialog", Font.PLAIN, 16));
+																		LimparBT.setBackground(SystemColor.menu);
 																		
 																		lblNewLabel_1 = new JLabel("Autor");
 																		lblNewLabel_1.setHorizontalAlignment(SwingConstants.LEFT);
@@ -119,13 +119,13 @@ public class TelaAcervo extends JFrame {
 																		lblNewLabel_1.setBounds(7, 78, 244, 23);
 																		panel.add(lblNewLabel_1);
 																		
-																		AutorTXT = new JTextField();
-																		AutorTXT.setForeground(Color.DARK_GRAY);
-																		AutorTXT.setFont(new Font("Dialog", Font.PLAIN, 16));
-																		AutorTXT.setColumns(10);
-																		AutorTXT.setBackground(SystemColor.menu);
-																		AutorTXT.setBounds(7, 112, 302, 25);
-																		panel.add(AutorTXT);
+																		txtAutor = new JTextField();
+																		txtAutor.setForeground(Color.DARK_GRAY);
+																		txtAutor.setFont(new Font("Dialog", Font.PLAIN, 16));
+																		txtAutor.setColumns(10);
+																		txtAutor.setBackground(SystemColor.menu);
+																		txtAutor.setBounds(7, 112, 302, 25);
+																		panel.add(txtAutor);
 																		
 																		lblNewLabel_2 = new JLabel("G\u00EAnero");
 																		lblNewLabel_2.setHorizontalAlignment(SwingConstants.LEFT);
@@ -141,13 +141,13 @@ public class TelaAcervo extends JFrame {
 																		lblNewLabel_3.setBounds(7, 218, 169, 23);
 																		panel.add(lblNewLabel_3);
 																		
-																		NumeropagTXT = new JTextField();
-																		NumeropagTXT.setForeground(Color.DARK_GRAY);
-																		NumeropagTXT.setFont(new Font("Dialog", Font.PLAIN, 16));
-																		NumeropagTXT.setColumns(10);
-																		NumeropagTXT.setBackground(SystemColor.menu);
-																		NumeropagTXT.setBounds(7, 252, 169, 25);
-																		panel.add(NumeropagTXT);
+																		txtNpaginas = new JTextField();
+																		txtNpaginas.setForeground(Color.DARK_GRAY);
+																		txtNpaginas.setFont(new Font("Dialog", Font.PLAIN, 16));
+																		txtNpaginas.setColumns(10);
+																		txtNpaginas.setBackground(SystemColor.menu);
+																		txtNpaginas.setBounds(7, 252, 169, 25);
+																		panel.add(txtNpaginas);
 																		
 																		comboBox = new JComboBox();
 																		comboBox.setForeground(Color.DARK_GRAY);

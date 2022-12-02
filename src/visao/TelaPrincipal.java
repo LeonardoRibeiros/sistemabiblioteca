@@ -57,15 +57,15 @@ public class TelaPrincipal extends JFrame {
 		JMenu mnNewMenu = new JMenu("Cadastrar");
 		mnNewMenu.setBounds(new Rectangle(0, 0, 0, 11));
 		mnNewMenu.setBackground(Color.BLACK);
-		mnNewMenu.setFont(new Font("Dialog", Font.PLAIN, 15));
+		mnNewMenu.setFont(new Font("Dialog", Font.BOLD, 16));
 		menuBar.add(mnNewMenu);
 
 		JMenuItem mntmNewMenuItem = new JMenuItem("Cliente");
-		mntmNewMenuItem.setFont(new Font("Dialog", Font.PLAIN, 12));
+		mntmNewMenuItem.setFont(new Font("Dialog", Font.BOLD, 16));
 		mnNewMenu.add(mntmNewMenuItem);
 
 		JMenuItem mntmNewMenuItem_1 = new JMenuItem("Funcion\u00E1rio");
-		mntmNewMenuItem_1.setFont(new Font("Dialog", Font.PLAIN, 12));
+		mntmNewMenuItem_1.setFont(new Font("Dialog", Font.BOLD, 16));
 		mnNewMenu.add(mntmNewMenuItem_1);
 		contentPane = new JPanel();
 		contentPane.setSize(new Dimension(0, 60));

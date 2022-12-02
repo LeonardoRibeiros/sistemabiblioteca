@@ -24,13 +24,14 @@ public class TelaEmprestimo extends JFrame {
 	private JLabel lblNewLabel_1;
 	private JComboBox comboBox;
 	private JComboBox comboBox_1;
-	private JTextField anoEmprTXT;
+	private JTextField txtEmprAno;
 	private JLabel lblNewLabel;
-	private JTextField IdclienteTXT;
+	private JTextField txtIdCliente;
 	private JButton btnNewButton;
 	private JButton btnNewButton_1;
 	private JTable table;
-	private JTextField AnoDevTXT;
+	private JTextField txtDevAno;
+	private JTextField txtIdLivro;
 
 	/**
 	 * Create the frame.
@@ -38,7 +39,7 @@ public class TelaEmprestimo extends JFrame {
 	public TelaEmprestimo() {
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setBounds(100, 100, 735, 506);
+		setBounds(100, 100, 736, 540);
 		contentPane = new JPanel();
 		contentPane.setBackground(Color.DARK_GRAY);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -59,7 +60,7 @@ public class TelaEmprestimo extends JFrame {
 		btnNewButton_2.setBackground(SystemColor.menu);
 		btnNewButton_2.setForeground(Color.DARK_GRAY);
 		btnNewButton_2.setFont(new Font("Dialog", Font.PLAIN, 16));
-		btnNewButton_2.setBounds(613, 423, 96, 23);
+		btnNewButton_2.setBounds(613, 467, 96, 23);
 		contentPane.add(btnNewButton_2);
 		
 		JLabel lblNewLabel_8 = new JLabel("Empr\u00E9stimo");
@@ -70,12 +71,12 @@ public class TelaEmprestimo extends JFrame {
 		contentPane.add(lblNewLabel_8);
 		
 		table = new JTable();
-		table.setBounds(302, 87, 407, 324);
+		table.setBounds(302, 87, 407, 369);
 		contentPane.add(table);
 		
 		JPanel panel = new JPanel();
 		panel.setBackground(new Color(176, 196, 222));
-		panel.setBounds(10, 87, 282, 325);
+		panel.setBounds(10, 87, 282, 370);
 		contentPane.add(panel);
 		panel.setLayout(null);
 		
@@ -86,16 +87,16 @@ public class TelaEmprestimo extends JFrame {
 				lblNewLabel.setForeground(Color.DARK_GRAY);
 				lblNewLabel.setFont(new Font("Dialog", Font.PLAIN, 18));
 				
-						IdclienteTXT = new JTextField();
-						IdclienteTXT.setForeground(Color.DARK_GRAY);
-						IdclienteTXT.setBounds(7, 45, 244, 25);
-						panel.add(IdclienteTXT);
-						IdclienteTXT.setFont(new Font("Dialog", Font.PLAIN, 16));
-						IdclienteTXT.setColumns(10);
-						IdclienteTXT.setBackground(SystemColor.menu);
+						txtIdCliente = new JTextField();
+						txtIdCliente.setForeground(Color.DARK_GRAY);
+						txtIdCliente.setBounds(7, 45, 244, 25);
+						panel.add(txtIdCliente);
+						txtIdCliente.setFont(new Font("Dialog", Font.PLAIN, 16));
+						txtIdCliente.setColumns(10);
+						txtIdCliente.setBackground(SystemColor.menu);
 						
 								lblNewLabel_1 = new JLabel("Data de Empr\u00E9stimo");
-								lblNewLabel_1.setBounds(7, 81, 244, 25);
+								lblNewLabel_1.setBounds(7, 149, 244, 25);
 								panel.add(lblNewLabel_1);
 								lblNewLabel_1.setHorizontalAlignment(SwingConstants.LEFT);
 								lblNewLabel_1.setForeground(Color.DARK_GRAY);
@@ -103,7 +104,7 @@ public class TelaEmprestimo extends JFrame {
 								
 										comboBox = new JComboBox();
 										comboBox.setForeground(Color.DARK_GRAY);
-										comboBox.setBounds(7, 117, 71, 24);
+										comboBox.setBounds(7, 185, 71, 24);
 										panel.add(comboBox);
 										comboBox.setModel(new DefaultComboBoxModel(new String[] {"DIA", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31"}));
 										comboBox.setToolTipText("dia");
@@ -112,30 +113,30 @@ public class TelaEmprestimo extends JFrame {
 										
 												comboBox_1 = new JComboBox();
 												comboBox_1.setForeground(Color.DARK_GRAY);
-												comboBox_1.setBounds(88, 117, 71, 24);
+												comboBox_1.setBounds(88, 185, 71, 24);
 												panel.add(comboBox_1);
 												comboBox_1.setModel(new DefaultComboBoxModel(new String[] {"MÊS", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12"}));
 												comboBox_1.setFont(new Font("Dialog", Font.PLAIN, 16));
 												comboBox_1.setBackground(SystemColor.menu);
 												
-														anoEmprTXT = new JTextField();
-														anoEmprTXT.setForeground(Color.DARK_GRAY);
-														anoEmprTXT.setBounds(169, 117, 82, 24);
-														panel.add(anoEmprTXT);
-														anoEmprTXT.setFont(new Font("Dialog", Font.PLAIN, 16));
-														anoEmprTXT.setColumns(10);
-														anoEmprTXT.setBackground(SystemColor.menu);
+														txtEmprAno = new JTextField();
+														txtEmprAno.setForeground(Color.DARK_GRAY);
+														txtEmprAno.setBounds(169, 185, 82, 24);
+														panel.add(txtEmprAno);
+														txtEmprAno.setFont(new Font("Dialog", Font.PLAIN, 16));
+														txtEmprAno.setColumns(10);
+														txtEmprAno.setBackground(SystemColor.menu);
 														
-														AnoDevTXT = new JTextField();
-														AnoDevTXT.setForeground(Color.DARK_GRAY);
-														AnoDevTXT.setBounds(169, 188, 82, 24);
-														panel.add(AnoDevTXT);
-														AnoDevTXT.setFont(new Font("Dialog", Font.PLAIN, 16));
-														AnoDevTXT.setColumns(10);
-														AnoDevTXT.setBackground(SystemColor.menu);
+														txtDevAno = new JTextField();
+														txtDevAno.setForeground(Color.DARK_GRAY);
+														txtDevAno.setBounds(169, 256, 82, 24);
+														panel.add(txtDevAno);
+														txtDevAno.setFont(new Font("Dialog", Font.PLAIN, 16));
+														txtDevAno.setColumns(10);
+														txtDevAno.setBackground(SystemColor.menu);
 														
 														JLabel lblNewLabel_1_1 = new JLabel("Data de Devolu\u00E7\u00E3o");
-														lblNewLabel_1_1.setBounds(7, 152, 244, 25);
+														lblNewLabel_1_1.setBounds(7, 220, 244, 25);
 														panel.add(lblNewLabel_1_1);
 														lblNewLabel_1_1.setHorizontalAlignment(SwingConstants.LEFT);
 														lblNewLabel_1_1.setForeground(Color.DARK_GRAY);
@@ -143,7 +144,7 @@ public class TelaEmprestimo extends JFrame {
 														
 														JComboBox comboBox_2 = new JComboBox();
 														comboBox_2.setForeground(Color.DARK_GRAY);
-														comboBox_2.setBounds(7, 188, 71, 24);
+														comboBox_2.setBounds(7, 256, 71, 24);
 														panel.add(comboBox_2);
 														comboBox_2.setModel(new DefaultComboBoxModel(new String[] {"DIA", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31"}));
 														comboBox_2.setToolTipText("dia");
@@ -152,24 +153,39 @@ public class TelaEmprestimo extends JFrame {
 														
 														JComboBox comboBox_1_1 = new JComboBox();
 														comboBox_1_1.setForeground(Color.DARK_GRAY);
-														comboBox_1_1.setBounds(88, 188, 71, 24);
+														comboBox_1_1.setBounds(88, 256, 71, 24);
 														panel.add(comboBox_1_1);
 														comboBox_1_1.setModel(new DefaultComboBoxModel(new String[] {"M\u00CAS", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12"}));
 														comboBox_1_1.setFont(new Font("Dialog", Font.PLAIN, 16));
 														comboBox_1_1.setBackground(SystemColor.menu);
 														
 																btnNewButton = new JButton("Salvar");
-																btnNewButton.setBounds(7, 291, 96, 23);
+																btnNewButton.setBounds(7, 336, 96, 23);
 																panel.add(btnNewButton);
 																btnNewButton.setForeground(Color.DARK_GRAY);
 																btnNewButton.setFont(new Font("Dialog", Font.PLAIN, 16));
 																btnNewButton.setBackground(SystemColor.menu);
 																
 																		btnNewButton_1 = new JButton("Limpar");
-																		btnNewButton_1.setBounds(113, 291, 96, 23);
+																		btnNewButton_1.setBounds(113, 336, 96, 23);
 																		panel.add(btnNewButton_1);
 																		btnNewButton_1.setForeground(Color.DARK_GRAY);
 																		btnNewButton_1.setFont(new Font("Dialog", Font.PLAIN, 16));
 																		btnNewButton_1.setBackground(SystemColor.menu);
+																		
+																		txtIdLivro = new JTextField();
+																		txtIdLivro.setForeground(Color.DARK_GRAY);
+																		txtIdLivro.setFont(new Font("Dialog", Font.PLAIN, 16));
+																		txtIdLivro.setColumns(10);
+																		txtIdLivro.setBackground(SystemColor.menu);
+																		txtIdLivro.setBounds(7, 115, 244, 25);
+																		panel.add(txtIdLivro);
+																		
+																		JLabel lblIdLivro = new JLabel("ID Livro");
+																		lblIdLivro.setHorizontalAlignment(SwingConstants.LEFT);
+																		lblIdLivro.setForeground(Color.DARK_GRAY);
+																		lblIdLivro.setFont(new Font("Dialog", Font.PLAIN, 18));
+																		lblIdLivro.setBounds(7, 81, 83, 23);
+																		panel.add(lblIdLivro);
 	}
 }

@@ -24,13 +24,13 @@ public class TelaMulta extends JFrame {
 	private JLabel lblNewLabel_1;
 	private JComboBox comboBox;
 	private JComboBox comboBox_1;
-	private JTextField anoTXT;
+	private JTextField txtAno;
 	private JLabel lblNewLabel;
-	private JTextField ClienteidTXT;
+	private JTextField txtClienteID;
 	private JButton SalvarBT;
 	private JButton LimparBT;
 	private JTable table;
-	private JTextField MultaTXT;
+	private JTextField txtValorMulta;
 
 	/**
 	 * Create the frame.
@@ -86,13 +86,13 @@ public class TelaMulta extends JFrame {
 				lblNewLabel.setForeground(Color.DARK_GRAY);
 				lblNewLabel.setFont(new Font("Dialog", Font.PLAIN, 18));
 				
-						ClienteidTXT = new JTextField();
-						ClienteidTXT.setForeground(Color.DARK_GRAY);
-						ClienteidTXT.setBounds(7, 45, 244, 25);
-						panel.add(ClienteidTXT);
-						ClienteidTXT.setFont(new Font("Dialog", Font.PLAIN, 16));
-						ClienteidTXT.setColumns(10);
-						ClienteidTXT.setBackground(SystemColor.menu);
+						txtClienteID = new JTextField();
+						txtClienteID.setForeground(Color.DARK_GRAY);
+						txtClienteID.setBounds(7, 45, 244, 25);
+						panel.add(txtClienteID);
+						txtClienteID.setFont(new Font("Dialog", Font.PLAIN, 16));
+						txtClienteID.setColumns(10);
+						txtClienteID.setBackground(SystemColor.menu);
 						
 								lblNewLabel_1 = new JLabel("Data de Devolu\u00E7\u00E3o");
 								lblNewLabel_1.setBounds(7, 81, 244, 25);
@@ -118,13 +118,13 @@ public class TelaMulta extends JFrame {
 												comboBox_1.setFont(new Font("Dialog", Font.PLAIN, 16));
 												comboBox_1.setBackground(SystemColor.menu);
 												
-														anoTXT = new JTextField();
-														anoTXT.setForeground(Color.DARK_GRAY);
-														anoTXT.setBounds(169, 117, 82, 24);
-														panel.add(anoTXT);
-														anoTXT.setFont(new Font("Dialog", Font.PLAIN, 16));
-														anoTXT.setColumns(10);
-														anoTXT.setBackground(SystemColor.menu);
+														txtAno = new JTextField();
+														txtAno.setForeground(Color.DARK_GRAY);
+														txtAno.setBounds(169, 117, 82, 24);
+														panel.add(txtAno);
+														txtAno.setFont(new Font("Dialog", Font.PLAIN, 16));
+														txtAno.setColumns(10);
+														txtAno.setBackground(SystemColor.menu);
 														
 														JLabel lblNewLabel_1_1 = new JLabel("Multa Vigente");
 														lblNewLabel_1_1.setBounds(7, 152, 244, 25);
@@ -147,13 +147,13 @@ public class TelaMulta extends JFrame {
 																		LimparBT.setFont(new Font("Dialog", Font.PLAIN, 16));
 																		LimparBT.setBackground(SystemColor.menu);
 																		
-																		MultaTXT = new JTextField();
-																		MultaTXT.setForeground(Color.DARK_GRAY);
-																		MultaTXT.setFont(new Font("Dialog", Font.PLAIN, 16));
-																		MultaTXT.setColumns(10);
-																		MultaTXT.setBackground(SystemColor.menu);
-																		MultaTXT.setBounds(37, 187, 214, 25);
-																		panel.add(MultaTXT);
+																		txtValorMulta = new JTextField();
+																		txtValorMulta.setForeground(Color.DARK_GRAY);
+																		txtValorMulta.setFont(new Font("Dialog", Font.PLAIN, 16));
+																		txtValorMulta.setColumns(10);
+																		txtValorMulta.setBackground(SystemColor.menu);
+																		txtValorMulta.setBounds(37, 187, 214, 25);
+																		panel.add(txtValorMulta);
 																		
 																		JLabel lblNewLabel_2 = new JLabel("R$");
 																		lblNewLabel_2.setHorizontalAlignment(SwingConstants.LEFT);
