@@ -38,20 +38,20 @@ public class TelaCliente extends JFrame {
 
 	private JPanel contentPane;
 	private JLabel lblNewLabel;
-	private JTextField textField;
+	private JTextField NomeTXT;
 	private JButton btnNewButton;
 	private JButton btnNewButton_1;
 	private JTable table;
 	private JLabel lblNewLabel_1;
-	private JTextField textField_1;
+	private JTextField CpfTXT;
 	private JLabel lblNewLabel_2;
 	private JLabel lblNewLabel_3;
-	private JTextField textField_3;
+	private JTextField CepTXT;
 	private JLabel lblNewLabel_4;
-	private JTextField textField_2;
+	private JTextField TelefoneTXT;
 	private JLabel lblNewLabel_5;
-	private JTextField textField_4;
-	private JTextField textField_5;
+	private JTextField EmailTXT;
+	private JTextField NcasaTXT;
 
 	/**
 	 * Create the frame.
@@ -107,13 +107,13 @@ public class TelaCliente extends JFrame {
 				lblNewLabel.setForeground(Color.DARK_GRAY);
 				lblNewLabel.setFont(new Font("Dialog", Font.PLAIN, 18));
 				
-						textField = new JTextField();
-						textField.setForeground(Color.DARK_GRAY);
-						textField.setBounds(7, 45, 302, 25);
-						panel.add(textField);
-						textField.setFont(new Font("Dialog", Font.PLAIN, 16));
-						textField.setColumns(10);
-						textField.setBackground(SystemColor.menu);
+						NomeTXT = new JTextField();
+						NomeTXT.setForeground(Color.DARK_GRAY);
+						NomeTXT.setBounds(7, 45, 302, 25);
+						panel.add(NomeTXT);
+						NomeTXT.setFont(new Font("Dialog", Font.PLAIN, 16));
+						NomeTXT.setColumns(10);
+						NomeTXT.setBackground(SystemColor.menu);
 														
 																btnNewButton = new JButton("Salvar");
 																btnNewButton.setBounds(7, 378, 96, 23);
@@ -136,13 +136,13 @@ public class TelaCliente extends JFrame {
 																		lblNewLabel_1.setBounds(7, 78, 244, 23);
 																		panel.add(lblNewLabel_1);
 																		
-																		textField_1 = new JTextField();
-																		textField_1.setForeground(Color.DARK_GRAY);
-																		textField_1.setFont(new Font("Dialog", Font.PLAIN, 16));
-																		textField_1.setColumns(10);
-																		textField_1.setBackground(SystemColor.menu);
-																		textField_1.setBounds(7, 112, 302, 25);
-																		panel.add(textField_1);
+																		CpfTXT = new JTextField();
+																		CpfTXT.setForeground(Color.DARK_GRAY);
+																		CpfTXT.setFont(new Font("Dialog", Font.PLAIN, 16));
+																		CpfTXT.setColumns(10);
+																		CpfTXT.setBackground(SystemColor.menu);
+																		CpfTXT.setBounds(7, 112, 302, 25);
+																		panel.add(CpfTXT);
 																		
 																		lblNewLabel_2 = new JLabel("Telefone");
 																		lblNewLabel_2.setHorizontalAlignment(SwingConstants.LEFT);
@@ -158,13 +158,13 @@ public class TelaCliente extends JFrame {
 																		lblNewLabel_3.setBounds(10, 288, 169, 23);
 																		panel.add(lblNewLabel_3);
 																		
-																		textField_3 = new JTextField();
-																		textField_3.setForeground(Color.DARK_GRAY);
-																		textField_3.setFont(new Font("Dialog", Font.PLAIN, 16));
-																		textField_3.setColumns(10);
-																		textField_3.setBackground(SystemColor.menu);
-																		textField_3.setBounds(10, 322, 169, 25);
-																		panel.add(textField_3);
+																		CepTXT = new JTextField();
+																		CepTXT.setForeground(Color.DARK_GRAY);
+																		CepTXT.setFont(new Font("Dialog", Font.PLAIN, 16));
+																		CepTXT.setColumns(10);
+																		CepTXT.setBackground(SystemColor.menu);
+																		CepTXT.setBounds(10, 322, 169, 25);
+																		panel.add(CepTXT);
 																		
 																		lblNewLabel_4 = new JLabel("N\u00BA Casa");
 																		lblNewLabel_4.setHorizontalAlignment(SwingConstants.CENTER);
@@ -173,13 +173,13 @@ public class TelaCliente extends JFrame {
 																		lblNewLabel_4.setBounds(189, 289, 113, 23);
 																		panel.add(lblNewLabel_4);
 																		
-																		textField_2 = new JTextField();
-																		textField_2.setForeground(Color.DARK_GRAY);
-																		textField_2.setFont(new Font("Dialog", Font.PLAIN, 16));
-																		textField_2.setColumns(10);
-																		textField_2.setBackground(SystemColor.menu);
-																		textField_2.setBounds(7, 182, 302, 25);
-																		panel.add(textField_2);
+																		TelefoneTXT = new JTextField();
+																		TelefoneTXT.setForeground(Color.DARK_GRAY);
+																		TelefoneTXT.setFont(new Font("Dialog", Font.PLAIN, 16));
+																		TelefoneTXT.setColumns(10);
+																		TelefoneTXT.setBackground(SystemColor.menu);
+																		TelefoneTXT.setBounds(7, 182, 302, 25);
+																		panel.add(TelefoneTXT);
 																		
 																		lblNewLabel_5 = new JLabel("Email");
 																		lblNewLabel_5.setHorizontalAlignment(SwingConstants.LEFT);
@@ -188,20 +188,20 @@ public class TelaCliente extends JFrame {
 																		lblNewLabel_5.setBounds(7, 218, 244, 23);
 																		panel.add(lblNewLabel_5);
 																		
-																		textField_4 = new JTextField();
-																		textField_4.setForeground(Color.DARK_GRAY);
-																		textField_4.setFont(new Font("Dialog", Font.PLAIN, 16));
-																		textField_4.setColumns(10);
-																		textField_4.setBackground(SystemColor.menu);
-																		textField_4.setBounds(7, 252, 302, 25);
-																		panel.add(textField_4);
+																		EmailTXT = new JTextField();
+																		EmailTXT.setForeground(Color.DARK_GRAY);
+																		EmailTXT.setFont(new Font("Dialog", Font.PLAIN, 16));
+																		EmailTXT.setColumns(10);
+																		EmailTXT.setBackground(SystemColor.menu);
+																		EmailTXT.setBounds(7, 252, 302, 25);
+																		panel.add(EmailTXT);
 																		
-																		textField_5 = new JTextField();
-																		textField_5.setForeground(Color.DARK_GRAY);
-																		textField_5.setFont(new Font("Dialog", Font.PLAIN, 16));
-																		textField_5.setColumns(10);
-																		textField_5.setBackground(SystemColor.menu);
-																		textField_5.setBounds(189, 322, 120, 25);
-																		panel.add(textField_5);
+																		NcasaTXT = new JTextField();
+																		NcasaTXT.setForeground(Color.DARK_GRAY);
+																		NcasaTXT.setFont(new Font("Dialog", Font.PLAIN, 16));
+																		NcasaTXT.setColumns(10);
+																		NcasaTXT.setBackground(SystemColor.menu);
+																		NcasaTXT.setBounds(189, 322, 120, 25);
+																		panel.add(NcasaTXT);
 	}
 }

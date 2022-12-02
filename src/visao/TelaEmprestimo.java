@@ -24,13 +24,13 @@ public class TelaEmprestimo extends JFrame {
 	private JLabel lblNewLabel_1;
 	private JComboBox comboBox;
 	private JComboBox comboBox_1;
-	private JTextField textField_1;
+	private JTextField anoEmprTXT;
 	private JLabel lblNewLabel;
-	private JTextField textField;
+	private JTextField IdclienteTXT;
 	private JButton btnNewButton;
 	private JButton btnNewButton_1;
 	private JTable table;
-	private JTextField textField_2;
+	private JTextField AnoDevTXT;
 
 	/**
 	 * Create the frame.
@@ -86,13 +86,13 @@ public class TelaEmprestimo extends JFrame {
 				lblNewLabel.setForeground(Color.DARK_GRAY);
 				lblNewLabel.setFont(new Font("Dialog", Font.PLAIN, 18));
 				
-						textField = new JTextField();
-						textField.setForeground(Color.DARK_GRAY);
-						textField.setBounds(7, 45, 244, 25);
-						panel.add(textField);
-						textField.setFont(new Font("Dialog", Font.PLAIN, 16));
-						textField.setColumns(10);
-						textField.setBackground(SystemColor.menu);
+						IdclienteTXT = new JTextField();
+						IdclienteTXT.setForeground(Color.DARK_GRAY);
+						IdclienteTXT.setBounds(7, 45, 244, 25);
+						panel.add(IdclienteTXT);
+						IdclienteTXT.setFont(new Font("Dialog", Font.PLAIN, 16));
+						IdclienteTXT.setColumns(10);
+						IdclienteTXT.setBackground(SystemColor.menu);
 						
 								lblNewLabel_1 = new JLabel("Data de Empr\u00E9stimo");
 								lblNewLabel_1.setBounds(7, 81, 244, 25);
@@ -118,21 +118,21 @@ public class TelaEmprestimo extends JFrame {
 												comboBox_1.setFont(new Font("Dialog", Font.PLAIN, 16));
 												comboBox_1.setBackground(SystemColor.menu);
 												
-														textField_1 = new JTextField();
-														textField_1.setForeground(Color.DARK_GRAY);
-														textField_1.setBounds(169, 117, 82, 24);
-														panel.add(textField_1);
-														textField_1.setFont(new Font("Dialog", Font.PLAIN, 16));
-														textField_1.setColumns(10);
-														textField_1.setBackground(SystemColor.menu);
+														anoEmprTXT = new JTextField();
+														anoEmprTXT.setForeground(Color.DARK_GRAY);
+														anoEmprTXT.setBounds(169, 117, 82, 24);
+														panel.add(anoEmprTXT);
+														anoEmprTXT.setFont(new Font("Dialog", Font.PLAIN, 16));
+														anoEmprTXT.setColumns(10);
+														anoEmprTXT.setBackground(SystemColor.menu);
 														
-														textField_2 = new JTextField();
-														textField_2.setForeground(Color.DARK_GRAY);
-														textField_2.setBounds(169, 188, 82, 24);
-														panel.add(textField_2);
-														textField_2.setFont(new Font("Dialog", Font.PLAIN, 16));
-														textField_2.setColumns(10);
-														textField_2.setBackground(SystemColor.menu);
+														AnoDevTXT = new JTextField();
+														AnoDevTXT.setForeground(Color.DARK_GRAY);
+														AnoDevTXT.setBounds(169, 188, 82, 24);
+														panel.add(AnoDevTXT);
+														AnoDevTXT.setFont(new Font("Dialog", Font.PLAIN, 16));
+														AnoDevTXT.setColumns(10);
+														AnoDevTXT.setBackground(SystemColor.menu);
 														
 														JLabel lblNewLabel_1_1 = new JLabel("Data de Devolu\u00E7\u00E3o");
 														lblNewLabel_1_1.setBounds(7, 152, 244, 25);

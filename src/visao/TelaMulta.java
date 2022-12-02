@@ -24,13 +24,13 @@ public class TelaMulta extends JFrame {
 	private JLabel lblNewLabel_1;
 	private JComboBox comboBox;
 	private JComboBox comboBox_1;
-	private JTextField textField_1;
+	private JTextField anoTXT;
 	private JLabel lblNewLabel;
-	private JTextField textField;
-	private JButton btnNewButton;
-	private JButton btnNewButton_1;
+	private JTextField ClienteidTXT;
+	private JButton SalvarBT;
+	private JButton LimparBT;
 	private JTable table;
-	private JTextField textField_2;
+	private JTextField MultaTXT;
 
 	/**
 	 * Create the frame.
@@ -46,8 +46,8 @@ public class TelaMulta extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 
-		JButton btnNewButton_2 = new JButton("Voltar");
-		btnNewButton_2.addActionListener(new ActionListener() {
+		JButton VoltarBT = new JButton("Voltar");
+		VoltarBT.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				dispose();
 
@@ -56,11 +56,11 @@ public class TelaMulta extends JFrame {
 				frame.setVisible(true);
 			}
 		});
-		btnNewButton_2.setBackground(SystemColor.menu);
-		btnNewButton_2.setForeground(Color.DARK_GRAY);
-		btnNewButton_2.setFont(new Font("Dialog", Font.PLAIN, 12));
-		btnNewButton_2.setBounds(613, 423, 96, 23);
-		contentPane.add(btnNewButton_2);
+		VoltarBT.setBackground(SystemColor.menu);
+		VoltarBT.setForeground(Color.DARK_GRAY);
+		VoltarBT.setFont(new Font("Dialog", Font.PLAIN, 12));
+		VoltarBT.setBounds(613, 423, 96, 23);
+		contentPane.add(VoltarBT);
 		
 		JLabel lblNewLabel_8 = new JLabel("Multa");
 		lblNewLabel_8.setForeground(Color.WHITE);
@@ -86,13 +86,13 @@ public class TelaMulta extends JFrame {
 				lblNewLabel.setForeground(Color.DARK_GRAY);
 				lblNewLabel.setFont(new Font("Dialog", Font.PLAIN, 18));
 				
-						textField = new JTextField();
-						textField.setForeground(Color.DARK_GRAY);
-						textField.setBounds(7, 45, 244, 25);
-						panel.add(textField);
-						textField.setFont(new Font("Dialog", Font.PLAIN, 16));
-						textField.setColumns(10);
-						textField.setBackground(SystemColor.menu);
+						ClienteidTXT = new JTextField();
+						ClienteidTXT.setForeground(Color.DARK_GRAY);
+						ClienteidTXT.setBounds(7, 45, 244, 25);
+						panel.add(ClienteidTXT);
+						ClienteidTXT.setFont(new Font("Dialog", Font.PLAIN, 16));
+						ClienteidTXT.setColumns(10);
+						ClienteidTXT.setBackground(SystemColor.menu);
 						
 								lblNewLabel_1 = new JLabel("Data de Devolu\u00E7\u00E3o");
 								lblNewLabel_1.setBounds(7, 81, 244, 25);
@@ -118,13 +118,13 @@ public class TelaMulta extends JFrame {
 												comboBox_1.setFont(new Font("Dialog", Font.PLAIN, 16));
 												comboBox_1.setBackground(SystemColor.menu);
 												
-														textField_1 = new JTextField();
-														textField_1.setForeground(Color.DARK_GRAY);
-														textField_1.setBounds(169, 117, 82, 24);
-														panel.add(textField_1);
-														textField_1.setFont(new Font("Dialog", Font.PLAIN, 16));
-														textField_1.setColumns(10);
-														textField_1.setBackground(SystemColor.menu);
+														anoTXT = new JTextField();
+														anoTXT.setForeground(Color.DARK_GRAY);
+														anoTXT.setBounds(169, 117, 82, 24);
+														panel.add(anoTXT);
+														anoTXT.setFont(new Font("Dialog", Font.PLAIN, 16));
+														anoTXT.setColumns(10);
+														anoTXT.setBackground(SystemColor.menu);
 														
 														JLabel lblNewLabel_1_1 = new JLabel("Multa Vigente");
 														lblNewLabel_1_1.setBounds(7, 152, 244, 25);
@@ -133,27 +133,27 @@ public class TelaMulta extends JFrame {
 														lblNewLabel_1_1.setForeground(Color.DARK_GRAY);
 														lblNewLabel_1_1.setFont(new Font("Dialog", Font.PLAIN, 18));
 														
-																btnNewButton = new JButton("Salvar");
-																btnNewButton.setBounds(7, 291, 96, 23);
-																panel.add(btnNewButton);
-																btnNewButton.setForeground(Color.DARK_GRAY);
-																btnNewButton.setFont(new Font("Dialog", Font.PLAIN, 16));
-																btnNewButton.setBackground(SystemColor.menu);
+																SalvarBT = new JButton("Salvar");
+																SalvarBT.setBounds(7, 291, 96, 23);
+																panel.add(SalvarBT);
+																SalvarBT.setForeground(Color.DARK_GRAY);
+																SalvarBT.setFont(new Font("Dialog", Font.PLAIN, 16));
+																SalvarBT.setBackground(SystemColor.menu);
 																
-																		btnNewButton_1 = new JButton("Limpar");
-																		btnNewButton_1.setBounds(113, 291, 96, 23);
-																		panel.add(btnNewButton_1);
-																		btnNewButton_1.setForeground(Color.DARK_GRAY);
-																		btnNewButton_1.setFont(new Font("Dialog", Font.PLAIN, 16));
-																		btnNewButton_1.setBackground(SystemColor.menu);
+																		LimparBT = new JButton("Limpar");
+																		LimparBT.setBounds(113, 291, 96, 23);
+																		panel.add(LimparBT);
+																		LimparBT.setForeground(Color.DARK_GRAY);
+																		LimparBT.setFont(new Font("Dialog", Font.PLAIN, 16));
+																		LimparBT.setBackground(SystemColor.menu);
 																		
-																		textField_2 = new JTextField();
-																		textField_2.setForeground(Color.DARK_GRAY);
-																		textField_2.setFont(new Font("Dialog", Font.PLAIN, 16));
-																		textField_2.setColumns(10);
-																		textField_2.setBackground(SystemColor.menu);
-																		textField_2.setBounds(37, 187, 214, 25);
-																		panel.add(textField_2);
+																		MultaTXT = new JTextField();
+																		MultaTXT.setForeground(Color.DARK_GRAY);
+																		MultaTXT.setFont(new Font("Dialog", Font.PLAIN, 16));
+																		MultaTXT.setColumns(10);
+																		MultaTXT.setBackground(SystemColor.menu);
+																		MultaTXT.setBounds(37, 187, 214, 25);
+																		panel.add(MultaTXT);
 																		
 																		JLabel lblNewLabel_2 = new JLabel("R$");
 																		lblNewLabel_2.setHorizontalAlignment(SwingConstants.LEFT);

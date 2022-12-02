@@ -23,15 +23,15 @@ public class TelaAcervo extends JFrame {
 
 	private JPanel contentPane;
 	private JLabel lblNewLabel;
-	private JTextField textField;
+	private JTextField NomelivroTXT;
 	private JButton btnNewButton;
 	private JButton btnNewButton_1;
 	private JTable table;
 	private JLabel lblNewLabel_1;
-	private JTextField textField_1;
+	private JTextField AutorTXT;
 	private JLabel lblNewLabel_2;
 	private JLabel lblNewLabel_3;
-	private JTextField textField_3;
+	private JTextField NumeropagTXT;
 	private JComboBox comboBox;
 	private JLabel lblNewLabel_4;
 	private JComboBox comboBox_1;
@@ -90,13 +90,13 @@ public class TelaAcervo extends JFrame {
 				lblNewLabel.setForeground(Color.DARK_GRAY);
 				lblNewLabel.setFont(new Font("Dialog", Font.PLAIN, 18));
 				
-						textField = new JTextField();
-						textField.setForeground(Color.DARK_GRAY);
-						textField.setBounds(7, 45, 302, 25);
-						panel.add(textField);
-						textField.setFont(new Font("Dialog", Font.PLAIN, 16));
-						textField.setColumns(10);
-						textField.setBackground(SystemColor.menu);
+						NomelivroTXT = new JTextField();
+						NomelivroTXT.setForeground(Color.DARK_GRAY);
+						NomelivroTXT.setBounds(7, 45, 302, 25);
+						panel.add(NomelivroTXT);
+						NomelivroTXT.setFont(new Font("Dialog", Font.PLAIN, 16));
+						NomelivroTXT.setColumns(10);
+						NomelivroTXT.setBackground(SystemColor.menu);
 														
 																btnNewButton = new JButton("Salvar");
 																btnNewButton.setBounds(7, 307, 96, 23);
@@ -119,13 +119,13 @@ public class TelaAcervo extends JFrame {
 																		lblNewLabel_1.setBounds(7, 78, 244, 23);
 																		panel.add(lblNewLabel_1);
 																		
-																		textField_1 = new JTextField();
-																		textField_1.setForeground(Color.DARK_GRAY);
-																		textField_1.setFont(new Font("Dialog", Font.PLAIN, 16));
-																		textField_1.setColumns(10);
-																		textField_1.setBackground(SystemColor.menu);
-																		textField_1.setBounds(7, 112, 302, 25);
-																		panel.add(textField_1);
+																		AutorTXT = new JTextField();
+																		AutorTXT.setForeground(Color.DARK_GRAY);
+																		AutorTXT.setFont(new Font("Dialog", Font.PLAIN, 16));
+																		AutorTXT.setColumns(10);
+																		AutorTXT.setBackground(SystemColor.menu);
+																		AutorTXT.setBounds(7, 112, 302, 25);
+																		panel.add(AutorTXT);
 																		
 																		lblNewLabel_2 = new JLabel("G\u00EAnero");
 																		lblNewLabel_2.setHorizontalAlignment(SwingConstants.LEFT);
@@ -141,13 +141,13 @@ public class TelaAcervo extends JFrame {
 																		lblNewLabel_3.setBounds(7, 218, 169, 23);
 																		panel.add(lblNewLabel_3);
 																		
-																		textField_3 = new JTextField();
-																		textField_3.setForeground(Color.DARK_GRAY);
-																		textField_3.setFont(new Font("Dialog", Font.PLAIN, 16));
-																		textField_3.setColumns(10);
-																		textField_3.setBackground(SystemColor.menu);
-																		textField_3.setBounds(7, 252, 169, 25);
-																		panel.add(textField_3);
+																		NumeropagTXT = new JTextField();
+																		NumeropagTXT.setForeground(Color.DARK_GRAY);
+																		NumeropagTXT.setFont(new Font("Dialog", Font.PLAIN, 16));
+																		NumeropagTXT.setColumns(10);
+																		NumeropagTXT.setBackground(SystemColor.menu);
+																		NumeropagTXT.setBounds(7, 252, 169, 25);
+																		panel.add(NumeropagTXT);
 																		
 																		comboBox = new JComboBox();
 																		comboBox.setForeground(Color.DARK_GRAY);

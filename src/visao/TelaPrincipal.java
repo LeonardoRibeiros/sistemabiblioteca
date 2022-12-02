@@ -75,9 +75,9 @@ public class TelaPrincipal extends JFrame {
 
 		setContentPane(contentPane);
 
-		JButton btnNewButton = new JButton("Empr\u00E9stimo");
-		btnNewButton.setBounds(133, 89, 217, 34);
-		btnNewButton.addActionListener(new ActionListener() {
+		JButton EmprestimoBT = new JButton("Empr\u00E9stimo");
+		EmprestimoBT.setBounds(133, 89, 217, 34);
+		EmprestimoBT.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				// Fecha a tela atual
 				dispose();
@@ -88,14 +88,14 @@ public class TelaPrincipal extends JFrame {
 			}
 		});
 		contentPane.setLayout(null);
-		btnNewButton.setForeground(Color.DARK_GRAY);
-		btnNewButton.setBackground(new Color(176, 196, 222));
-		btnNewButton.setFont(new Font("Dialog", Font.PLAIN, 18));
-		contentPane.add(btnNewButton);
+		EmprestimoBT.setForeground(Color.DARK_GRAY);
+		EmprestimoBT.setBackground(new Color(176, 196, 222));
+		EmprestimoBT.setFont(new Font("Dialog", Font.PLAIN, 18));
+		contentPane.add(EmprestimoBT);
 
-		JButton btnNewButton_1 = new JButton("Multas");
-		btnNewButton_1.setBounds(133, 156, 217, 34);
-		btnNewButton_1.addActionListener(new ActionListener() {
+		JButton MultaBT = new JButton("Multas");
+		MultaBT.setBounds(133, 156, 217, 34);
+		MultaBT.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				// Fecha a tela atual
 				dispose();
@@ -105,14 +105,14 @@ public class TelaPrincipal extends JFrame {
 				telaMulta.setVisible(true);
 			}
 		});
-		btnNewButton_1.setForeground(Color.DARK_GRAY);
-		btnNewButton_1.setBackground(new Color(176, 196, 222));
-		btnNewButton_1.setFont(new Font("Dialog", Font.PLAIN, 18));
-		contentPane.add(btnNewButton_1);
+		MultaBT.setForeground(Color.DARK_GRAY);
+		MultaBT.setBackground(new Color(176, 196, 222));
+		MultaBT.setFont(new Font("Dialog", Font.PLAIN, 18));
+		contentPane.add(MultaBT);
 
-		JButton btnNewButton_2 = new JButton("Acervo");
-		btnNewButton_2.setBounds(133, 224, 217, 34);
-		btnNewButton_2.addActionListener(new ActionListener() {
+		JButton AcervoBT = new JButton("Acervo");
+		AcervoBT.setBounds(133, 224, 217, 34);
+		AcervoBT.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				// Fecha a tela atual
 				dispose();
@@ -122,22 +122,22 @@ public class TelaPrincipal extends JFrame {
 				telaAcervo.setVisible(true);
 			}
 		});
-		btnNewButton_2.setForeground(Color.DARK_GRAY);
-		btnNewButton_2.setBackground(new Color(176, 196, 222));
-		btnNewButton_2.setFont(new Font("Dialog", Font.PLAIN, 18));
-		contentPane.add(btnNewButton_2);
+		AcervoBT.setForeground(Color.DARK_GRAY);
+		AcervoBT.setBackground(new Color(176, 196, 222));
+		AcervoBT.setFont(new Font("Dialog", Font.PLAIN, 18));
+		contentPane.add(AcervoBT);
 
-		Button button = new Button("Sair");
-		button.setBounds(411, 302, 74, 24);
-		button.setFont(new Font("Estrangelo Edessa", Font.PLAIN, 13));
-		button.addActionListener(new ActionListener() {
+		Button SairBT = new Button("Sair");
+		SairBT.setBounds(411, 302, 74, 24);
+		SairBT.setFont(new Font("Estrangelo Edessa", Font.PLAIN, 13));
+		SairBT.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				System.exit(0);
 			}
 		});
-		button.setForeground(Color.DARK_GRAY);
-		button.setBackground(SystemColor.menu);
-		contentPane.add(button);
+		SairBT.setForeground(Color.DARK_GRAY);
+		SairBT.setBackground(SystemColor.menu);
+		contentPane.add(SairBT);
 
 		JLabel lblNewLabel = new JLabel("BIBLIOTECA");
 		lblNewLabel.setBounds(84, 21, 322, 34);
