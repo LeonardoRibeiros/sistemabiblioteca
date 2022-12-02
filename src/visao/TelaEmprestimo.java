@@ -4,10 +4,7 @@ import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.SystemColor;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
-import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
@@ -16,15 +13,24 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.JTable;
 
 public class TelaEmprestimo extends JFrame {
 
 	private JPanel contentPane;
-	private JTextField txt_idcliente;
+	private JLabel lblNewLabel_1;
+	private JComboBox comboBox;
+	private JComboBox comboBox_1;
 	private JTextField textField_1;
+	private JLabel lblNewLabel;
 	private JTextField textField;
-
-
+	private JButton btnNewButton;
+	private JButton btnNewButton_1;
+	private JTable table;
+	private JTextField textField_2;
 
 	/**
 	 * Create the frame.
@@ -32,7 +38,7 @@ public class TelaEmprestimo extends JFrame {
 	public TelaEmprestimo() {
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setBounds(100, 100, 487, 503);
+		setBounds(100, 100, 735, 506);
 		contentPane = new JPanel();
 		contentPane.setBackground(Color.DARK_GRAY);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -40,174 +46,130 @@ public class TelaEmprestimo extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 
-		JLabel lblNewLabel = new JLabel("ID Cliente:");
-		lblNewLabel.setForeground(SystemColor.menu);
-		lblNewLabel.setFont(new Font("Dialog", Font.PLAIN, 14));
-		lblNewLabel.setHorizontalAlignment(SwingConstants.LEFT);
-		lblNewLabel.setBounds(47, 99, 99, 23);
-		contentPane.add(lblNewLabel);
-
-		txt_idcliente = new JTextField();
-		txt_idcliente.setBackground(SystemColor.menu);
-		txt_idcliente.setBounds(122, 101, 291, 23);
-		contentPane.add(txt_idcliente);
-		txt_idcliente.setColumns(10);
-
-		JLabel lblNewLabel_1 = new JLabel("Data de Emprestimo:");
-		lblNewLabel_1.setForeground(SystemColor.menu);
-		lblNewLabel_1.setFont(new Font("Dialog", Font.PLAIN, 14));
-		lblNewLabel_1.setHorizontalAlignment(SwingConstants.LEFT);
-		lblNewLabel_1.setBounds(47, 148, 160, 23);
-		contentPane.add(lblNewLabel_1);
-
-		JButton btnNewButton = new JButton("Salvar");
-		btnNewButton.setBackground(SystemColor.menu);
-		btnNewButton.setForeground(Color.DARK_GRAY);
-		btnNewButton.setFont(new Font("Dialog", Font.PLAIN, 13));
-		btnNewButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
-		btnNewButton.setBounds(47, 347, 152, 32);
-		contentPane.add(btnNewButton);
-
-		JButton btnNewButton_1 = new JButton("Limpar");
-		btnNewButton_1.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
-		btnNewButton_1.setBackground(SystemColor.menu);
-		btnNewButton_1.setForeground(Color.DARK_GRAY);
-		btnNewButton_1.setFont(new Font("Dialog", Font.PLAIN, 13));
-		btnNewButton_1.setBounds(47, 390, 152, 32);
-		contentPane.add(btnNewButton_1);
-
-		JButton btnNewButton_2 = new JButton("Cancelar");
+		JButton btnNewButton_2 = new JButton("Voltar");
 		btnNewButton_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				dispose();
-				
+
 				TelaPrincipal frame = new TelaPrincipal();
 				frame.setLocationRelativeTo(null);
-				frame.setVisible(true);	
+				frame.setVisible(true);
 			}
 		});
 		btnNewButton_2.setBackground(SystemColor.menu);
 		btnNewButton_2.setForeground(Color.DARK_GRAY);
-		btnNewButton_2.setFont(new Font("Dialog", Font.PLAIN, 13));
-		btnNewButton_2.setBounds(362, 430, 99, 23);
+		btnNewButton_2.setFont(new Font("Dialog", Font.PLAIN, 16));
+		btnNewButton_2.setBounds(613, 423, 96, 23);
 		contentPane.add(btnNewButton_2);
-
-		JButton btnNewButton_3 = new JButton("Consultar Emprestimos");
-		btnNewButton_3.setBackground(SystemColor.menu);
-		btnNewButton_3.setForeground(Color.DARK_GRAY);
-		btnNewButton_3.setFont(new Font("Dialog", Font.PLAIN, 13));
-		btnNewButton_3.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
-		btnNewButton_3.setBounds(47, 304, 173, 32);
-		contentPane.add(btnNewButton_3);
-
-		JComboBox comboBox = new JComboBox();
-		comboBox.setBackground(SystemColor.menu);
-		comboBox.setFont(new Font("Dialog", Font.PLAIN, 14));
-		comboBox.setModel(new DefaultComboBoxModel(
-				new String[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16",
-						"17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31" }));
-		comboBox.setBounds(193, 176, 55, 23);
-		contentPane.add(comboBox);
-
-		JLabel lblNewLabel_3 = new JLabel("DIA");
-		lblNewLabel_3.setFont(new Font("Dialog", Font.PLAIN, 14));
-		lblNewLabel_3.setForeground(SystemColor.menu);
-		lblNewLabel_3.setBackground(SystemColor.menu);
-		lblNewLabel_3.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_3.setBounds(193, 135, 55, 23);
-		contentPane.add(lblNewLabel_3);
-
-		JLabel lblNewLabel_4 = new JLabel("M\u00CAS");
-		lblNewLabel_4.setFont(new Font("Dialog", Font.PLAIN, 14));
-		lblNewLabel_4.setForeground(SystemColor.menu);
-		lblNewLabel_4.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_4.setBounds(258, 135, 55, 23);
-		contentPane.add(lblNewLabel_4);
-
-		JComboBox comboBox_1 = new JComboBox();
-		comboBox_1.setBackground(SystemColor.menu);
-		comboBox_1.setFont(new Font("Dialog", Font.PLAIN, 14));
-		comboBox_1.setModel(new DefaultComboBoxModel(
-				new String[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12" }));
-		comboBox_1.setBounds(258, 176, 55, 23);
-		contentPane.add(comboBox_1);
-
-		JLabel lblNewLabel_5 = new JLabel("ANO");
-		lblNewLabel_5.setFont(new Font("Dialog", Font.PLAIN, 14));
-		lblNewLabel_5.setForeground(SystemColor.menu);
-		lblNewLabel_5.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_5.setBounds(323, 135, 90, 23);
-		contentPane.add(lblNewLabel_5);
-
-		textField_1 = new JTextField();
-		textField_1.setBackground(SystemColor.menu);
-		textField_1.setBounds(323, 176, 90, 23);
-		contentPane.add(textField_1);
-		textField_1.setColumns(10);
-
-		JLabel lblNewLabel_6 = new JLabel("EMPRÉSTIMO");
-		lblNewLabel_6.setForeground(SystemColor.menu);
-		lblNewLabel_6.setFont(new Font("Dialog", Font.PLAIN, 24));
-		lblNewLabel_6.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_6.setBounds(153, 30, 179, 23);
-		contentPane.add(lblNewLabel_6);
 		
-		JLabel lblNewLabel_1_1 = new JLabel("Data de Devolução:");
-		lblNewLabel_1_1.setHorizontalAlignment(SwingConstants.LEFT);
-		lblNewLabel_1_1.setForeground(SystemColor.menu);
-		lblNewLabel_1_1.setFont(new Font("Dialog", Font.PLAIN, 14));
-		lblNewLabel_1_1.setBounds(47, 210, 160, 23);
-		contentPane.add(lblNewLabel_1_1);
+		JLabel lblNewLabel_8 = new JLabel("Empr\u00E9stimo");
+		lblNewLabel_8.setForeground(Color.WHITE);
+		lblNewLabel_8.setBackground(Color.WHITE);
+		lblNewLabel_8.setFont(new Font("Dialog", Font.PLAIN, 40));
+		lblNewLabel_8.setBounds(10, 21, 244, 43);
+		contentPane.add(lblNewLabel_8);
 		
-		JLabel lblNewLabel_3_1 = new JLabel("DIA");
-		lblNewLabel_3_1.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_3_1.setForeground(SystemColor.menu);
-		lblNewLabel_3_1.setFont(new Font("Dialog", Font.PLAIN, 14));
-		lblNewLabel_3_1.setBackground(SystemColor.menu);
-		lblNewLabel_3_1.setBounds(193, 210, 55, 23);
-		contentPane.add(lblNewLabel_3_1);
+		table = new JTable();
+		table.setBounds(302, 87, 407, 324);
+		contentPane.add(table);
 		
-		JComboBox comboBox_2 = new JComboBox();
-		comboBox_2.setModel(new DefaultComboBoxModel(new String[] {"1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31"}));
-		comboBox_2.setFont(new Font("Dialog", Font.PLAIN, 14));
-		comboBox_2.setBackground(SystemColor.menu);
-		comboBox_2.setBounds(193, 238, 55, 23);
-		contentPane.add(comboBox_2);
+		JPanel panel = new JPanel();
+		panel.setBackground(new Color(176, 196, 222));
+		panel.setBounds(10, 87, 282, 325);
+		contentPane.add(panel);
+		panel.setLayout(null);
 		
-		JLabel lblNewLabel_4_1 = new JLabel("MÊS");
-		lblNewLabel_4_1.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_4_1.setForeground(SystemColor.menu);
-		lblNewLabel_4_1.setFont(new Font("Dialog", Font.PLAIN, 14));
-		lblNewLabel_4_1.setBounds(258, 210, 55, 23);
-		contentPane.add(lblNewLabel_4_1);
-		
-		JComboBox comboBox_1_1 = new JComboBox();
-		comboBox_1_1.setModel(new DefaultComboBoxModel(new String[] {"1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12"}));
-		comboBox_1_1.setFont(new Font("Dialog", Font.PLAIN, 14));
-		comboBox_1_1.setBackground(SystemColor.menu);
-		comboBox_1_1.setBounds(258, 238, 55, 23);
-		contentPane.add(comboBox_1_1);
-		
-		JLabel lblNewLabel_5_1 = new JLabel("ANO");
-		lblNewLabel_5_1.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_5_1.setForeground(SystemColor.menu);
-		lblNewLabel_5_1.setFont(new Font("Dialog", Font.PLAIN, 14));
-		lblNewLabel_5_1.setBounds(323, 210, 90, 23);
-		contentPane.add(lblNewLabel_5_1);
-		
-		textField = new JTextField();
-		textField.setColumns(10);
-		textField.setBackground(SystemColor.menu);
-		textField.setBounds(323, 238, 90, 23);
-		contentPane.add(textField);
+				lblNewLabel = new JLabel("ID Cliente");
+				lblNewLabel.setBounds(7, 11, 83, 23);
+				panel.add(lblNewLabel);
+				lblNewLabel.setHorizontalAlignment(SwingConstants.LEFT);
+				lblNewLabel.setForeground(Color.DARK_GRAY);
+				lblNewLabel.setFont(new Font("Dialog", Font.PLAIN, 18));
+				
+						textField = new JTextField();
+						textField.setForeground(Color.DARK_GRAY);
+						textField.setBounds(7, 45, 244, 25);
+						panel.add(textField);
+						textField.setFont(new Font("Dialog", Font.PLAIN, 16));
+						textField.setColumns(10);
+						textField.setBackground(SystemColor.menu);
+						
+								lblNewLabel_1 = new JLabel("Data de Empr\u00E9stimo");
+								lblNewLabel_1.setBounds(7, 81, 244, 25);
+								panel.add(lblNewLabel_1);
+								lblNewLabel_1.setHorizontalAlignment(SwingConstants.LEFT);
+								lblNewLabel_1.setForeground(Color.DARK_GRAY);
+								lblNewLabel_1.setFont(new Font("Dialog", Font.PLAIN, 18));
+								
+										comboBox = new JComboBox();
+										comboBox.setForeground(Color.DARK_GRAY);
+										comboBox.setBounds(7, 117, 71, 24);
+										panel.add(comboBox);
+										comboBox.setModel(new DefaultComboBoxModel(new String[] {"DIA", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31"}));
+										comboBox.setToolTipText("dia");
+										comboBox.setFont(new Font("Dialog", Font.PLAIN, 16));
+										comboBox.setBackground(SystemColor.menu);
+										
+												comboBox_1 = new JComboBox();
+												comboBox_1.setForeground(Color.DARK_GRAY);
+												comboBox_1.setBounds(88, 117, 71, 24);
+												panel.add(comboBox_1);
+												comboBox_1.setModel(new DefaultComboBoxModel(new String[] {"MÊS", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12"}));
+												comboBox_1.setFont(new Font("Dialog", Font.PLAIN, 16));
+												comboBox_1.setBackground(SystemColor.menu);
+												
+														textField_1 = new JTextField();
+														textField_1.setForeground(Color.DARK_GRAY);
+														textField_1.setBounds(169, 117, 82, 24);
+														panel.add(textField_1);
+														textField_1.setFont(new Font("Dialog", Font.PLAIN, 16));
+														textField_1.setColumns(10);
+														textField_1.setBackground(SystemColor.menu);
+														
+														textField_2 = new JTextField();
+														textField_2.setForeground(Color.DARK_GRAY);
+														textField_2.setBounds(169, 188, 82, 24);
+														panel.add(textField_2);
+														textField_2.setFont(new Font("Dialog", Font.PLAIN, 16));
+														textField_2.setColumns(10);
+														textField_2.setBackground(SystemColor.menu);
+														
+														JLabel lblNewLabel_1_1 = new JLabel("Data de Devolu\u00E7\u00E3o");
+														lblNewLabel_1_1.setBounds(7, 152, 244, 25);
+														panel.add(lblNewLabel_1_1);
+														lblNewLabel_1_1.setHorizontalAlignment(SwingConstants.LEFT);
+														lblNewLabel_1_1.setForeground(Color.DARK_GRAY);
+														lblNewLabel_1_1.setFont(new Font("Dialog", Font.PLAIN, 18));
+														
+														JComboBox comboBox_2 = new JComboBox();
+														comboBox_2.setForeground(Color.DARK_GRAY);
+														comboBox_2.setBounds(7, 188, 71, 24);
+														panel.add(comboBox_2);
+														comboBox_2.setModel(new DefaultComboBoxModel(new String[] {"DIA", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31"}));
+														comboBox_2.setToolTipText("dia");
+														comboBox_2.setFont(new Font("Dialog", Font.PLAIN, 16));
+														comboBox_2.setBackground(SystemColor.menu);
+														
+														JComboBox comboBox_1_1 = new JComboBox();
+														comboBox_1_1.setForeground(Color.DARK_GRAY);
+														comboBox_1_1.setBounds(88, 188, 71, 24);
+														panel.add(comboBox_1_1);
+														comboBox_1_1.setModel(new DefaultComboBoxModel(new String[] {"M\u00CAS", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12"}));
+														comboBox_1_1.setFont(new Font("Dialog", Font.PLAIN, 16));
+														comboBox_1_1.setBackground(SystemColor.menu);
+														
+																btnNewButton = new JButton("Salvar");
+																btnNewButton.setBounds(7, 291, 96, 23);
+																panel.add(btnNewButton);
+																btnNewButton.setForeground(Color.DARK_GRAY);
+																btnNewButton.setFont(new Font("Dialog", Font.PLAIN, 16));
+																btnNewButton.setBackground(SystemColor.menu);
+																
+																		btnNewButton_1 = new JButton("Limpar");
+																		btnNewButton_1.setBounds(113, 291, 96, 23);
+																		panel.add(btnNewButton_1);
+																		btnNewButton_1.setForeground(Color.DARK_GRAY);
+																		btnNewButton_1.setFont(new Font("Dialog", Font.PLAIN, 16));
+																		btnNewButton_1.setBackground(SystemColor.menu);
 	}
 }
