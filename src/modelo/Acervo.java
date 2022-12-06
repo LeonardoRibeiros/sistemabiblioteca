@@ -1,9 +1,17 @@
 package modelo;
 
 public class Acervo {
+private long Cpf;
 private String nomeLivro;
 private String autor;
 private int nPaginas;
+
+public long getCpf() {
+	return Cpf;
+}
+public void setCpf(long cpf) {
+	this.Cpf = cpf;
+}
 
 public String getNomeLivro() {
 	return nomeLivro;

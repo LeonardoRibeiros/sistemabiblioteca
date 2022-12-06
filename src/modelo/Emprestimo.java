@@ -1,16 +1,16 @@
 package modelo;
 
 public class Emprestimo {
-private int idCliente;
+private long Cpf;
 private int idLivro;
 private int anoEmprestimo;
 private int anoDevolucao;
 
-public int getIdCliente() {
-	return idCliente;
+public long getCpf() {
+	return Cpf;
 }
-public void setIdCliente(int idCliente) {
-	this.idCliente = idCliente;
+public void setCpf(long cpf) {
+	this.Cpf = cpf;
 }
 public int getIdLivro() {
 	return idLivro;

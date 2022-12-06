@@ -1,6 +1,6 @@
 package modelo;
 
-public class Usuario {
+public class Funcionario {
 private String nome;
 private long cpf;
 private String tel;
