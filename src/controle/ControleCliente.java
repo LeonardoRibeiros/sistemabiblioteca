@@ -18,7 +18,7 @@ public class ControleCliente {
 		return instancia;
 	}
 
-	private ControleCliente() {
+	public ControleCliente() {
 	}
 
 	public boolean inserir(Cliente c) {

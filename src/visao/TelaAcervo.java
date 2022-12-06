@@ -23,18 +23,18 @@ public class TelaAcervo extends JFrame {
 
 	private JPanel contentPane;
 	private JLabel lblNewLabel;
-	private JTextField txtNomelivro;
-	private JButton salvarBT;
-	private JButton LimparBT;
-	private JTable table;
 	private JLabel lblNewLabel_1;
-	private JTextField txtAutor;
 	private JLabel lblNewLabel_2;
 	private JLabel lblNewLabel_3;
-	private JTextField txtNpaginas;
-	private JComboBox comboBox;
 	private JLabel lblNewLabel_4;
+	private JTextField txtNomelivro;
+	private JTextField txtAutor;
+	private JTextField txtNpaginas;
+	private JButton salvarBT;
+	private JButton LimparBT;
+	private JComboBox comboBox;
 	private JComboBox comboBox_1;
+	private JTable table;
 
 	/**
 	 * Create the frame.
@@ -99,13 +99,22 @@ public class TelaAcervo extends JFrame {
 		txtNomelivro.setBackground(SystemColor.menu);
 
 		salvarBT = new JButton("Salvar");
+		salvarBT.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				
+				
+				
+				
+			}
+		});
 		salvarBT.setBounds(7, 307, 96, 23);
 		panel.add(salvarBT);
 		salvarBT.setForeground(Color.DARK_GRAY);
 		salvarBT.setFont(new Font("Dialog", Font.PLAIN, 16));
 		salvarBT.setBackground(SystemColor.menu);
 
-		LimparBT = new JButton("Limpar");
+		LimparBT = new JButton("Excluir");
 		LimparBT.setBounds(113, 307, 96, 23);
 		panel.add(LimparBT);
 		LimparBT.setForeground(Color.DARK_GRAY);
