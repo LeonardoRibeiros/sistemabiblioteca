@@ -107,7 +107,7 @@ public class TelaFuncionario extends JFrame {
 		SalvarBT.setFont(new Font("Dialog", Font.PLAIN, 16));
 		SalvarBT.setBackground(Color.WHITE);
 
-		LimparBT = new JButton("Limpar");
+		LimparBT = new JButton("Excluir");
 		LimparBT.setBounds(113, 378, 96, 23);
 		panel.add(LimparBT);
 		LimparBT.setForeground(Color.DARK_GRAY);

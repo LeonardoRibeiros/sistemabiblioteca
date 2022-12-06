@@ -172,7 +172,7 @@ public class TelaEmprestimo extends JFrame {
 		btnNewButton.setFont(new Font("Dialog", Font.PLAIN, 16));
 		btnNewButton.setBackground(SystemColor.menu);
 
-		btnNewButton_1 = new JButton("Limpar");
+		btnNewButton_1 = new JButton("Excluir");
 		btnNewButton_1.setBounds(113, 336, 96, 23);
 		panel.add(btnNewButton_1);
 		btnNewButton_1.setForeground(Color.DARK_GRAY);
