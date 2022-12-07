@@ -2,20 +2,22 @@ package modelo;
 
 public class Cliente {
 private String nome;
-private long cpf;
+private String cpf;
 private String tel;
 private String cep;
 private int nCasa;
+private String email;
+
 public String getNome() {
 	return nome;
 }
 public void setNome(String nome) {
 	this.nome = nome;
 }
-public long getCpf() {
+public String getCpf() {
 	return cpf;
 }
-public void setCpf(long cpf) {
+public void setCpf(String cpf) {
 	this.cpf = cpf;
 }
 public String getTel() {
@@ -36,6 +38,13 @@ public int getnCasa() {
 public void setnCasa(int nCasa) {
 	this.nCasa = nCasa;
 }
+public String getEmail() {
+	return email;
+}
+public void setEmail(String email) {
+	this.email = email;
+}
+
 
 }
 

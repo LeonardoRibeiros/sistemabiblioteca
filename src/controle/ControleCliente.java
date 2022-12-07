@@ -21,33 +21,33 @@ public class ControleCliente {
 	public ControleCliente() {
 	}
 
-	public boolean inserir(Cliente c) {
-		if (c != null) {
-			this.tabelaClientes.add(c);
+	public boolean inserir(Cliente p) {
+		if (p != null) {
+			tabelaClientes.add(p);
 			return true;
 		}
 		return false;
 	}
 
-	public boolean alterar(Cliente c, Long cpf) {
+	public boolean alterar(Cliente p, String cpf) {
 		for (Cliente cliente : tabelaClientes) {
 			if (cliente.getCpf() == cpf) {
-				cliente.setNome(c.getNome());
-				cliente.setCpf(c.getCpf());
-				cliente.setTel(c.getTel());
-				cliente.setCep(c.getCep());
-				cliente.setnCasa(c.getnCasa());
+				cliente.setNome(p.getNome());
+				cliente.setCpf(p.getCpf());
+				cliente.setTel(p.getTel());
+				cliente.setCep(p.getCep());
+				cliente.setnCasa(p.getnCasa());
 				return true;
 			}
 		}
 		return false;
 	}
 
-	public boolean deletar(Cliente p, Long cpf ) {
+	public boolean deletar(Cliente p, String cpf ) {
 
 		for (Cliente cliente : tabelaClientes) {
 			if (cliente.getCpf() == cpf) {
-				tabelaClientes.remove(cliente);
+				tabelaClientes.remove(p);
 				return true;
 			}
 		}
