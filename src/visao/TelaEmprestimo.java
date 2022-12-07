@@ -100,7 +100,7 @@ public class TelaEmprestimo extends JFrame {
 				txtNomeLivro.setText(emprestimoSelecionado.getNomeLivro());
 				cBoxDiaempre.setToolTipText(emprestimoSelecionado.getDiaempre());
 				cBoxMesempre.setToolTipText(emprestimoSelecionado.getMesempre());
-				// Diadevo.setToolTipText(emprestimoSelecionado.getDiadevo());
+				//diaDevo.setToolTipText(emprestimoSelecionado.getDiadevo());
 				// cBoxMesdevo.setToolTipText(emprestimoSelecionado.getMesdevo());
 				txtEmprAno.setText(String.valueOf(emprestimoSelecionado.getAnoEmprestimo()));
 				txtDevAno.setText(String.valueOf(emprestimoSelecionado.getAnoDevolucao()));
@@ -219,7 +219,7 @@ public class TelaEmprestimo extends JFrame {
 
 				if (txtCpfcliente.getText().isEmpty() || txtCpfcliente.getText() == null) {
 					JOptionPane.showMessageDialog(null, "Erro: Todos os Campos devem ser Preenchidos!");
-				//} else if (txtAutor.getText().isEmpty() || txtAutor.getText() == null) {
+				} else if (txtNomeLivro.getText().isEmpty() || txtNomeLivro.getText() == null) {
 					JOptionPane.showMessageDialog(null, "Erro: Todos os Campos devem ser Preenchidos!");
 				//} else if (cBoxgenero.getSelectedItem().equals("*")) {
 					JOptionPane.showMessageDialog(null, "Erro: Todos os Campos devem ser Preenchidos!");
