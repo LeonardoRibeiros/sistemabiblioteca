@@ -1,16 +1,13 @@
 package modelo;
 
 public class Multa {
-private long Cpf;
+private String CpfCliente;
+private String Dia;
+private String Mes;
 private int anoDevolucao;
 private float ValorMulta;
 
-public long getCpf() {
-	return Cpf;
-}
-public void setCpf(long cpf) {
-	this.Cpf = cpf;
-}
+
 public int getAnoDevolucao() {
 	return anoDevolucao;
 }
@@ -22,6 +19,24 @@ public float getValorMulta() {
 }
 public void setValorMulta(float valorMulta) {
 	this.ValorMulta = valorMulta;
+}
+public String getCpfCliente() {
+	return CpfCliente;
+}
+public void setCpfCliente(String cpfCliente) {
+	CpfCliente = cpfCliente;
+}
+public String getDia() {
+	return Dia;
+}
+public void setDia(String dia) {
+	Dia = dia;
+}
+public String getMes() {
+	return Mes;
+}
+public void setMes(String mes) {
+	Mes = mes;
 }
 	
 
