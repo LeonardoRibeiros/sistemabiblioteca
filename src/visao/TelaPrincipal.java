@@ -54,19 +54,37 @@ public class TelaPrincipal extends JFrame {
 		menuBar.setToolTipText("");
 		setJMenuBar(menuBar);
 
-		JMenu mnNewMenu = new JMenu("Cadastrar");
-		mnNewMenu.setBounds(new Rectangle(0, 0, 0, 11));
-		mnNewMenu.setBackground(Color.BLACK);
-		mnNewMenu.setFont(new Font("Dialog", Font.BOLD, 16));
-		menuBar.add(mnNewMenu);
+		JMenu menuCadastrar = new JMenu("Cadastrar");
+		menuCadastrar.setBounds(new Rectangle(0, 0, 0, 11));
+		menuCadastrar.setBackground(Color.BLACK);
+		menuCadastrar.setFont(new Font("Dialog", Font.PLAIN, 18));
+		menuBar.add(menuCadastrar);
 
-		JMenuItem mntmNewMenuItem = new JMenuItem("Cliente");
-		mntmNewMenuItem.setFont(new Font("Dialog", Font.BOLD, 16));
-		mnNewMenu.add(mntmNewMenuItem);
+		JMenuItem mnCliente = new JMenuItem("Cliente");
+		mnCliente.setFont(new Font("Dialog", Font.PLAIN, 18));
+		menuCadastrar.add(mnCliente);
+		mnCliente.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+				TelaCliente telaCliente = new TelaCliente();
+				telaCliente.setLocationRelativeTo(null);
+				telaCliente.setVisible(true);
+			}
+		});
+		
 
-		JMenuItem mntmNewMenuItem_1 = new JMenuItem("Funcion\u00E1rio");
-		mntmNewMenuItem_1.setFont(new Font("Dialog", Font.BOLD, 16));
-		mnNewMenu.add(mntmNewMenuItem_1);
+		JMenuItem mnFuncionario = new JMenuItem("Funcion\u00E1rio");
+		mnFuncionario.setFont(new Font("Dialog", Font.PLAIN, 18));
+		menuCadastrar.add(mnFuncionario);
+		mnFuncionario.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+				TelaFuncionario telaFuncionario = new TelaFuncionario();
+				telaFuncionario.setLocationRelativeTo(null);
+				telaFuncionario.setVisible(true);
+			}
+		});
+		
 		contentPane = new JPanel();
 		contentPane.setSize(new Dimension(0, 60));
 		contentPane.setMaximumSize(new Dimension(32800, 32767));
@@ -148,23 +166,4 @@ public class TelaPrincipal extends JFrame {
 		contentPane.add(lblNewLabel);
 	}
 
-	private static void addPopup(Component component, final JPopupMenu popup) {
-		component.addMouseListener(new MouseAdapter() {
-			public void mousePressed(MouseEvent e) {
-				if (e.isPopupTrigger()) {
-					showMenu(e);
-				}
-			}
-
-			public void mouseReleased(MouseEvent e) {
-				if (e.isPopupTrigger()) {
-					showMenu(e);
-				}
-			}
-
-			private void showMenu(MouseEvent e) {
-				popup.show(e.getComponent(), e.getX(), e.getY());
-			}
-		});
-	}
 }

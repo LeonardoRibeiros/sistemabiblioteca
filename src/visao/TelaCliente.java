@@ -10,10 +10,14 @@ import java.util.ArrayList;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
+import javax.swing.table.DefaultTableModel;
+
 import controle.ControleCliente;
 import modelo.Cliente;
 
@@ -21,6 +25,10 @@ import javax.swing.JTable;
 
 public class TelaCliente extends JFrame {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JLabel lblNewLabel;
 	private JTextField txtNome;
@@ -37,6 +45,7 @@ public class TelaCliente extends JFrame {
 	private JLabel lblNewLabel_5;
 	private JTextField txtEmail;
 	private JTextField txtNcasa;
+	private DefaultTableModel modelo;
 
 	/**
 	 * Create the frame.
@@ -44,10 +53,10 @@ public class TelaCliente extends JFrame {
 	public TelaCliente() {
 		ControleCliente instance = ControleCliente.getInstancia();
 		ArrayList<Cliente> arrayCliente = instance.listarClientes();
-		
+
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setBounds(100, 100, 791, 583);
+		setBounds(100, 100, 944, 583);
 		contentPane = new JPanel();
 		contentPane.setBackground(Color.DARK_GRAY);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -68,7 +77,7 @@ public class TelaCliente extends JFrame {
 		btnNewButton_2.setBackground(SystemColor.menu);
 		btnNewButton_2.setForeground(Color.DARK_GRAY);
 		btnNewButton_2.setFont(new Font("Dialog", Font.PLAIN, 16));
-		btnNewButton_2.setBounds(669, 510, 96, 23);
+		btnNewButton_2.setBounds(822, 510, 96, 23);
 		contentPane.add(btnNewButton_2);
 
 		JLabel lblNewLabel_8 = new JLabel("Cliente");
@@ -77,10 +86,22 @@ public class TelaCliente extends JFrame {
 		lblNewLabel_8.setFont(new Font("Dialog", Font.PLAIN, 40));
 		lblNewLabel_8.setBounds(10, 21, 244, 43);
 		contentPane.add(lblNewLabel_8);
+		
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBounds(339, 87, 579, 412);
+		contentPane.add(scrollPane);
 
 		table = new JTable();
-		table.setBounds(339, 87, 426, 412);
-		contentPane.add(table);
+		scrollPane.setViewportView(table);
+		
+		modelo = new DefaultTableModel();
+		table.setModel(modelo);
+		modelo.addColumn("Nome");
+		modelo.addColumn("Cpf");
+		modelo.addColumn("Telefone");
+		modelo.addColumn("Email");
+		modelo.addColumn("Cep");
+		modelo.addColumn("N casa");
 
 		JPanel panel = new JPanel();
 		panel.setBackground(new Color(176, 196, 222));
@@ -108,8 +129,42 @@ public class TelaCliente extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				Cliente p = new Cliente();
 				ControleCliente pc = new ControleCliente();
-				
-				
+
+				if (txtNome.getText().isEmpty() || txtNome.getText() == null) {
+					JOptionPane.showMessageDialog(null, "Erro: Todos os Campos devem ser Preenchidos!");
+				} else if (txtCpf.getText().isEmpty() || txtCpf.getText() == null) {
+					JOptionPane.showMessageDialog(null, "Erro: Todos os Campos devem ser Preenchidos!");
+				} else if (txtTelefone.getText().isEmpty() || txtTelefone.getText() == null) {
+					JOptionPane.showMessageDialog(null, "Erro: Todos os Campos devem ser Preenchidos!");
+				} else if (txtEmail.getText().isEmpty() || txtEmail.getText() == null) {
+					JOptionPane.showMessageDialog(null, "Erro: Todos os Campos devem ser Preenchidos!");
+				} else if (txtCep.getText().isEmpty() || txtCep.getText() == null) {
+					JOptionPane.showMessageDialog(null, "Erro: Todos os Campos devem ser Preenchidos!");
+				} else if (txtNcasa.getText().isEmpty() || txtNcasa.getText() == null) {
+					JOptionPane.showMessageDialog(null, "Erro: Todos os Campos devem ser Preenchidos!");
+				} else {
+
+					p.setNome(txtNome.getText().toString());
+					p.setCpf(txtCpf.getText().toString());
+					p.setTel(txtTelefone.getText().toString());
+					p.setEmail(txtEmail.getText().toString());
+					p.setCep(txtCep.getText().toString());
+					p.setnCasa(Integer.valueOf(txtNcasa.getText()));
+					ControleCliente controle = ControleCliente.getInstancia();
+					boolean inserir = controle.inserir(p);
+
+					for (Cliente pp : arrayCliente) {
+						Object[] cli = new Object[6];
+						cli[0] = pp.getNome();
+						cli[1] = pp.getCpf();
+						cli[2] = pp.getTel();
+						cli[3] = pp.getEmail();
+						cli[4] = pp.getCep();
+						cli[5] = pp.getnCasa();
+
+						modelo.addRow(cli);
+					}
+				}
 			}
 		});
 		btnNewButton.setBounds(7, 378, 96, 23);
