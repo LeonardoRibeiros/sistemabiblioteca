@@ -35,6 +35,7 @@ public class ControleFuncionario {
 				funcionario.setNome(p.getNome());
 				funcionario.setCpf(p.getCpf());
 				funcionario.setTel(p.getTel());
+				funcionario.setEmail(p.getEmail());
 				funcionario.setCep(p.getCep());
 				funcionario.setnCasa(p.getnCasa());
 				return true;

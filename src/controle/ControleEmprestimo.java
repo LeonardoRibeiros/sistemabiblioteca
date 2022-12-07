@@ -33,8 +33,13 @@ public class ControleEmprestimo {
 	public boolean alterar(Emprestimo p, String cpfCliente) {
 		for (Emprestimo emprestimo : tabelaEmprestimos){
 			if (emprestimo.getCpfCliente() == cpfCliente) {
+				emprestimo.setCpfCliente(p.getCpfCliente());
 				emprestimo.setNomeLivro(p.getNomeLivro());
-				emprestimo.setAnoDevolucao(p.getAnoDevolucao());
+				emprestimo.setDiaempre(p.getDiaempre());
+				emprestimo.setDiadevo(p.getDiadevo());
+				emprestimo.setMesempre(p.getMesempre());
+				emprestimo.setMesdevo(p.getMesdevo());
+				emprestimo.setAnoEmprestimo(p.getAnoEmprestimo());
 				emprestimo.setAnoDevolucao(p.getAnoEmprestimo());
 				return true;
 			}

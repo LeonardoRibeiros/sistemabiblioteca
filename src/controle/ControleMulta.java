@@ -32,7 +32,10 @@ public class ControleMulta {
 	public boolean alterar(Multa p, String cpf) {
 		for (Multa multa : tabelaMultas){
 			if (multa.getCpfCliente() == cpf) {
-				multa.setAnoDevolucao(p.getAnoDevolucao());
+				multa.setCpfCliente(p.getCpfCliente());
+				multa.setDia(p.getDia());
+				multa.setMes(p.getMes());
+				multa.setAnoDevolucao(Integer.valueOf(p.getAnoDevolucao()));
 				multa.setValorMulta(p.getValorMulta());
 				return true;
 			}

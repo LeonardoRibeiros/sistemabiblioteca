@@ -57,7 +57,7 @@ public class TelaAcervo extends JFrame {
 
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setBounds(100, 100, 874, 513);
+		setBounds(100, 100, 955, 513);
 		contentPane = new JPanel();
 		contentPane.setBackground(Color.DARK_GRAY);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -78,7 +78,7 @@ public class TelaAcervo extends JFrame {
 		voltarBT.setBackground(SystemColor.menu);
 		voltarBT.setForeground(Color.DARK_GRAY);
 		voltarBT.setFont(new Font("Dialog", Font.PLAIN, 16));
-		voltarBT.setBounds(752, 440, 96, 23);
+		voltarBT.setBounds(833, 440, 96, 23);
 		contentPane.add(voltarBT);
 
 		JLabel lblNewLabel_8 = new JLabel("Acervo");
@@ -89,7 +89,7 @@ public class TelaAcervo extends JFrame {
 		contentPane.add(lblNewLabel_8);
 
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(339, 87, 509, 342);
+		scrollPane.setBounds(353, 87, 576, 342);
 		contentPane.add(scrollPane);
 
 		table = new JTable();
@@ -116,7 +116,7 @@ public class TelaAcervo extends JFrame {
 		
 		JPanel panel = new JPanel();
 		panel.setBackground(new Color(176, 196, 222));
-		panel.setBounds(10, 87, 319, 341);
+		panel.setBounds(10, 87, 333, 341);
 		contentPane.add(panel);
 		panel.setLayout(null);
 
@@ -129,7 +129,7 @@ public class TelaAcervo extends JFrame {
 
 		txtNomelivro = new JTextField();
 		txtNomelivro.setForeground(Color.DARK_GRAY);
-		txtNomelivro.setBounds(7, 45, 302, 25);
+		txtNomelivro.setBounds(7, 45, 308, 25);
 		panel.add(txtNomelivro);
 		txtNomelivro.setFont(new Font("Dialog", Font.PLAIN, 16));
 		txtNomelivro.setColumns(10);
@@ -140,20 +140,23 @@ public class TelaAcervo extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				Acervo p = new Acervo();
 
-				if (txtNomelivro.getText().isEmpty() || txtNomelivro.getText() == null) {
+				String Nomelivro = txtNomelivro.getText();
+				String Autor = txtAutor.getText();
+				String Npaginas = txtNpaginas.getText();
+				if (Nomelivro.isEmpty() || Nomelivro == null) {
 					JOptionPane.showMessageDialog(null, "Erro: Todos os Campos devem ser Preenchidos!");
-				} else if (txtAutor.getText().isEmpty() || txtAutor.getText() == null) {
+				} else if (Autor.isEmpty() || Autor == null) {
 					JOptionPane.showMessageDialog(null, "Erro: Todos os Campos devem ser Preenchidos!");
 				} else if (cBoxgenero.getSelectedItem().equals("*")) {
 					JOptionPane.showMessageDialog(null, "Erro: Todos os Campos devem ser Preenchidos!");
-				} else if (txtNpaginas.getText().isEmpty() || txtNpaginas.getText() == null) {
+				} else if (Npaginas.isEmpty() || Npaginas == null) {
 					JOptionPane.showMessageDialog(null, "Erro: Todos os Campos devem ser Preenchidos!");
 				} else if (cBoxestante.getSelectedItem().equals("*")) {
 					JOptionPane.showMessageDialog(null, "Erro: Todos os Campos devem ser Preenchidos!");
 				}  else {
 
-					p.setNomeLivro(txtNomelivro.getText().toString());
-					p.setAutor(txtAutor.getText().toString());
+					p.setNomeLivro(Nomelivro);
+					p.setAutor(Autor);
 					p.setGenero(cBoxgenero.getSelectedItem().toString());
 					p.setnPaginas(Integer.valueOf(txtNpaginas.getText().toString()));
 					p.setEstante(cBoxestante.getSelectedItem().toString());
@@ -198,7 +201,7 @@ public class TelaAcervo extends JFrame {
 		txtAutor.setFont(new Font("Dialog", Font.PLAIN, 16));
 		txtAutor.setColumns(10);
 		txtAutor.setBackground(SystemColor.menu);
-		txtAutor.setBounds(7, 112, 302, 25);
+		txtAutor.setBounds(7, 112, 308, 25);
 		panel.add(txtAutor);
 
 		lblNewLabel_2 = new JLabel("G\u00EAnero");
@@ -227,22 +230,35 @@ public class TelaAcervo extends JFrame {
 		cBoxgenero.setForeground(Color.DARK_GRAY);
 		cBoxgenero.setFont(new Font("Dialog", Font.PLAIN, 18));
 		cBoxgenero.setModel(new DefaultComboBoxModel(new String[] {"*", "Romance", "Ficção Científica", "Ação e Aventura", "Biografia", "Infantil", "Suspense", "Fantasia", "Religião", "Drama", "Distopia"}));
-		cBoxgenero.setBounds(7, 182, 302, 23);
+		cBoxgenero.setBounds(7, 182, 308, 23);
 		panel.add(cBoxgenero);
 
 		lblNewLabel_4 = new JLabel("Estante");
 		lblNewLabel_4.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel_4.setForeground(Color.DARK_GRAY);
 		lblNewLabel_4.setFont(new Font("Dialog", Font.PLAIN, 18));
-		lblNewLabel_4.setBounds(196, 218, 113, 23);
+		lblNewLabel_4.setBounds(196, 218, 119, 23);
 		panel.add(lblNewLabel_4);
 
 		cBoxestante = new JComboBox();
 		cBoxestante.setForeground(Color.DARK_GRAY);
 		cBoxestante.setFont(new Font("Dialog", Font.PLAIN, 18));
 		cBoxestante.setModel(new DefaultComboBoxModel(new String[] {"*", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20"}));
-		cBoxestante.setBounds(196, 252, 113, 23);
+		cBoxestante.setBounds(196, 252, 119, 23);
 		panel.add(cBoxestante);
+		
+		JButton alterarBT = new JButton("Alterar");
+		alterarBT.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				
+			}
+		});
+		alterarBT.setForeground(Color.DARK_GRAY);
+		alterarBT.setFont(new Font("Dialog", Font.PLAIN, 16));
+		alterarBT.setBackground(SystemColor.menu);
+		alterarBT.setBounds(219, 307, 96, 23);
+		panel.add(alterarBT);
 	}
 	protected void limparCampos() {
 		txtNomelivro.setText("");

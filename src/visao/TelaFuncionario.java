@@ -38,7 +38,7 @@ public class TelaFuncionario extends JFrame {
 	private JButton btnNewButton_1;
 	private JTable table;
 	private JLabel lblNewLabel_1;
-	private JTextField txtCpf;
+	private JTextField Cpf;
 	private JLabel lblNewLabel_2;
 	private JLabel lblNewLabel_3;
 	private JTextField txtCep;
@@ -49,6 +49,8 @@ public class TelaFuncionario extends JFrame {
 	private JTextField txtNcasa;
 	private DefaultTableModel modelo;
 	private Funcionario funcionarioSelecionado;
+	private JButton alterarBT;
+	private JTextField txtCpf;
 
 	/**
 	 * Create the frame.
@@ -59,7 +61,7 @@ public class TelaFuncionario extends JFrame {
 
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setBounds(100, 100, 944, 583);
+		setBounds(100, 100, 982, 583);
 		contentPane = new JPanel();
 		contentPane.setBackground(Color.DARK_GRAY);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -80,7 +82,7 @@ public class TelaFuncionario extends JFrame {
 		btnNewButton_2.setBackground(SystemColor.menu);
 		btnNewButton_2.setForeground(Color.DARK_GRAY);
 		btnNewButton_2.setFont(new Font("Dialog", Font.PLAIN, 16));
-		btnNewButton_2.setBounds(822, 510, 96, 23);
+		btnNewButton_2.setBounds(860, 510, 96, 23);
 		contentPane.add(btnNewButton_2);
 
 		JLabel lblNewLabel_8 = new JLabel("Funcionario");
@@ -91,7 +93,7 @@ public class TelaFuncionario extends JFrame {
 		contentPane.add(lblNewLabel_8);
 
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(339, 87, 579, 412);
+		scrollPane.setBounds(351, 87, 605, 412);
 		contentPane.add(scrollPane);
 
 		table = new JTable();
@@ -120,7 +122,7 @@ public class TelaFuncionario extends JFrame {
 
 		JPanel panel = new JPanel();
 		panel.setBackground(new Color(176, 196, 222));
-		panel.setBounds(10, 87, 319, 412);
+		panel.setBounds(10, 87, 331, 412);
 		contentPane.add(panel);
 		panel.setLayout(null);
 
@@ -133,7 +135,7 @@ public class TelaFuncionario extends JFrame {
 
 		txtNome = new JTextField();
 		txtNome.setForeground(Color.DARK_GRAY);
-		txtNome.setBounds(7, 45, 302, 25);
+		txtNome.setBounds(7, 45, 308, 25);
 		panel.add(txtNome);
 		txtNome.setFont(new Font("Dialog", Font.PLAIN, 16));
 		txtNome.setColumns(10);
@@ -142,27 +144,33 @@ public class TelaFuncionario extends JFrame {
 		btnNewButton = new JButton("Salvar");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				 Funcionario p = new Funcionario();
+				Funcionario p = new Funcionario();
 
-				if (txtNome.getText().isEmpty() || txtNome.getText() == null) {
+				String Nome = txtNome.getText();
+				String Cpf = txtNome.getText();
+				String Telefone = txtNome.getText();
+				String Email = txtNome.getText();
+				String Cep = txtNome.getText();
+
+				if (Nome.isEmpty() || Nome == null) {
 					JOptionPane.showMessageDialog(null, "Erro: Todos os Campos devem ser Preenchidos!");
-				} else if (txtCpf.getText().isEmpty() || txtCpf.getText() == null) {
+				} else if (Cpf.isEmpty() || Cpf == null) {
 					JOptionPane.showMessageDialog(null, "Erro: Todos os Campos devem ser Preenchidos!");
-				} else if (txtTelefone.getText().isEmpty() || txtTelefone.getText() == null) {
+				} else if (Telefone.isEmpty() || Telefone == null) {
 					JOptionPane.showMessageDialog(null, "Erro: Todos os Campos devem ser Preenchidos!");
-				} else if (txtEmail.getText().isEmpty() || txtEmail.getText() == null) {
+				} else if (Email.isEmpty() || Email == null) {
 					JOptionPane.showMessageDialog(null, "Erro: Todos os Campos devem ser Preenchidos!");
-				} else if (txtCep.getText().isEmpty() || txtCep.getText() == null) {
+				} else if (Cep.isEmpty() || Cep == null) {
 					JOptionPane.showMessageDialog(null, "Erro: Todos os Campos devem ser Preenchidos!");
 				} else if (txtNcasa.getText().isEmpty() || txtNcasa.getText() == null) {
 					JOptionPane.showMessageDialog(null, "Erro: Todos os Campos devem ser Preenchidos!");
 				} else {
 
-					p.setNome(txtNome.getText().toString());
-					p.setCpf(txtCpf.getText().toString());
-					p.setTel(txtTelefone.getText().toString());
-					p.setEmail(txtEmail.getText().toString());
-					p.setCep(txtCep.getText().toString());
+					p.setNome(Nome);
+					p.setCpf(Cpf);
+					p.setTel(Telefone);
+					p.setEmail(Email);
+					p.setCep(Cep);
 					p.setnCasa(Integer.valueOf(txtNcasa.getText()));
 					arrayFuncionario.add(p);
 					limparCampos();
@@ -208,7 +216,7 @@ public class TelaFuncionario extends JFrame {
 		txtCpf.setFont(new Font("Dialog", Font.PLAIN, 16));
 		txtCpf.setColumns(10);
 		txtCpf.setBackground(SystemColor.menu);
-		txtCpf.setBounds(7, 112, 302, 25);
+		txtCpf.setBounds(7, 112, 308, 25);
 		panel.add(txtCpf);
 
 		lblNewLabel_2 = new JLabel("Telefone");
@@ -245,7 +253,7 @@ public class TelaFuncionario extends JFrame {
 		txtTelefone.setFont(new Font("Dialog", Font.PLAIN, 16));
 		txtTelefone.setColumns(10);
 		txtTelefone.setBackground(SystemColor.menu);
-		txtTelefone.setBounds(7, 182, 302, 25);
+		txtTelefone.setBounds(7, 182, 308, 25);
 		panel.add(txtTelefone);
 
 		lblNewLabel_5 = new JLabel("Email");
@@ -260,7 +268,7 @@ public class TelaFuncionario extends JFrame {
 		txtEmail.setFont(new Font("Dialog", Font.PLAIN, 16));
 		txtEmail.setColumns(10);
 		txtEmail.setBackground(SystemColor.menu);
-		txtEmail.setBounds(7, 252, 302, 25);
+		txtEmail.setBounds(7, 252, 308, 25);
 		panel.add(txtEmail);
 
 		txtNcasa = new JTextField();
@@ -268,8 +276,43 @@ public class TelaFuncionario extends JFrame {
 		txtNcasa.setFont(new Font("Dialog", Font.PLAIN, 16));
 		txtNcasa.setColumns(10);
 		txtNcasa.setBackground(SystemColor.menu);
-		txtNcasa.setBounds(189, 322, 120, 25);
+		txtNcasa.setBounds(189, 322, 126, 25);
 		panel.add(txtNcasa);
+
+		alterarBT = new JButton("Alterar");
+		alterarBT.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				int posicao = arrayFuncionario.indexOf(funcionarioSelecionado);
+
+				String novoNome = txtNome.getText();
+				String novoCpf = txtCpf.getText();
+				String novoTel = txtTelefone.getText();
+				// String novoCpf = txtCpf.getText();
+				// String novoCpf = txtCpf.getText();
+
+				funcionarioSelecionado.setNome(novoNome);
+				funcionarioSelecionado.setNome(novoCpf);
+				// funcionarioSelecionado.setValorMulta(Float.valueOf(novoMulta));
+
+				arrayFuncionario.set(posicao, funcionarioSelecionado);
+				atualizarJTable(arrayFuncionario);
+				limparCampos();
+			}
+
+		});
+		alterarBT.setForeground(Color.DARK_GRAY);
+		alterarBT.setFont(new Font("Dialog", Font.PLAIN, 16));
+		alterarBT.setBackground(SystemColor.menu);
+		alterarBT.setBounds(219, 378, 96, 23);
+		panel.add(alterarBT);
+
+		txtCpf = new JTextField();
+		txtCpf.setForeground(Color.DARK_GRAY);
+		txtCpf.setFont(new Font("Dialog", Font.PLAIN, 16));
+		txtCpf.setColumns(10);
+		txtCpf.setBackground(SystemColor.menu);
+		txtCpf.setBounds(7, 112, 308, 25);
+		panel.add(txtCpf);
 	}
 
 	protected void limparCampos() {
@@ -286,7 +329,7 @@ public class TelaFuncionario extends JFrame {
 				new String[] { "Nome", "CPF", "Telefone", "Email", "CEP", "Número" });
 
 		for (int i = 0; i < arrayFuncionario.size(); i++) {
-			 Funcionario p1 = arrayFuncionario.get(i);
+			Funcionario p1 = arrayFuncionario.get(i);
 			modelo.addRow(
 					new Object[] { p1.getNome(), p1.getCpf(), p1.getTel(), p1.getEmail(), p1.getCep(), p1.getnCasa() });
 		}

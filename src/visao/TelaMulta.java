@@ -49,6 +49,7 @@ public class TelaMulta extends JFrame {
 	private JTextField txtMulta;
 	private DefaultTableModel modelo;
 	private Multa multaSelecionada;
+	private JButton alterarBT;
 
 	/**
 	 * Create the frame.
@@ -58,7 +59,7 @@ public class TelaMulta extends JFrame {
 		ArrayList<Multa> arrayMulta = instance.listarMultas();
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setBounds(100, 100, 924, 506);
+		setBounds(100, 100, 980, 506);
 		contentPane = new JPanel();
 		contentPane.setBackground(Color.DARK_GRAY);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -79,7 +80,7 @@ public class TelaMulta extends JFrame {
 		VoltarBT.setBackground(SystemColor.menu);
 		VoltarBT.setForeground(Color.DARK_GRAY);
 		VoltarBT.setFont(new Font("Dialog", Font.PLAIN, 12));
-		VoltarBT.setBounds(802, 433, 96, 23);
+		VoltarBT.setBounds(858, 433, 96, 23);
 		contentPane.add(VoltarBT);
 
 		JLabel lblNewLabel_8 = new JLabel("Multa");
@@ -89,7 +90,7 @@ public class TelaMulta extends JFrame {
 		lblNewLabel_8.setBounds(10, 21, 244, 43);
 		contentPane.add(lblNewLabel_8);
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(302, 87, 596, 324);
+		scrollPane.setBounds(348, 87, 606, 324);
 		contentPane.add(scrollPane);
 		table = new JTable();
 		table.addMouseListener(new MouseAdapter() {
@@ -101,7 +102,7 @@ public class TelaMulta extends JFrame {
 				cBoxMes.setToolTipText(multaSelecionada.getMes());
 				txtAno.setText(String.valueOf(multaSelecionada.getAnoDevolucao()));
 				txtMulta.setText(String.valueOf(multaSelecionada.getValorMulta()));
-				
+
 			}
 		});
 		scrollPane.setViewportView(table);
@@ -115,7 +116,7 @@ public class TelaMulta extends JFrame {
 		modelo.addColumn("Valor Multa");
 		JPanel panel = new JPanel();
 		panel.setBackground(new Color(176, 196, 222));
-		panel.setBounds(10, 87, 282, 325);
+		panel.setBounds(10, 87, 328, 325);
 		contentPane.add(panel);
 		panel.setLayout(null);
 
@@ -128,7 +129,7 @@ public class TelaMulta extends JFrame {
 
 		txtCpfCliente = new JTextField();
 		txtCpfCliente.setForeground(Color.DARK_GRAY);
-		txtCpfCliente.setBounds(7, 45, 244, 25);
+		txtCpfCliente.setBounds(7, 45, 308, 25);
 		panel.add(txtCpfCliente);
 		txtCpfCliente.setFont(new Font("Dialog", Font.PLAIN, 16));
 		txtCpfCliente.setColumns(10);
@@ -145,7 +146,9 @@ public class TelaMulta extends JFrame {
 		cBoxDia.setForeground(Color.DARK_GRAY);
 		cBoxDia.setBounds(7, 117, 71, 24);
 		panel.add(cBoxDia);
-		cBoxDia.setModel(new DefaultComboBoxModel(new String[] {"*", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31"}));
+		cBoxDia.setModel(new DefaultComboBoxModel(new String[] { "*", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10",
+				"11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27",
+				"28", "29", "30", "31" }));
 		cBoxDia.setToolTipText("dia");
 		cBoxDia.setFont(new Font("Dialog", Font.PLAIN, 16));
 		cBoxDia.setBackground(SystemColor.menu);
@@ -154,13 +157,14 @@ public class TelaMulta extends JFrame {
 		cBoxMes.setForeground(Color.DARK_GRAY);
 		cBoxMes.setBounds(88, 117, 71, 24);
 		panel.add(cBoxMes);
-		cBoxMes.setModel(new DefaultComboBoxModel(new String[] {"*", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12"}));
+		cBoxMes.setModel(new DefaultComboBoxModel(
+				new String[] { "*", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12" }));
 		cBoxMes.setFont(new Font("Dialog", Font.PLAIN, 16));
 		cBoxMes.setBackground(SystemColor.menu);
 
 		txtAno = new JTextField();
 		txtAno.setForeground(Color.DARK_GRAY);
-		txtAno.setBounds(169, 117, 82, 24);
+		txtAno.setBounds(169, 117, 146, 24);
 		panel.add(txtAno);
 		txtAno.setFont(new Font("Dialog", Font.PLAIN, 16));
 		txtAno.setColumns(10);
@@ -178,23 +182,25 @@ public class TelaMulta extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				Multa p = new Multa();
 
-				if (txtCpfCliente.getText().isEmpty() || txtCpfCliente.getText() == null) {
+				String cpfCliente = txtCpfCliente.getText();
+
+				if (cpfCliente.isEmpty() || cpfCliente == null) {
 					JOptionPane.showMessageDialog(null, "Erro: Todos os Campos devem ser Preenchidos!");
-				}else if (cBoxDia.getSelectedItem().equals("*")) {
-						JOptionPane.showMessageDialog(null, "Erro: Todos os Campos devem ser Preenchidos!");
-				}else if (cBoxMes.getSelectedItem().equals("*")) {
+				} else if (cBoxDia.getSelectedItem().equals("*")) {
+					JOptionPane.showMessageDialog(null, "Erro: Todos os Campos devem ser Preenchidos!");
+				} else if (cBoxMes.getSelectedItem().equals("*")) {
 					JOptionPane.showMessageDialog(null, "Erro: Todos os Campos devem ser Preenchidos!");
 				} else if (txtAno.getText().isEmpty() || txtAno.getText() == null) {
 					JOptionPane.showMessageDialog(null, "Erro: Todos os Campos devem ser Preenchidos!");
 				} else if (txtMulta.getText().isEmpty() || txtMulta.getText() == null) {
 					JOptionPane.showMessageDialog(null, "Erro: Todos os Campos devem ser Preenchidos!");
-				}  else {
+				} else {
 
-					p.setCpfCliente(txtCpfCliente.getText().toString());
+					p.setCpfCliente(cpfCliente);
 					p.setDia(cBoxDia.getSelectedItem().toString());
 					p.setMes(cBoxMes.getSelectedItem().toString());
 					p.setAnoDevolucao(Integer.valueOf(txtAno.getText().toString()));
-					p.setValorMulta(Integer.valueOf(txtMulta.getText().toString()));
+					p.setValorMulta(Float.valueOf(txtMulta.getText().toString()));
 					arrayMulta.add(p);
 					limparCampos();
 					atualizarJTable(arrayMulta);
@@ -229,7 +235,7 @@ public class TelaMulta extends JFrame {
 		txtMulta.setFont(new Font("Dialog", Font.PLAIN, 16));
 		txtMulta.setColumns(10);
 		txtMulta.setBackground(SystemColor.menu);
-		txtMulta.setBounds(37, 187, 214, 25);
+		txtMulta.setBounds(37, 187, 278, 25);
 		panel.add(txtMulta);
 
 		JLabel lblNewLabel_2 = new JLabel("R$");
@@ -238,7 +244,42 @@ public class TelaMulta extends JFrame {
 		lblNewLabel_2.setFont(new Font("Dialog", Font.PLAIN, 16));
 		lblNewLabel_2.setBounds(10, 188, 45, 23);
 		panel.add(lblNewLabel_2);
+
+		alterarBT = new JButton("Alterar");
+		alterarBT.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				int posicao = arrayMulta.indexOf(multaSelecionada);
+				String novoCpf = txtCpfCliente.getText();
+				String novoDia = cBoxDia.getToolTipText();
+				String novoMes = cBoxMes.getToolTipText();
+				String novoAno = txtAno.getText();
+				String novoMulta = txtMulta.getText();
+				multaSelecionada.setCpfCliente(novoCpf);
+				multaSelecionada.setDia(novoDia);
+				multaSelecionada.setMes(novoMes);
+				multaSelecionada.setAnoDevolucao(Integer.valueOf(novoAno));
+				multaSelecionada.setValorMulta(Float.valueOf(novoMulta));
+
+				arrayMulta.set(posicao, multaSelecionada);
+				
+				boolean valida = instance.alterar(multaSelecionada, novoCpf);
+				if(valida == true) {
+					// mensagem de sucesso
+				} else {
+					// mensagem de erro
+				}
+				
+				atualizarJTable(arrayMulta);
+				limparCampos();
+			}
+		});
+		alterarBT.setForeground(Color.DARK_GRAY);
+		alterarBT.setFont(new Font("Dialog", Font.PLAIN, 16));
+		alterarBT.setBackground(SystemColor.menu);
+		alterarBT.setBounds(219, 291, 96, 23);
+		panel.add(alterarBT);
 	}
+
 	protected void limparCampos() {
 		txtCpfCliente.setText("");
 		txtAno.setText("");
@@ -247,11 +288,11 @@ public class TelaMulta extends JFrame {
 
 	protected void atualizarJTable(ArrayList<Multa> arrayMulta) {
 		DefaultTableModel modelo = new DefaultTableModel(new Object[][] {},
-				new String[] { "CPF Multa", "Dia Devolução", "Mes Devolução", "Ano Devolução", "Valor Multa"});
+				new String[] { "CPF Multa", "Dia Devolução", "Mes Devolução", "Ano Devolução", "Valor Multa" });
 		for (int i = 0; i < arrayMulta.size(); i++) {
 			Multa p1 = arrayMulta.get(i);
-			modelo.addRow(
-					new Object[] { p1.getCpfCliente(), p1.getDia(), p1.getMes(), p1.getAnoDevolucao(), p1.getValorMulta()});
+			modelo.addRow(new Object[] { p1.getCpfCliente(), p1.getDia(), p1.getMes(), p1.getAnoDevolucao(),
+					p1.getValorMulta() });
 		}
 		table.setModel(modelo);
 

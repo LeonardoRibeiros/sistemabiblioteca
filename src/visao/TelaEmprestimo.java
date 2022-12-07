@@ -47,6 +47,7 @@ public class TelaEmprestimo extends JFrame {
 	private JTextField txtDevAno;
 	private JTextField txtNomeLivro;
 	private DefaultTableModel modelo;
+	private JButton alterarBT;
 
 	/**
 	 * Create the frame.
@@ -56,7 +57,7 @@ public class TelaEmprestimo extends JFrame {
 		ArrayList<Emprestimo> arrayEmprestimo = instance.listarEmprestimos();
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setBounds(100, 100, 736, 540);
+		setBounds(100, 100, 1222, 540);
 		contentPane = new JPanel();
 		contentPane.setBackground(Color.DARK_GRAY);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -77,7 +78,7 @@ public class TelaEmprestimo extends JFrame {
 		btnNewButton_2.setBackground(SystemColor.menu);
 		btnNewButton_2.setForeground(Color.DARK_GRAY);
 		btnNewButton_2.setFont(new Font("Dialog", Font.PLAIN, 16));
-		btnNewButton_2.setBounds(613, 467, 96, 23);
+		btnNewButton_2.setBounds(1100, 467, 96, 23);
 		contentPane.add(btnNewButton_2);
 
 		JLabel lblNewLabel_8 = new JLabel("Empr\u00E9stimo");
@@ -88,7 +89,7 @@ public class TelaEmprestimo extends JFrame {
 		contentPane.add(lblNewLabel_8);
 
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(302, 87, 407, 369);
+		scrollPane.setBounds(347, 87, 849, 369);
 		contentPane.add(scrollPane);
 
 		table = new JTable();
@@ -123,7 +124,7 @@ public class TelaEmprestimo extends JFrame {
 
 		JPanel panel = new JPanel();
 		panel.setBackground(new Color(176, 196, 222));
-		panel.setBounds(10, 87, 282, 370);
+		panel.setBounds(10, 87, 327, 370);
 		contentPane.add(panel);
 		panel.setLayout(null);
 
@@ -136,7 +137,7 @@ public class TelaEmprestimo extends JFrame {
 
 		txtCpfcliente = new JTextField();
 		txtCpfcliente.setForeground(Color.DARK_GRAY);
-		txtCpfcliente.setBounds(7, 45, 244, 25);
+		txtCpfcliente.setBounds(7, 45, 308, 25);
 		panel.add(txtCpfcliente);
 		txtCpfcliente.setFont(new Font("Dialog", Font.PLAIN, 16));
 		txtCpfcliente.setColumns(10);
@@ -171,7 +172,7 @@ public class TelaEmprestimo extends JFrame {
 
 		txtEmprAno = new JTextField();
 		txtEmprAno.setForeground(Color.DARK_GRAY);
-		txtEmprAno.setBounds(169, 185, 82, 24);
+		txtEmprAno.setBounds(169, 185, 146, 24);
 		panel.add(txtEmprAno);
 		txtEmprAno.setFont(new Font("Dialog", Font.PLAIN, 16));
 		txtEmprAno.setColumns(10);
@@ -179,7 +180,7 @@ public class TelaEmprestimo extends JFrame {
 
 		txtDevAno = new JTextField();
 		txtDevAno.setForeground(Color.DARK_GRAY);
-		txtDevAno.setBounds(169, 256, 82, 24);
+		txtDevAno.setBounds(169, 256, 146, 24);
 		panel.add(txtDevAno);
 		txtDevAno.setFont(new Font("Dialog", Font.PLAIN, 16));
 		txtDevAno.setColumns(10);
@@ -216,10 +217,12 @@ public class TelaEmprestimo extends JFrame {
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Emprestimo p = new Emprestimo();
-
-				if (txtCpfcliente.getText().isEmpty() || txtCpfcliente.getText() == null) {
+				
+				String cpfCliente = txtCpfcliente.getText();
+				String NomeLivro = txtNomeLivro.getText();
+				if (cpfCliente.isEmpty() || cpfCliente == null) {
 					JOptionPane.showMessageDialog(null, "Erro: Todos os Campos devem ser Preenchidos!");
-				} else if (txtNomeLivro.getText().isEmpty() || txtNomeLivro.getText() == null) {
+				} else if (NomeLivro.isEmpty() || NomeLivro == null) {
 					JOptionPane.showMessageDialog(null, "Erro: Todos os Campos devem ser Preenchidos!");
 				//} else if (cBoxgenero.getSelectedItem().equals("*")) {
 					JOptionPane.showMessageDialog(null, "Erro: Todos os Campos devem ser Preenchidos!");
@@ -258,7 +261,7 @@ public class TelaEmprestimo extends JFrame {
 		txtNomeLivro.setFont(new Font("Dialog", Font.PLAIN, 16));
 		txtNomeLivro.setColumns(10);
 		txtNomeLivro.setBackground(SystemColor.menu);
-		txtNomeLivro.setBounds(7, 115, 244, 25);
+		txtNomeLivro.setBounds(7, 115, 308, 25);
 		panel.add(txtNomeLivro);
 
 		JLabel lblIdLivro = new JLabel("Nome Livro");
@@ -267,6 +270,13 @@ public class TelaEmprestimo extends JFrame {
 		lblIdLivro.setFont(new Font("Dialog", Font.PLAIN, 18));
 		lblIdLivro.setBounds(7, 81, 131, 23);
 		panel.add(lblIdLivro);
+		
+		alterarBT = new JButton("Alterar");
+		alterarBT.setForeground(Color.DARK_GRAY);
+		alterarBT.setFont(new Font("Dialog", Font.PLAIN, 16));
+		alterarBT.setBackground(SystemColor.menu);
+		alterarBT.setBounds(219, 336, 96, 23);
+		panel.add(alterarBT);
 	}
 	protected void limparCampos() {
 		txtNomeLivro.setText("");

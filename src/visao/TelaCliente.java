@@ -49,6 +49,7 @@ public class TelaCliente extends JFrame {
 	private JTextField txtNcasa;
 	private DefaultTableModel modelo;
 	private Cliente clienteSelecionado;
+	private JButton alterarBT;
 
 	/**
 	 * Create the frame.
@@ -91,7 +92,7 @@ public class TelaCliente extends JFrame {
 		contentPane.add(lblNewLabel_8);
 
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(339, 87, 579, 412);
+		scrollPane.setBounds(356, 87, 562, 412);
 		contentPane.add(scrollPane);
 
 		table = new JTable();
@@ -120,7 +121,7 @@ public class TelaCliente extends JFrame {
 
 		JPanel panel = new JPanel();
 		panel.setBackground(new Color(176, 196, 222));
-		panel.setBounds(10, 87, 319, 412);
+		panel.setBounds(10, 87, 336, 412);
 		contentPane.add(panel);
 		panel.setLayout(null);
 
@@ -133,7 +134,7 @@ public class TelaCliente extends JFrame {
 
 		txtNome = new JTextField();
 		txtNome.setForeground(Color.DARK_GRAY);
-		txtNome.setBounds(7, 45, 302, 25);
+		txtNome.setBounds(7, 45, 308, 25);
 		panel.add(txtNome);
 		txtNome.setFont(new Font("Dialog", Font.PLAIN, 16));
 		txtNome.setColumns(10);
@@ -143,26 +144,32 @@ public class TelaCliente extends JFrame {
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Cliente p = new Cliente();
-
-				if (txtNome.getText().isEmpty() || txtNome.getText() == null) {
+				
+				String Nome = txtNome.getText();
+				 String Cpf = txtNome.getText();
+				 String Telefone = txtNome.getText();
+				 String Email = txtNome.getText();
+				 String Cep = txtNome.getText();
+				 
+				if (Nome.isEmpty() || Nome == null) {
 					JOptionPane.showMessageDialog(null, "Erro: Todos os Campos devem ser Preenchidos!");
-				} else if (txtCpf.getText().isEmpty() || txtCpf.getText() == null) {
+				} else if (Cpf.isEmpty() || Cpf == null) {
 					JOptionPane.showMessageDialog(null, "Erro: Todos os Campos devem ser Preenchidos!");
-				} else if (txtTelefone.getText().isEmpty() || txtTelefone.getText() == null) {
+				} else if (Telefone.isEmpty() || Telefone == null) {
 					JOptionPane.showMessageDialog(null, "Erro: Todos os Campos devem ser Preenchidos!");
-				} else if (txtEmail.getText().isEmpty() || txtEmail.getText() == null) {
+				} else if (Email.isEmpty() || Email == null) {
 					JOptionPane.showMessageDialog(null, "Erro: Todos os Campos devem ser Preenchidos!");
-				} else if (txtCep.getText().isEmpty() || txtCep.getText() == null) {
+				} else if (Cep.isEmpty() || Cep == null) {
 					JOptionPane.showMessageDialog(null, "Erro: Todos os Campos devem ser Preenchidos!");
 				} else if (txtNcasa.getText().isEmpty() || txtNcasa.getText() == null) {
 					JOptionPane.showMessageDialog(null, "Erro: Todos os Campos devem ser Preenchidos!");
 				} else {
 
-					p.setNome(txtNome.getText().toString());
-					p.setCpf(txtCpf.getText().toString());
-					p.setTel(txtTelefone.getText().toString());
-					p.setEmail(txtEmail.getText().toString());
-					p.setCep(txtCep.getText().toString());
+					p.setNome(Nome);
+					p.setCpf(Cpf);
+					p.setTel(Telefone);
+					p.setEmail(Email);
+					p.setCep(Cep);
 					p.setnCasa(Integer.valueOf(txtNcasa.getText()));
 					arrayCliente.add(p);
 					limparCampos();
@@ -208,7 +215,7 @@ public class TelaCliente extends JFrame {
 		txtCpf.setFont(new Font("Dialog", Font.PLAIN, 16));
 		txtCpf.setColumns(10);
 		txtCpf.setBackground(SystemColor.menu);
-		txtCpf.setBounds(7, 112, 302, 25);
+		txtCpf.setBounds(7, 112, 308, 25);
 		panel.add(txtCpf);
 
 		lblNewLabel_2 = new JLabel("Telefone");
@@ -245,7 +252,7 @@ public class TelaCliente extends JFrame {
 		txtTelefone.setFont(new Font("Dialog", Font.PLAIN, 16));
 		txtTelefone.setColumns(10);
 		txtTelefone.setBackground(SystemColor.menu);
-		txtTelefone.setBounds(7, 182, 302, 25);
+		txtTelefone.setBounds(7, 182, 308, 25);
 		panel.add(txtTelefone);
 
 		lblNewLabel_5 = new JLabel("Email");
@@ -260,7 +267,7 @@ public class TelaCliente extends JFrame {
 		txtEmail.setFont(new Font("Dialog", Font.PLAIN, 16));
 		txtEmail.setColumns(10);
 		txtEmail.setBackground(SystemColor.menu);
-		txtEmail.setBounds(7, 252, 302, 25);
+		txtEmail.setBounds(7, 252, 308, 25);
 		panel.add(txtEmail);
 
 		txtNcasa = new JTextField();
@@ -268,8 +275,20 @@ public class TelaCliente extends JFrame {
 		txtNcasa.setFont(new Font("Dialog", Font.PLAIN, 16));
 		txtNcasa.setColumns(10);
 		txtNcasa.setBackground(SystemColor.menu);
-		txtNcasa.setBounds(189, 322, 120, 25);
+		txtNcasa.setBounds(189, 322, 126, 25);
 		panel.add(txtNcasa);
+		
+		alterarBT = new JButton("Alterar");
+		alterarBT.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+			}
+		});
+		alterarBT.setForeground(Color.DARK_GRAY);
+		alterarBT.setFont(new Font("Dialog", Font.PLAIN, 16));
+		alterarBT.setBackground(SystemColor.menu);
+		alterarBT.setBounds(219, 378, 96, 23);
+		panel.add(alterarBT);
 	}
 
 	protected void limparCampos() {

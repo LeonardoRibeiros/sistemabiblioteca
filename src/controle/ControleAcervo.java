@@ -34,7 +34,10 @@ public class ControleAcervo{
 			if (acervo.getNomeLivro() == nomeLivro) {
 				acervo.setNomeLivro(p.getNomeLivro());
 				acervo.setAutor(p.getAutor());
+				acervo.setGenero(p.getGenero());
+				acervo.setEstante(p.getAutor());
 				acervo.setnPaginas(p.getnPaginas());
+				
 				return true;
 			}
 		}

@@ -36,6 +36,7 @@ public class ControleCliente {
 				cliente.setCpf(p.getCpf());
 				cliente.setTel(p.getTel());
 				cliente.setCep(p.getCep());
+				cliente.setEmail(p.getEmail());
 				cliente.setnCasa(p.getnCasa());
 				return true;
 			}
