@@ -5,6 +5,8 @@ import java.awt.Font;
 import java.awt.SystemColor;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 
 import javax.swing.JButton;
@@ -46,6 +48,7 @@ public class TelaCliente extends JFrame {
 	private JTextField txtEmail;
 	private JTextField txtNcasa;
 	private DefaultTableModel modelo;
+	private Cliente clienteSelecionado;
 
 	/**
 	 * Create the frame.
@@ -86,14 +89,26 @@ public class TelaCliente extends JFrame {
 		lblNewLabel_8.setFont(new Font("Dialog", Font.PLAIN, 40));
 		lblNewLabel_8.setBounds(10, 21, 244, 43);
 		contentPane.add(lblNewLabel_8);
-		
+
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setBounds(339, 87, 579, 412);
 		contentPane.add(scrollPane);
 
 		table = new JTable();
+		table.addMouseListener(new MouseAdapter() {
+			public void mouseClicked(MouseEvent e) {
+				int posicaoCliente = table.getSelectedRow();
+				clienteSelecionado = arrayCliente.get(posicaoCliente);
+				txtNome.setText(clienteSelecionado.getNome());
+				txtCpf.setText(clienteSelecionado.getCpf());
+				txtTelefone.setText(clienteSelecionado.getTel());
+				txtEmail.setText(clienteSelecionado.getEmail());
+				txtCep.setText(clienteSelecionado.getCep());
+				txtNcasa.setText(String.valueOf(clienteSelecionado.getnCasa()));
+			}
+		});
 		scrollPane.setViewportView(table);
-		
+
 		modelo = new DefaultTableModel();
 		table.setModel(modelo);
 		modelo.addColumn("Nome");
@@ -128,7 +143,6 @@ public class TelaCliente extends JFrame {
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Cliente p = new Cliente();
-				ControleCliente pc = new ControleCliente();
 
 				if (txtNome.getText().isEmpty() || txtNome.getText() == null) {
 					JOptionPane.showMessageDialog(null, "Erro: Todos os Campos devem ser Preenchidos!");
@@ -150,22 +164,14 @@ public class TelaCliente extends JFrame {
 					p.setEmail(txtEmail.getText().toString());
 					p.setCep(txtCep.getText().toString());
 					p.setnCasa(Integer.valueOf(txtNcasa.getText()));
-					ControleCliente controle = ControleCliente.getInstancia();
-					boolean inserir = controle.inserir(p);
+					arrayCliente.add(p);
+					limparCampos();
+					atualizarJTable(arrayCliente);
 
-					for (Cliente pp : arrayCliente) {
-						Object[] cli = new Object[6];
-						cli[0] = pp.getNome();
-						cli[1] = pp.getCpf();
-						cli[2] = pp.getTel();
-						cli[3] = pp.getEmail();
-						cli[4] = pp.getCep();
-						cli[5] = pp.getnCasa();
-
-						modelo.addRow(cli);
-					}
 				}
+
 			}
+
 		});
 		btnNewButton.setBounds(7, 378, 96, 23);
 		panel.add(btnNewButton);
@@ -174,6 +180,16 @@ public class TelaCliente extends JFrame {
 		btnNewButton.setBackground(SystemColor.menu);
 
 		btnNewButton_1 = new JButton("Excluir");
+		btnNewButton_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if (clienteSelecionado != null) {
+					arrayCliente.remove(clienteSelecionado);
+					atualizarJTable(arrayCliente);
+					limparCampos();
+				}
+
+			}
+		});
 		btnNewButton_1.setBounds(113, 378, 96, 23);
 		panel.add(btnNewButton_1);
 		btnNewButton_1.setForeground(Color.DARK_GRAY);
@@ -254,5 +270,28 @@ public class TelaCliente extends JFrame {
 		txtNcasa.setBackground(SystemColor.menu);
 		txtNcasa.setBounds(189, 322, 120, 25);
 		panel.add(txtNcasa);
+	}
+
+	protected void limparCampos() {
+		txtNome.setText("");
+		txtCpf.setText("");
+		txtTelefone.setText("");
+		txtCep.setText("");
+		txtNcasa.setText("");
+		txtEmail.setText("");
+	}
+
+	protected void atualizarJTable(ArrayList<Cliente> arrayCliente) {
+		DefaultTableModel modelo = new DefaultTableModel(new Object[][] {},
+				new String[] { "Nome", "CPF", "Telefone", "Email", "CEP", "Número" });
+
+		for (int i = 0; i < arrayCliente.size(); i++) {
+			Cliente p1 = arrayCliente.get(i);
+			modelo.addRow(
+					new Object[] { p1.getNome(), p1.getCpf(), p1.getTel(), p1.getEmail(), p1.getCep(), p1.getnCasa() });
+		}
+
+		table.setModel(modelo);
+
 	}
 }

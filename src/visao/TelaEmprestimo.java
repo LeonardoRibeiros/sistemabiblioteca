@@ -1,42 +1,59 @@
 package visao;
 
 import java.awt.Color;
-import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.SystemColor;
-
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
+import javax.swing.table.DefaultTableModel;
+
+import controle.ControleEmprestimo;
+import modelo.Acervo;
+import modelo.Emprestimo;
+
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JTable;
 
 public class TelaEmprestimo extends JFrame {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JLabel lblNewLabel_1;
-	private JComboBox comboBox;
-	private JComboBox comboBox_1;
+	private JComboBox cBoxDiaempre;
+	private JComboBox cBoxMesempre;
 	private JTextField txtEmprAno;
 	private JLabel lblNewLabel;
-	private JTextField txtIdCliente;
+	private JTextField txtCpfcliente;
 	private JButton btnNewButton;
 	private JButton btnNewButton_1;
+	private Emprestimo emprestimoSelecionado;
 	private JTable table;
 	private JTextField txtDevAno;
-	private JTextField txtIdLivro;
+	private JTextField txtNomeLivro;
+	private DefaultTableModel modelo;
 
 	/**
 	 * Create the frame.
 	 */
 	public TelaEmprestimo() {
+		ControleEmprestimo instance = ControleEmprestimo.getInstancia();
+		ArrayList<Emprestimo> arrayEmprestimo = instance.listarEmprestimos();
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 736, 540);
@@ -70,9 +87,39 @@ public class TelaEmprestimo extends JFrame {
 		lblNewLabel_8.setBounds(10, 21, 244, 43);
 		contentPane.add(lblNewLabel_8);
 
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBounds(302, 87, 407, 369);
+		contentPane.add(scrollPane);
+
 		table = new JTable();
-		table.setBounds(302, 87, 407, 369);
-		contentPane.add(table);
+		table.addMouseListener(new MouseAdapter() {
+			public void mouseClicked(MouseEvent e) {
+				int posicaoEmprestimo = table.getSelectedRow();
+				emprestimoSelecionado = arrayEmprestimo.get(posicaoEmprestimo);
+				txtCpfcliente.setText(emprestimoSelecionado.getCpfCliente());
+				txtNomeLivro.setText(emprestimoSelecionado.getNomeLivro());
+				cBoxDiaempre.setToolTipText(emprestimoSelecionado.getDiaempre());
+				cBoxMesempre.setToolTipText(emprestimoSelecionado.getMesempre());
+				// Diadevo.setToolTipText(emprestimoSelecionado.getDiadevo());
+				// cBoxMesdevo.setToolTipText(emprestimoSelecionado.getMesdevo());
+				txtEmprAno.setText(String.valueOf(emprestimoSelecionado.getAnoEmprestimo()));
+				txtDevAno.setText(String.valueOf(emprestimoSelecionado.getAnoDevolucao()));
+				;
+			}
+		});
+		scrollPane.setViewportView(table);
+
+		modelo = new DefaultTableModel();
+		table.setModel(modelo);
+		modelo.addColumn("CPF Cliente");
+		modelo.addColumn("Nome Livro");
+		modelo.addColumn("Dia Empréstimo");
+		modelo.addColumn("Mês Empréstimo");
+		modelo.addColumn("Ano Empréstimo");
+		modelo.addColumn("Dia Devoluçâo");
+		modelo.addColumn("Mês Devoluçâo");
+		modelo.addColumn("Ano Devoluçâo");
+		
 
 		JPanel panel = new JPanel();
 		panel.setBackground(new Color(176, 196, 222));
@@ -80,20 +127,20 @@ public class TelaEmprestimo extends JFrame {
 		contentPane.add(panel);
 		panel.setLayout(null);
 
-		lblNewLabel = new JLabel("ID Cliente");
-		lblNewLabel.setBounds(7, 11, 83, 23);
+		lblNewLabel = new JLabel("CPF Cliente");
+		lblNewLabel.setBounds(7, 11, 131, 23);
 		panel.add(lblNewLabel);
 		lblNewLabel.setHorizontalAlignment(SwingConstants.LEFT);
 		lblNewLabel.setForeground(Color.DARK_GRAY);
 		lblNewLabel.setFont(new Font("Dialog", Font.PLAIN, 18));
 
-		txtIdCliente = new JTextField();
-		txtIdCliente.setForeground(Color.DARK_GRAY);
-		txtIdCliente.setBounds(7, 45, 244, 25);
-		panel.add(txtIdCliente);
-		txtIdCliente.setFont(new Font("Dialog", Font.PLAIN, 16));
-		txtIdCliente.setColumns(10);
-		txtIdCliente.setBackground(SystemColor.menu);
+		txtCpfcliente = new JTextField();
+		txtCpfcliente.setForeground(Color.DARK_GRAY);
+		txtCpfcliente.setBounds(7, 45, 244, 25);
+		panel.add(txtCpfcliente);
+		txtCpfcliente.setFont(new Font("Dialog", Font.PLAIN, 16));
+		txtCpfcliente.setColumns(10);
+		txtCpfcliente.setBackground(SystemColor.menu);
 
 		lblNewLabel_1 = new JLabel("Data de Empr\u00E9stimo");
 		lblNewLabel_1.setBounds(7, 149, 244, 25);
@@ -102,25 +149,25 @@ public class TelaEmprestimo extends JFrame {
 		lblNewLabel_1.setForeground(Color.DARK_GRAY);
 		lblNewLabel_1.setFont(new Font("Dialog", Font.PLAIN, 18));
 
-		comboBox = new JComboBox();
-		comboBox.setForeground(Color.DARK_GRAY);
-		comboBox.setBounds(7, 185, 71, 24);
-		panel.add(comboBox);
-		comboBox.setModel(new DefaultComboBoxModel(new String[] { "DIA", "1", "2", "3", "4", "5", "6", "7", "8", "9",
-				"10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26",
-				"27", "28", "29", "30", "31" }));
-		comboBox.setToolTipText("dia");
-		comboBox.setFont(new Font("Dialog", Font.PLAIN, 16));
-		comboBox.setBackground(SystemColor.menu);
+		cBoxDiaempre = new JComboBox();
+		cBoxDiaempre.setForeground(Color.DARK_GRAY);
+		cBoxDiaempre.setBounds(7, 185, 71, 24);
+		panel.add(cBoxDiaempre);
+		cBoxDiaempre.setModel(new DefaultComboBoxModel(new String[] { "DIA", "1", "2", "3", "4", "5", "6", "7", "8",
+				"9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25",
+				"26", "27", "28", "29", "30", "31" }));
+		cBoxDiaempre.setToolTipText("dia");
+		cBoxDiaempre.setFont(new Font("Dialog", Font.PLAIN, 16));
+		cBoxDiaempre.setBackground(SystemColor.menu);
 
-		comboBox_1 = new JComboBox();
-		comboBox_1.setForeground(Color.DARK_GRAY);
-		comboBox_1.setBounds(88, 185, 71, 24);
-		panel.add(comboBox_1);
-		comboBox_1.setModel(new DefaultComboBoxModel(
+		cBoxMesempre = new JComboBox();
+		cBoxMesempre.setForeground(Color.DARK_GRAY);
+		cBoxMesempre.setBounds(88, 185, 71, 24);
+		panel.add(cBoxMesempre);
+		cBoxMesempre.setModel(new DefaultComboBoxModel(
 				new String[] { "MÊS", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12" }));
-		comboBox_1.setFont(new Font("Dialog", Font.PLAIN, 16));
-		comboBox_1.setBackground(SystemColor.menu);
+		cBoxMesempre.setFont(new Font("Dialog", Font.PLAIN, 16));
+		cBoxMesempre.setBackground(SystemColor.menu);
 
 		txtEmprAno = new JTextField();
 		txtEmprAno.setForeground(Color.DARK_GRAY);
@@ -145,27 +192,54 @@ public class TelaEmprestimo extends JFrame {
 		lblNewLabel_1_1.setForeground(Color.DARK_GRAY);
 		lblNewLabel_1_1.setFont(new Font("Dialog", Font.PLAIN, 18));
 
-		JComboBox comboBox_2 = new JComboBox();
-		comboBox_2.setForeground(Color.DARK_GRAY);
-		comboBox_2.setBounds(7, 256, 71, 24);
-		panel.add(comboBox_2);
-		comboBox_2.setModel(new DefaultComboBoxModel(new String[] { "DIA", "1", "2", "3", "4", "5", "6", "7", "8", "9",
+		JComboBox diaDevo = new JComboBox();
+		diaDevo.setForeground(Color.DARK_GRAY);
+		diaDevo.setBounds(7, 256, 71, 24);
+		panel.add(diaDevo);
+		diaDevo.setModel(new DefaultComboBoxModel(new String[] { "DIA", "1", "2", "3", "4", "5", "6", "7", "8", "9",
 				"10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26",
 				"27", "28", "29", "30", "31" }));
-		comboBox_2.setToolTipText("dia");
-		comboBox_2.setFont(new Font("Dialog", Font.PLAIN, 16));
-		comboBox_2.setBackground(SystemColor.menu);
+		diaDevo.setToolTipText("dia");
+		diaDevo.setFont(new Font("Dialog", Font.PLAIN, 16));
+		diaDevo.setBackground(SystemColor.menu);
 
-		JComboBox comboBox_1_1 = new JComboBox();
-		comboBox_1_1.setForeground(Color.DARK_GRAY);
-		comboBox_1_1.setBounds(88, 256, 71, 24);
-		panel.add(comboBox_1_1);
-		comboBox_1_1.setModel(new DefaultComboBoxModel(
+		JComboBox mesDevo = new JComboBox();
+		mesDevo.setForeground(Color.DARK_GRAY);
+		mesDevo.setBounds(88, 256, 71, 24);
+		panel.add(mesDevo);
+		mesDevo.setModel(new DefaultComboBoxModel(
 				new String[] { "M\u00CAS", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12" }));
-		comboBox_1_1.setFont(new Font("Dialog", Font.PLAIN, 16));
-		comboBox_1_1.setBackground(SystemColor.menu);
+		mesDevo.setFont(new Font("Dialog", Font.PLAIN, 16));
+		mesDevo.setBackground(SystemColor.menu);
 
 		btnNewButton = new JButton("Salvar");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Emprestimo p = new Emprestimo();
+
+				if (txtCpfcliente.getText().isEmpty() || txtCpfcliente.getText() == null) {
+					JOptionPane.showMessageDialog(null, "Erro: Todos os Campos devem ser Preenchidos!");
+				//} else if (txtAutor.getText().isEmpty() || txtAutor.getText() == null) {
+					JOptionPane.showMessageDialog(null, "Erro: Todos os Campos devem ser Preenchidos!");
+				//} else if (cBoxgenero.getSelectedItem().equals("*")) {
+					JOptionPane.showMessageDialog(null, "Erro: Todos os Campos devem ser Preenchidos!");
+				//} else if (txtNpaginas.getText().isEmpty() || txtNpaginas.getText() == null) {
+					JOptionPane.showMessageDialog(null, "Erro: Todos os Campos devem ser Preenchidos!");
+				//} else if (cBoxestante.getSelectedItem().equals("*")) {
+					JOptionPane.showMessageDialog(null, "Erro: Todos os Campos devem ser Preenchidos!");
+				} else {
+
+					p.setNomeLivro(txtNomeLivro.getText().toString());
+					//p.setAutor(txtAutor.getText().toString());
+					//p.setGenero(cBoxgenero.getSelectedItem().toString());
+					//p.setnPaginas(Integer.valueOf(txtNpaginas.getText().toString()));
+					//p.setEstante(cBoxestante.getSelectedItem().toString());
+					arrayEmprestimo.add(p);
+					limparCampos();
+					atualizarJTable(arrayEmprestimo);
+				}
+			}
+		});
 		btnNewButton.setBounds(7, 336, 96, 23);
 		panel.add(btnNewButton);
 		btnNewButton.setForeground(Color.DARK_GRAY);
@@ -179,19 +253,37 @@ public class TelaEmprestimo extends JFrame {
 		btnNewButton_1.setFont(new Font("Dialog", Font.PLAIN, 16));
 		btnNewButton_1.setBackground(SystemColor.menu);
 
-		txtIdLivro = new JTextField();
-		txtIdLivro.setForeground(Color.DARK_GRAY);
-		txtIdLivro.setFont(new Font("Dialog", Font.PLAIN, 16));
-		txtIdLivro.setColumns(10);
-		txtIdLivro.setBackground(SystemColor.menu);
-		txtIdLivro.setBounds(7, 115, 244, 25);
-		panel.add(txtIdLivro);
+		txtNomeLivro = new JTextField();
+		txtNomeLivro.setForeground(Color.DARK_GRAY);
+		txtNomeLivro.setFont(new Font("Dialog", Font.PLAIN, 16));
+		txtNomeLivro.setColumns(10);
+		txtNomeLivro.setBackground(SystemColor.menu);
+		txtNomeLivro.setBounds(7, 115, 244, 25);
+		panel.add(txtNomeLivro);
 
-		JLabel lblIdLivro = new JLabel("ID Livro");
+		JLabel lblIdLivro = new JLabel("Nome Livro");
 		lblIdLivro.setHorizontalAlignment(SwingConstants.LEFT);
 		lblIdLivro.setForeground(Color.DARK_GRAY);
 		lblIdLivro.setFont(new Font("Dialog", Font.PLAIN, 18));
-		lblIdLivro.setBounds(7, 81, 83, 23);
+		lblIdLivro.setBounds(7, 81, 131, 23);
 		panel.add(lblIdLivro);
+	}
+	protected void limparCampos() {
+		txtNomeLivro.setText("");
+		txtEmprAno.setText("");
+		txtDevAno.setText("");
+	}
+
+	protected void atualizarJTable(ArrayList<Emprestimo> arrayEmprestimo) {
+		DefaultTableModel modelo = new DefaultTableModel(new Object[][] {},
+				new String[] { "CPF Cliente", "Nome Livro", "Dia Emprésimo", "Mês Empréstimo", "Ano Empréstimo", "Dia Devoluçã", "Mês Devolução", "Ano Devolução"});
+		for (int i = 0; i < arrayEmprestimo.size(); i++) {
+			Emprestimo p1 = arrayEmprestimo.get(i);
+			modelo.addRow(
+					new Object[] { p1.getNomeLivro(), p1.getCpfCliente(), p1.getNomeLivro(), p1.getDiaempre(), p1.getMesempre(), p1.getAnoEmprestimo(), p1.getDiadevo(), p1.getMesdevo(), p1.getAnoDevolucao()});
+		}
+
+		table.setModel(modelo);
+
 	}
 }

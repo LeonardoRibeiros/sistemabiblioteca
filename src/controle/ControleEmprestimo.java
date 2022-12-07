@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import modelo.Emprestimo;
 
+
 public class ControleEmprestimo {
 	private static ArrayList<Emprestimo> tabelaEmprestimos;
 	private static ControleEmprestimo instancia;
@@ -29,21 +30,21 @@ public class ControleEmprestimo {
 		return false;
 	}
 
-	public boolean alterar(Emprestimo p, long cpf) {
+	public boolean alterar(Emprestimo p, String cpfCliente) {
 		for (Emprestimo emprestimo : tabelaEmprestimos){
-			if (emprestimo.getCpf() == cpf) {
-				emprestimo.setIdLivro(p.getIdLivro());
+			if (emprestimo.getCpfCliente() == cpfCliente) {
+				emprestimo.setNomeLivro(p.getNomeLivro());
 				emprestimo.setAnoDevolucao(p.getAnoDevolucao());
-				emprestimo.setAnoDevolucao(p.getAnoDevolucao());
+				emprestimo.setAnoDevolucao(p.getAnoEmprestimo());
 				return true;
 			}
 		}
 		return false;
 	}
 
-	public boolean deletar(Emprestimo p, long cpf) {
+	public boolean deletar(Emprestimo p, String cpfCliente) {
 		for (Emprestimo emprestimo : tabelaEmprestimos){
-			if (emprestimo.getCpf() == cpf) {
+			if (emprestimo.getCpfCliente() == cpfCliente) {
 				tabelaEmprestimos.remove(emprestimo);
 				return true;
 			}
@@ -52,7 +53,7 @@ public class ControleEmprestimo {
 		return false;
 	}
 
-	public ArrayList<Emprestimo> listarFuncionarios() {
+	public ArrayList<Emprestimo> listarEmprestimos() {
 		return tabelaEmprestimos;
 	}
 }

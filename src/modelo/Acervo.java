@@ -1,17 +1,12 @@
 package modelo;
 
 public class Acervo {
-private long Cpf;
 private String nomeLivro;
 private String autor;
+private String Genero;
+private String estante;
 private int nPaginas;
 
-public long getCpf() {
-	return Cpf;
-}
-public void setCpf(long cpf) {
-	this.Cpf = cpf;
-}
 
 public String getNomeLivro() {
 	return nomeLivro;
@@ -30,6 +25,18 @@ public int getnPaginas() {
 }
 public void setnPaginas(int nPaginas) {
 	this.nPaginas = nPaginas;
+}
+public String getEstante() {
+	return estante;
+}
+public void setEstante(String estante) {
+	this.estante = estante;
+}
+public String getGenero() {
+	return Genero;
+}
+public void setGenero(String genero) {
+	Genero = genero;
 }
 
 }

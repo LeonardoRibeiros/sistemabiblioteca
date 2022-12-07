@@ -29,9 +29,9 @@ public class ControleAcervo{
 		return false;
 	}
 
-	public boolean alterar(Acervo p, long cpf) {
+	public boolean alterar(Acervo p, String nomeLivro) {
 		for (Acervo acervo : tabelaAcervo){
-			if (acervo.getCpf() == cpf) {
+			if (acervo.getNomeLivro() == nomeLivro) {
 				acervo.setNomeLivro(p.getNomeLivro());
 				acervo.setAutor(p.getAutor());
 				acervo.setnPaginas(p.getnPaginas());
@@ -41,9 +41,9 @@ public class ControleAcervo{
 		return false;
 	}
 
-	public boolean deletar(Acervo p, long cpf) {
+	public boolean deletar(Acervo p, String nomeLivro) {
 		for (Acervo acervo : tabelaAcervo){
-			if (acervo.getCpf() == cpf) {
+			if (acervo.getNomeLivro() == nomeLivro) {
 				tabelaAcervo.remove(acervo);
 				return true;
 			}
@@ -52,7 +52,7 @@ public class ControleAcervo{
 		return false;
 	}
 
-	public ArrayList<Acervo> listarFuncionarios() {
+	public ArrayList<Acervo> listarAcervo() {
 		return tabelaAcervo;
 	}
 }

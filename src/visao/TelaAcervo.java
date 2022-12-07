@@ -1,26 +1,35 @@
 package visao;
 
 import java.awt.Color;
-import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.SystemColor;
-
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
+import javax.swing.table.DefaultTableModel;
+import controle.ControleAcervo;
+import modelo.Acervo;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JTable;
-import javax.swing.JInternalFrame;
 
 public class TelaAcervo extends JFrame {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JLabel lblNewLabel;
 	private JLabel lblNewLabel_1;
@@ -32,17 +41,23 @@ public class TelaAcervo extends JFrame {
 	private JTextField txtNpaginas;
 	private JButton salvarBT;
 	private JButton LimparBT;
-	private JComboBox comboBox;
-	private JComboBox comboBox_1;
+	private JComboBox cBoxgenero;
+	private JComboBox cBoxestante;
+	private DefaultTableModel modelo;
+	private Acervo livroSelecionado;
 	private JTable table;
 
 	/**
 	 * Create the frame.
 	 */
+	@SuppressWarnings("unchecked")
 	public TelaAcervo() {
+		ControleAcervo instance = ControleAcervo.getInstancia();
+		ArrayList<Acervo> arrayAcervo = instance.listarAcervo();
+
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setBounds(100, 100, 792, 513);
+		setBounds(100, 100, 874, 513);
 		contentPane = new JPanel();
 		contentPane.setBackground(Color.DARK_GRAY);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -63,7 +78,7 @@ public class TelaAcervo extends JFrame {
 		voltarBT.setBackground(SystemColor.menu);
 		voltarBT.setForeground(Color.DARK_GRAY);
 		voltarBT.setFont(new Font("Dialog", Font.PLAIN, 16));
-		voltarBT.setBounds(669, 440, 96, 23);
+		voltarBT.setBounds(752, 440, 96, 23);
 		contentPane.add(voltarBT);
 
 		JLabel lblNewLabel_8 = new JLabel("Acervo");
@@ -73,10 +88,32 @@ public class TelaAcervo extends JFrame {
 		lblNewLabel_8.setBounds(10, 21, 244, 43);
 		contentPane.add(lblNewLabel_8);
 
-		table = new JTable();
-		table.setBounds(339, 87, 426, 342);
-		contentPane.add(table);
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBounds(339, 87, 509, 342);
+		contentPane.add(scrollPane);
 
+		table = new JTable();
+		table.addMouseListener(new MouseAdapter() {
+			public void mouseClicked(MouseEvent e) {
+				int posicaoLivro = table.getSelectedRow();
+				livroSelecionado = arrayAcervo.get(posicaoLivro);
+				txtNomelivro.setText(livroSelecionado.getNomeLivro());
+				txtAutor.setText(livroSelecionado.getAutor());
+				cBoxgenero.setToolTipText(livroSelecionado.getGenero());
+				txtNpaginas.setText(String.valueOf(livroSelecionado.getnPaginas()));
+				cBoxestante.setToolTipText(livroSelecionado.getEstante());
+			}
+		});
+		scrollPane.setViewportView(table);
+		
+		modelo = new DefaultTableModel();
+		table.setModel(modelo);
+		modelo.addColumn("Nome Livro");
+		modelo.addColumn("Autor");
+		modelo.addColumn("Gênero");
+		modelo.addColumn("N Páginas");
+		modelo.addColumn("Estante");
+		
 		JPanel panel = new JPanel();
 		panel.setBackground(new Color(176, 196, 222));
 		panel.setBounds(10, 87, 319, 341);
@@ -101,11 +138,30 @@ public class TelaAcervo extends JFrame {
 		salvarBT = new JButton("Salvar");
 		salvarBT.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
-				
-				
-				
-				
+				Acervo p = new Acervo();
+
+				if (txtNomelivro.getText().isEmpty() || txtNomelivro.getText() == null) {
+					JOptionPane.showMessageDialog(null, "Erro: Todos os Campos devem ser Preenchidos!");
+				} else if (txtAutor.getText().isEmpty() || txtAutor.getText() == null) {
+					JOptionPane.showMessageDialog(null, "Erro: Todos os Campos devem ser Preenchidos!");
+				} else if (cBoxgenero.getSelectedItem().equals("*")) {
+					JOptionPane.showMessageDialog(null, "Erro: Todos os Campos devem ser Preenchidos!");
+				} else if (txtNpaginas.getText().isEmpty() || txtNpaginas.getText() == null) {
+					JOptionPane.showMessageDialog(null, "Erro: Todos os Campos devem ser Preenchidos!");
+				} else if (cBoxestante.getSelectedItem().equals("*")) {
+					JOptionPane.showMessageDialog(null, "Erro: Todos os Campos devem ser Preenchidos!");
+				}  else {
+
+					p.setNomeLivro(txtNomelivro.getText().toString());
+					p.setAutor(txtAutor.getText().toString());
+					p.setGenero(cBoxgenero.getSelectedItem().toString());
+					p.setnPaginas(Integer.valueOf(txtNpaginas.getText().toString()));
+					p.setEstante(cBoxestante.getSelectedItem().toString());
+					arrayAcervo.add(p);
+					limparCampos();
+					atualizarJTable(arrayAcervo);
+
+				}
 			}
 		});
 		salvarBT.setBounds(7, 307, 96, 23);
@@ -115,6 +171,15 @@ public class TelaAcervo extends JFrame {
 		salvarBT.setBackground(SystemColor.menu);
 
 		LimparBT = new JButton("Excluir");
+		LimparBT.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if (livroSelecionado != null) {
+					arrayAcervo.remove(livroSelecionado);
+					atualizarJTable(arrayAcervo);
+					limparCampos();
+				}
+			}
+		});
 		LimparBT.setBounds(113, 307, 96, 23);
 		panel.add(LimparBT);
 		LimparBT.setForeground(Color.DARK_GRAY);
@@ -158,14 +223,12 @@ public class TelaAcervo extends JFrame {
 		txtNpaginas.setBounds(7, 252, 169, 25);
 		panel.add(txtNpaginas);
 
-		comboBox = new JComboBox();
-		comboBox.setForeground(Color.DARK_GRAY);
-		comboBox.setFont(new Font("Dialog", Font.PLAIN, 18));
-		comboBox.setModel(new DefaultComboBoxModel(
-				new String[] { "Romance", "Fic\u00E7\u00E3o Cient\u00EDfica", "A\u00E7\u00E3o e Aventura", "Biografia",
-						"Infantil", "Suspense", "Fantasia", "Religi\u00E3o", "Drama", "Distopia" }));
-		comboBox.setBounds(7, 182, 302, 23);
-		panel.add(comboBox);
+		cBoxgenero = new JComboBox();
+		cBoxgenero.setForeground(Color.DARK_GRAY);
+		cBoxgenero.setFont(new Font("Dialog", Font.PLAIN, 18));
+		cBoxgenero.setModel(new DefaultComboBoxModel(new String[] {"*", "Romance", "Ficção Científica", "Ação e Aventura", "Biografia", "Infantil", "Suspense", "Fantasia", "Religião", "Drama", "Distopia"}));
+		cBoxgenero.setBounds(7, 182, 302, 23);
+		panel.add(cBoxgenero);
 
 		lblNewLabel_4 = new JLabel("Estante");
 		lblNewLabel_4.setHorizontalAlignment(SwingConstants.CENTER);
@@ -174,12 +237,29 @@ public class TelaAcervo extends JFrame {
 		lblNewLabel_4.setBounds(196, 218, 113, 23);
 		panel.add(lblNewLabel_4);
 
-		comboBox_1 = new JComboBox();
-		comboBox_1.setForeground(Color.DARK_GRAY);
-		comboBox_1.setFont(new Font("Dialog", Font.PLAIN, 18));
-		comboBox_1.setModel(new DefaultComboBoxModel(new String[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10",
-				"11", "12", "13", "14", "15", "16", "17", "18", "19", "20" }));
-		comboBox_1.setBounds(196, 252, 113, 23);
-		panel.add(comboBox_1);
+		cBoxestante = new JComboBox();
+		cBoxestante.setForeground(Color.DARK_GRAY);
+		cBoxestante.setFont(new Font("Dialog", Font.PLAIN, 18));
+		cBoxestante.setModel(new DefaultComboBoxModel(new String[] {"*", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20"}));
+		cBoxestante.setBounds(196, 252, 113, 23);
+		panel.add(cBoxestante);
+	}
+	protected void limparCampos() {
+		txtNomelivro.setText("");
+		txtAutor.setText("");
+		txtNpaginas.setText("");
+	}
+
+	protected void atualizarJTable(ArrayList<Acervo> arrayAcervo) {
+		DefaultTableModel modelo = new DefaultTableModel(new Object[][] {},
+				new String[] { "Nome Livro", "Autor", "Gênero", "N páginas", "Estante"});
+		for (int i = 0; i < arrayAcervo.size(); i++) {
+			Acervo p1 = arrayAcervo.get(i);
+			modelo.addRow(
+					new Object[] { p1.getNomeLivro(), p1.getAutor(), p1.getGenero(), p1.getnPaginas(), p1.getEstante()});
+		}
+
+		table.setModel(modelo);
+
 	}
 }

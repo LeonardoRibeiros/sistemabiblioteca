@@ -5,8 +5,8 @@ private String nome;
 private String cpf;
 private String tel;
 private String cep;
-private int nCasa;
 private String email;
+private int nCasa;
 
 public String getNome() {
 	return nome;
@@ -47,4 +47,3 @@ public void setEmail(String email) {
 
 
 }
-
