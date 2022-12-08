@@ -202,8 +202,8 @@ public class TelaMulta extends JFrame {
 					p.setAnoDevolucao(Integer.valueOf(txtAno.getText().toString()));
 					p.setValorMulta(Float.valueOf(txtMulta.getText().toString()));
 					arrayMulta.add(p);
-					limparCampos();
 					atualizarJTable(arrayMulta);
+					limparCampos();
 
 				}
 			}
@@ -264,9 +264,9 @@ public class TelaMulta extends JFrame {
 				
 				boolean valida = instance.alterar(multaSelecionada, novoCpf);
 				if(valida == true) {
-					// mensagem de sucesso
+					JOptionPane.showMessageDialog(null,"Os dados foram alterados com Sucesso");
 				} else {
-					// mensagem de erro
+					JOptionPane.showMessageDialog(null,"Erro ao alterar os dados");
 				}
 				
 				atualizarJTable(arrayMulta);
@@ -284,6 +284,8 @@ public class TelaMulta extends JFrame {
 		txtCpfCliente.setText("");
 		txtAno.setText("");
 		txtMulta.setText("");
+		cBoxDia.setSelectedItem("*");
+		cBoxMes.setSelectedItem("*");
 	}
 
 	protected void atualizarJTable(ArrayList<Multa> arrayMulta) {

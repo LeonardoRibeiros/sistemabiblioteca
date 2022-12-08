@@ -264,6 +264,7 @@ public class TelaAcervo extends JFrame {
 		txtNomelivro.setText("");
 		txtAutor.setText("");
 		txtNpaginas.setText("");
+		cBoxestante.setSelectedItem("*");
 	}
 
 	protected void atualizarJTable(ArrayList<Acervo> arrayAcervo) {
