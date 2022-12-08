@@ -1,5 +1,6 @@
 package controle;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 import modelo.Multa;
@@ -29,13 +30,11 @@ public class ControleMulta {
 		return false;
 	}
 
-	public boolean alterar(Multa p, String cpf) {
+	public boolean alterar(Multa p, Long cpf) {
 		for (Multa multa : tabelaMultas) {
 			if (multa.getCliente().getCpf() == cpf) {
-				multa.setCpfCliente(p.getCpfCliente());
-				multa.setDia(p.getDia());
-				multa.setMes(p.getMes());
-				multa.setAnoDevolucao(Integer.valueOf(p.getAnoDevolucao()));
+//				multa.setCpfCliente(p.getCliente().getCpf());
+				multa.setData(LocalDate.now());
 				multa.setValorMulta(p.getValorMulta());
 				return true;
 			}
@@ -43,9 +42,9 @@ public class ControleMulta {
 		return false;
 	}
 
-	public boolean deletar(Multa p, String cpf) {
+	public boolean deletar(Multa p, Long cpf) {
 		for (Multa multa : tabelaMultas) {
-			if (multa.getCpfCliente() == cpf) {
+			if (multa.getCliente().getCpf() == cpf) {
 				tabelaMultas.remove(multa);
 				return true;
 			}

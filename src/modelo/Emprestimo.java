@@ -1,38 +1,12 @@
 package modelo;
 
+import java.time.LocalDate;
+
 public class Emprestimo {
-	private String CpfCliente;
-	private String Diaempre;
-	private String Diadevo;
-	private String Mesempre;
-	private String Mesdevo;
+	private Cliente cliente;
 	private String NomeLivro;
-	private int anoEmprestimo;
-	private int anoDevolucao;
+	private LocalDate data;
 
-	public int getAnoEmprestimo() {
-		return anoEmprestimo;
-	}
-
-	public void setAnoEmprestimo(int anoEmprestimo) {
-		this.anoEmprestimo = anoEmprestimo;
-	}
-
-	public int getAnoDevolucao() {
-		return anoDevolucao;
-	}
-
-	public void setAnoDevolucao(int anoDevolucao) {
-		this.anoDevolucao = anoDevolucao;
-	}
-
-	public String getCpfCliente() {
-		return CpfCliente;
-	}
-
-	public void setCpfCliente(String cpfCliente) {
-		CpfCliente = cpfCliente;
-	}
 
 	public String getNomeLivro() {
 		return NomeLivro;
@@ -42,36 +16,20 @@ public class Emprestimo {
 		NomeLivro = nomeLivro;
 	}
 
-	public String getMesdevo() {
-		return Mesdevo;
+	public Cliente getCliente() {
+		return cliente;
 	}
 
-	public void setMesdevo(String mesdevo) {
-		Mesdevo = mesdevo;
+	public void setCliente(Cliente cliente) {
+		this.cliente = cliente;
 	}
 
-	public String getMesempre() {
-		return Mesempre;
+	public LocalDate getData() {
+		return data;
 	}
 
-	public void setMesempre(String mesempre) {
-		Mesempre = mesempre;
-	}
-
-	public String getDiadevo() {
-		return Diadevo;
-	}
-
-	public void setDiadevo(String diadevo) {
-		Diadevo = diadevo;
-	}
-
-	public String getDiaempre() {
-		return Diaempre;
-	}
-
-	public void setDiaempre(String diaempre) {
-		Diaempre = diaempre;
+	public void setData(LocalDate data) {
+		this.data = data;
 	}
 
 }

@@ -102,7 +102,7 @@ public class TelaFuncionario extends JFrame {
 				int posicaoFuncionario = table.getSelectedRow();
 				funcionarioSelecionado = arrayFuncionario.get(posicaoFuncionario);
 				txtNome.setText(funcionarioSelecionado.getNome());
-				txtCpf.setText(funcionarioSelecionado.getCpf());
+				txtCpf.setText(String.valueOf(funcionarioSelecionado.getCpf()));
 				txtTelefone.setText(funcionarioSelecionado.getTel());
 				txtEmail.setText(funcionarioSelecionado.getEmail());
 				txtCep.setText(funcionarioSelecionado.getCep());
@@ -167,7 +167,7 @@ public class TelaFuncionario extends JFrame {
 				} else {
 
 					p.setNome(Nome);
-					p.setCpf(Cpf);
+					p.setCpf(Long.valueOf(Cpf));
 					p.setTel(Telefone);
 					p.setEmail(Email);
 					p.setCep(Cep);

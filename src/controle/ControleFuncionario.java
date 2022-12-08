@@ -29,7 +29,7 @@ public class ControleFuncionario {
 		return false;
 	}
 
-	public boolean alterar(Funcionario p, String cpf) {
+	public boolean alterar(Funcionario p, Long cpf) {
 		for (Funcionario funcionario : tabelaFuncionarios) {
 			if (funcionario.getCpf() == cpf) {
 				funcionario.setNome(p.getNome());
@@ -44,7 +44,7 @@ public class ControleFuncionario {
 		return false;
 	}
 
-	public boolean deletar(Funcionario p, String cpf ) {
+	public boolean deletar(Funcionario p, Long cpf ) {
 
 		for (Funcionario funcionario : tabelaFuncionarios) {
 			if (funcionario.getCpf() == cpf) {

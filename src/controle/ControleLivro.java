@@ -4,33 +4,33 @@ import java.util.ArrayList;
 
 import modelo.Livro;
 
-public class ControleAcervo{
-	private static ArrayList<Livro> tabelaAcervo;
-	private static ControleAcervo instancia;
+public class ControleLivro{
+	private static ArrayList<Livro> tabelaLivro;
+	private static ControleLivro instancia;
 
-	public static ControleAcervo getInstancia() {
+	public static ControleLivro getInstancia() {
 
 		if (instancia == null) {
-			instancia = new ControleAcervo();
-			tabelaAcervo = new ArrayList<>();
+			instancia = new ControleLivro();
+			tabelaLivro = new ArrayList<>();
 		}
 
 		return instancia;
 	}
 
-	private ControleAcervo() {
+	private ControleLivro() {
 	}
 
 	public boolean inserir(Livro p) {
 		if (p != null) {
-			this.tabelaAcervo.add(p);
+			this.tabelaLivro.add(p);
 			return true;
 		}
 		return false;
 	}
 
 	public boolean alterar(Livro p, String nomeLivro) {
-		for (Livro acervo : tabelaAcervo){
+		for (Livro acervo : tabelaLivro){
 			if (acervo.getNomeLivro() == nomeLivro) {
 				acervo.setNomeLivro(p.getNomeLivro());
 				acervo.setAutor(p.getAutor());
@@ -45,9 +45,9 @@ public class ControleAcervo{
 	}
 
 	public boolean deletar(Livro p, String nomeLivro) {
-		for (Livro acervo : tabelaAcervo){
+		for (Livro acervo : tabelaLivro){
 			if (acervo.getNomeLivro() == nomeLivro) {
-				tabelaAcervo.remove(acervo);
+				tabelaLivro.remove(acervo);
 				return true;
 			}
 		}
@@ -56,6 +56,6 @@ public class ControleAcervo{
 	}
 
 	public ArrayList<Livro> listarAcervo() {
-		return tabelaAcervo;
+		return tabelaLivro;
 	}
 }

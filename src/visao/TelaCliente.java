@@ -101,7 +101,7 @@ public class TelaCliente extends JFrame {
 				int posicaoCliente = table.getSelectedRow();
 				clienteSelecionado = arrayCliente.get(posicaoCliente);
 				txtNome.setText(clienteSelecionado.getNome());
-				txtCpf.setText(clienteSelecionado.getCpf());
+				txtCpf.setText(String.valueOf(clienteSelecionado.getCpf()));
 				txtTelefone.setText(clienteSelecionado.getTel());
 				txtEmail.setText(clienteSelecionado.getEmail());
 				txtCep.setText(clienteSelecionado.getCep());
@@ -166,7 +166,7 @@ public class TelaCliente extends JFrame {
 				} else {
 
 					p.setNome(Nome);
-					p.setCpf(Cpf);
+					p.setCpf(Long.valueOf(Cpf));
 					p.setTel(Telefone);
 					p.setEmail(Email);
 					p.setCep(Cep);

@@ -97,10 +97,10 @@ public class TelaMulta extends JFrame {
 			public void mouseClicked(MouseEvent e) {
 				int posicaoMulta = table.getSelectedRow();
 				multaSelecionada = arrayMulta.get(posicaoMulta);
-				txtCpfCliente.setText(multaSelecionada.getCpfCliente());
-				cBoxDia.setToolTipText(multaSelecionada.getDia());
-				cBoxMes.setToolTipText(multaSelecionada.getMes());
-				txtAno.setText(String.valueOf(multaSelecionada.getAnoDevolucao()));
+				txtCpfCliente.setText(String.valueOf(multaSelecionada.getCliente().getCpf()));
+				cBoxDia.setToolTipText(String.valueOf(multaSelecionada.getData().getDayOfYear()));
+				cBoxMes.setToolTipText(String.valueOf(multaSelecionada.getData().getMonth()));
+				txtAno.setText(String.valueOf(multaSelecionada.getData().getMonth()));
 				txtMulta.setText(String.valueOf(multaSelecionada.getValorMulta()));
 
 			}

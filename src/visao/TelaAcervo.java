@@ -14,7 +14,7 @@ import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
-import controle.ControleAcervo;
+import controle.ControleLivro;
 import modelo.Livro;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
@@ -52,7 +52,7 @@ public class TelaAcervo extends JFrame {
 	 */
 	@SuppressWarnings("unchecked")
 	public TelaAcervo() {
-		ControleAcervo instance = ControleAcervo.getInstancia();
+		ControleLivro instance = ControleLivro.getInstancia();
 		ArrayList<Livro> arrayAcervo = instance.listarAcervo();
 
 		setResizable(false);
