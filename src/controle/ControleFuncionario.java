@@ -3,8 +3,9 @@ package controle;
 import java.util.ArrayList;
 
 import modelo.Funcionario;
+import modelo.IFuncionarioDAO;
 
-public class ControleFuncionario {
+public class ControleFuncionario implements IFuncionarioDAO{
 	private static ArrayList<Funcionario> tabelaFuncionarios;
 	private static ControleFuncionario instancia;
 

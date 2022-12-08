@@ -1,11 +1,13 @@
 package controle;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 import modelo.Emprestimo;
+import modelo.IEmprestimoDAO;
 
 
-public class ControleEmprestimo {
+public class ControleEmprestimo implements IEmprestimoDAO {
 	private static ArrayList<Emprestimo> tabelaEmprestimos;
 	private static ControleEmprestimo instancia;
 
@@ -30,26 +32,20 @@ public class ControleEmprestimo {
 		return false;
 	}
 
-	public boolean alterar(Emprestimo p, String cpfCliente) {
+	public boolean alterar(Emprestimo p, Long cpf) {
 		for (Emprestimo emprestimo : tabelaEmprestimos){
-			if (emprestimo.getCpfCliente() == cpfCliente) {
-				emprestimo.setCpfCliente(p.getCpfCliente());
+			if (emprestimo.getCliente().getCpf() == cpf) {
 				emprestimo.setNomeLivro(p.getNomeLivro());
-				emprestimo.setDiaempre(p.getDiaempre());
-				emprestimo.setDiadevo(p.getDiadevo());
-				emprestimo.setMesempre(p.getMesempre());
-				emprestimo.setMesdevo(p.getMesdevo());
-				emprestimo.setAnoEmprestimo(p.getAnoEmprestimo());
-				emprestimo.setAnoDevolucao(p.getAnoEmprestimo());
+				emprestimo.setData(LocalDate.now());
 				return true;
 			}
 		}
 		return false;
 	}
 
-	public boolean deletar(Emprestimo p, String cpfCliente) {
+	public boolean deletar(Emprestimo p, Long cpf) {
 		for (Emprestimo emprestimo : tabelaEmprestimos){
-			if (emprestimo.getCpfCliente() == cpfCliente) {
+			if (emprestimo.getCliente().getCpf() == cpf) {
 				tabelaEmprestimos.remove(emprestimo);
 				return true;
 			}

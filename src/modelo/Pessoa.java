@@ -3,7 +3,7 @@ package modelo;
 public abstract class Pessoa {
 
 	private String nome;
-	private Long cpf;
+	private long cpf;
 	private String tel;
 	private String cep;
 	private String email;

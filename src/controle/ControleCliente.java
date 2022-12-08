@@ -3,8 +3,9 @@ package controle;
 import java.util.ArrayList;
 
 import modelo.Cliente;
+import modelo.IClienteDAO;
 
-public class ControleCliente {
+public class ControleCliente implements IClienteDAO {
 	private static ArrayList<Cliente> tabelaClientes;
 	private static ControleCliente instancia;
 

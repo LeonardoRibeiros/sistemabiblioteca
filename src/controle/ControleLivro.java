@@ -2,9 +2,10 @@ package controle;
 
 import java.util.ArrayList;
 
+import modelo.ILivroDAO;
 import modelo.Livro;
 
-public class ControleLivro{
+public class ControleLivro implements ILivroDAO{
 	private static ArrayList<Livro> tabelaLivro;
 	private static ControleLivro instancia;
 
@@ -55,7 +56,10 @@ public class ControleLivro{
 		return false;
 	}
 
-	public ArrayList<Livro> listarAcervo() {
+	public ArrayList<Livro> listarLivros() {
 		return tabelaLivro;
 	}
+
+	
+	
 }

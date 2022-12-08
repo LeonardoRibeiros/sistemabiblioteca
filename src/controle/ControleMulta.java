@@ -3,9 +3,10 @@ package controle;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
+import modelo.IMultaDAO;
 import modelo.Multa;
 
-public class ControleMulta {
+public class ControleMulta implements IMultaDAO{
 	private static ArrayList<Multa> tabelaMultas;
 	private static ControleMulta instancia;
 
