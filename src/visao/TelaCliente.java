@@ -143,7 +143,7 @@ public class TelaCliente extends JFrame {
 		btnNewButton = new JButton("Salvar");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Cliente p = new Cliente();
+				Cliente cliente = new Cliente();
 				
 				String Nome = txtNome.getText();
 				 String Cpf = txtNome.getText();
@@ -165,13 +165,16 @@ public class TelaCliente extends JFrame {
 					JOptionPane.showMessageDialog(null, "Erro: Todos os Campos devem ser Preenchidos!");
 				} else {
 
-					p.setNome(Nome);
-					p.setCpf(Long.valueOf(Cpf));
-					p.setTel(Telefone);
-					p.setEmail(Email);
-					p.setCep(Cep);
-					p.setnCasa(Integer.valueOf(txtNcasa.getText()));
-					arrayCliente.add(p);
+					cliente.setNome(Nome);
+					cliente.setCpf(Long.valueOf(Cpf));
+					cliente.setTel(Telefone);
+					cliente.setEmail(Email);
+					cliente.setCep(Cep);
+					cliente.setnCasa(Integer.valueOf(txtNcasa.getText()));
+					
+					boolean validacao = instance.inserir(cliente);
+//					if() mensagem sucesso erro
+					
 					limparCampos();
 					atualizarJTable(arrayCliente);
 
@@ -190,7 +193,8 @@ public class TelaCliente extends JFrame {
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (clienteSelecionado != null) {
-					arrayCliente.remove(clienteSelecionado);
+					boolean validacao = instance.deletar(clienteSelecionado, clienteSelecionado.getCpf());
+					// if
 					atualizarJTable(arrayCliente);
 					limparCampos();
 				}

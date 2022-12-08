@@ -53,7 +53,6 @@ public class TelaAcervo extends JFrame {
 	@SuppressWarnings("unchecked")
 	public TelaAcervo() {
 		ControleLivro instance = ControleLivro.getInstancia();
-		ArrayList<Livro> arrayAcervo = instance.listarAcervo();
 
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
