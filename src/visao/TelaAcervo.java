@@ -15,7 +15,7 @@ import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 import controle.ControleAcervo;
-import modelo.Acervo;
+import modelo.Livro;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -44,7 +44,7 @@ public class TelaAcervo extends JFrame {
 	private JComboBox cBoxgenero;
 	private JComboBox cBoxestante;
 	private DefaultTableModel modelo;
-	private Acervo livroSelecionado;
+	private Livro livroSelecionado;
 	private JTable table;
 
 	/**
@@ -53,7 +53,7 @@ public class TelaAcervo extends JFrame {
 	@SuppressWarnings("unchecked")
 	public TelaAcervo() {
 		ControleAcervo instance = ControleAcervo.getInstancia();
-		ArrayList<Acervo> arrayAcervo = instance.listarAcervo();
+		ArrayList<Livro> arrayAcervo = instance.listarAcervo();
 
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -138,7 +138,7 @@ public class TelaAcervo extends JFrame {
 		salvarBT = new JButton("Salvar");
 		salvarBT.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Acervo p = new Acervo();
+				Livro p = new Livro();
 
 				String Nomelivro = txtNomelivro.getText();
 				String Autor = txtAutor.getText();
@@ -267,11 +267,11 @@ public class TelaAcervo extends JFrame {
 		cBoxestante.setSelectedItem("*");
 	}
 
-	protected void atualizarJTable(ArrayList<Acervo> arrayAcervo) {
+	protected void atualizarJTable(ArrayList<Livro> arrayAcervo) {
 		DefaultTableModel modelo = new DefaultTableModel(new Object[][] {},
 				new String[] { "Nome Livro", "Autor", "Gênero", "N páginas", "Estante"});
 		for (int i = 0; i < arrayAcervo.size(); i++) {
-			Acervo p1 = arrayAcervo.get(i);
+			Livro p1 = arrayAcervo.get(i);
 			modelo.addRow(
 					new Object[] { p1.getNomeLivro(), p1.getAutor(), p1.getGenero(), p1.getnPaginas(), p1.getEstante()});
 		}

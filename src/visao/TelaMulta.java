@@ -201,7 +201,11 @@ public class TelaMulta extends JFrame {
 					p.setMes(cBoxMes.getSelectedItem().toString());
 					p.setAnoDevolucao(Integer.valueOf(txtAno.getText().toString()));
 					p.setValorMulta(Float.valueOf(txtMulta.getText().toString()));
-					arrayMulta.add(p);
+//					arrayMulta.add(p);
+					
+					ControleMulta cMulta = ControleMulta.getInstancia();
+					cMulta.inserir(p)
+					
 					atualizarJTable(arrayMulta);
 					limparCampos();
 

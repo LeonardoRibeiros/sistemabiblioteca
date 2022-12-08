@@ -2,10 +2,10 @@ package controle;
 
 import java.util.ArrayList;
 
-import modelo.Acervo;
+import modelo.Livro;
 
 public class ControleAcervo{
-	private static ArrayList<Acervo> tabelaAcervo;
+	private static ArrayList<Livro> tabelaAcervo;
 	private static ControleAcervo instancia;
 
 	public static ControleAcervo getInstancia() {
@@ -21,7 +21,7 @@ public class ControleAcervo{
 	private ControleAcervo() {
 	}
 
-	public boolean inserir(Acervo p) {
+	public boolean inserir(Livro p) {
 		if (p != null) {
 			this.tabelaAcervo.add(p);
 			return true;
@@ -29,8 +29,8 @@ public class ControleAcervo{
 		return false;
 	}
 
-	public boolean alterar(Acervo p, String nomeLivro) {
-		for (Acervo acervo : tabelaAcervo){
+	public boolean alterar(Livro p, String nomeLivro) {
+		for (Livro acervo : tabelaAcervo){
 			if (acervo.getNomeLivro() == nomeLivro) {
 				acervo.setNomeLivro(p.getNomeLivro());
 				acervo.setAutor(p.getAutor());
@@ -44,8 +44,8 @@ public class ControleAcervo{
 		return false;
 	}
 
-	public boolean deletar(Acervo p, String nomeLivro) {
-		for (Acervo acervo : tabelaAcervo){
+	public boolean deletar(Livro p, String nomeLivro) {
+		for (Livro acervo : tabelaAcervo){
 			if (acervo.getNomeLivro() == nomeLivro) {
 				tabelaAcervo.remove(acervo);
 				return true;
@@ -55,7 +55,7 @@ public class ControleAcervo{
 		return false;
 	}
 
-	public ArrayList<Acervo> listarAcervo() {
+	public ArrayList<Livro> listarAcervo() {
 		return tabelaAcervo;
 	}
 }

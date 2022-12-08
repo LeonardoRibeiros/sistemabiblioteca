@@ -29,7 +29,7 @@ public class ControleCliente {
 		return false;
 	}
 
-	public boolean alterar(Cliente p, String cpf) {
+	public boolean alterar(Cliente p, Long cpf) {
 		for (Cliente cliente : tabelaClientes) {
 			if (cliente.getCpf() == cpf) {
 				cliente.setNome(p.getNome());
@@ -44,7 +44,7 @@ public class ControleCliente {
 		return false;
 	}
 
-	public boolean deletar(Cliente p, String cpf ) {
+	public boolean deletar(Cliente p, Long cpf ) {
 
 		for (Cliente cliente : tabelaClientes) {
 			if (cliente.getCpf() == cpf) {

@@ -16,7 +16,7 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 
 import controle.ControleEmprestimo;
-import modelo.Acervo;
+import modelo.Livro;
 import modelo.Emprestimo;
 
 import java.awt.event.ActionListener;

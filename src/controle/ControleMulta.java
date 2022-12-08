@@ -23,15 +23,15 @@ public class ControleMulta {
 
 	public boolean inserir(Multa p) {
 		if (p != null) {
-			this.tabelaMultas.add(p);
+			tabelaMultas.add(p);
 			return true;
 		}
 		return false;
 	}
 
 	public boolean alterar(Multa p, String cpf) {
-		for (Multa multa : tabelaMultas){
-			if (multa.getCpfCliente() == cpf) {
+		for (Multa multa : tabelaMultas) {
+			if (multa.getCliente().getCpf() == cpf) {
 				multa.setCpfCliente(p.getCpfCliente());
 				multa.setDia(p.getDia());
 				multa.setMes(p.getMes());
@@ -44,7 +44,7 @@ public class ControleMulta {
 	}
 
 	public boolean deletar(Multa p, String cpf) {
-		for (Multa multa : tabelaMultas){
+		for (Multa multa : tabelaMultas) {
 			if (multa.getCpfCliente() == cpf) {
 				tabelaMultas.remove(multa);
 				return true;
