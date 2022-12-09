@@ -266,7 +266,7 @@ public class TelaMulta extends JFrame {
 
 				arrayMulta.set(posicao, multaSelecionada);
 				
-				boolean valida = instance.alterar(multaSelecionada, novoCpf);
+				boolean valida = instance.alterar(multaSelecionada, Long cpf);
 				if(valida == true) {
 					JOptionPane.showMessageDialog(null,"Os dados foram alterados com Sucesso");
 				} else {
@@ -294,11 +294,10 @@ public class TelaMulta extends JFrame {
 
 	protected void atualizarJTable(ArrayList<Multa> arrayMulta) {
 		DefaultTableModel modelo = new DefaultTableModel(new Object[][] {},
-				new String[] { "CPF Multa", "Dia Devolução", "Mes Devolução", "Ano Devolução", "Valor Multa" });
+				new String[] { "CPF Multa", "Data", "Valor Multa" });
 		for (int i = 0; i < arrayMulta.size(); i++) {
 			Multa p1 = arrayMulta.get(i);
-			modelo.addRow(new Object[] { p1.getCpfCliente(), p1.getDia(), p1.getMes(), p1.getAnoDevolucao(),
-					p1.getValorMulta() });
+			modelo.addRow(new Object[] { p1.getCliente(), p1.getData(),p1.getValorMulta() });
 		}
 		table.setModel(modelo);
 

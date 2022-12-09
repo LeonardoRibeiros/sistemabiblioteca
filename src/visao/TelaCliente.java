@@ -173,7 +173,11 @@ public class TelaCliente extends JFrame {
 					cliente.setnCasa(Integer.valueOf(txtNcasa.getText()));
 					
 					boolean validacao = instance.inserir(cliente);
-//					if() mensagem sucesso erro
+					if(validacao == true) {
+					JOptionPane.showMessageDialog(null,"Os dados foram cadastrados com sucesso");
+				} else {
+					JOptionPane.showMessageDialog(null,"Erro ao cadastrar os dados");
+				}
 					
 					limparCampos();
 					atualizarJTable(arrayCliente);
@@ -194,7 +198,11 @@ public class TelaCliente extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				if (clienteSelecionado != null) {
 					boolean validacao = instance.deletar(clienteSelecionado, clienteSelecionado.getCpf());
-					// if
+					if(validacao == true) {
+						JOptionPane.showMessageDialog(null,"Os dados foram excluidos com sucesso.");
+					} else {
+						JOptionPane.showMessageDialog(null,"Erro ao excluir os dados.");
+					}
 					atualizarJTable(arrayCliente);
 					limparCampos();
 				}
