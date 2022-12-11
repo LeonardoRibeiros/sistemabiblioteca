@@ -49,7 +49,7 @@ public class ControleFuncionario implements IFuncionarioDAO{
 
 		for (Funcionario funcionario : tabelaFuncionarios) {
 			if (funcionario.getNome() == nome) {
-				tabelaFuncionarios.remove(funcionario);
+				this.tabelaFuncionarios.remove(funcionario);
 				return true;
 			}
 		}
@@ -61,15 +61,5 @@ public class ControleFuncionario implements IFuncionarioDAO{
 		return tabelaFuncionarios;
 	}
 
-	@Override
-	public boolean alterar(Funcionario p, Long cpf) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
-	public boolean deletar(Funcionario p, Long cpf) {
-		// TODO Auto-generated method stub
-		return false;
-	}
+	
 }

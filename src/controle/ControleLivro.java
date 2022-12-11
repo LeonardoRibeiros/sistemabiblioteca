@@ -48,7 +48,7 @@ public class ControleLivro implements ILivroDAO{
 	public boolean deletar(Livro p, String nomeLivro) {
 		for (Livro acervo : tabelaLivro){
 			if (acervo.getNomeLivro() == nomeLivro) {
-				tabelaLivro.remove(acervo);
+				this.tabelaLivro.remove(acervo);
 				return true;
 			}
 		}

@@ -24,15 +24,15 @@ public class ControleCliente implements IClienteDAO {
 
 	public boolean inserir(Cliente p) {
 		if (p != null) {
-			tabelaClientes.add(p);
+			this.tabelaClientes.add(p);
 			return true;
 		}
 		return false;
 	}
 
-	public boolean alterar(Cliente p, Long cpf) {
+	public boolean alterar(Cliente p, String nome) {
 		for (Cliente cliente : tabelaClientes) {
-			if (cliente.getCpf() == cpf) {
+			if (cliente.getNome() == nome) {
 				cliente.setNome(p.getNome());
 				cliente.setCpf(p.getCpf());
 				cliente.setTel(p.getTel());
@@ -45,11 +45,11 @@ public class ControleCliente implements IClienteDAO {
 		return false;
 	}
 
-	public boolean deletar(Cliente p, Long cpf ) {
+	public boolean deletar(Cliente p, String nome ) {
 
 		for (Cliente cliente : tabelaClientes) {
-			if (cliente.getCpf() == cpf) {
-				tabelaClientes.remove(p);
+			if (cliente.getNome() == nome) {
+				this.tabelaClientes.remove(cliente);
 				return true;
 			}
 		}
@@ -60,4 +60,6 @@ public class ControleCliente implements IClienteDAO {
 	public ArrayList<Cliente> listarClientes() {
 		return tabelaClientes;
 	}
+
+	
 }

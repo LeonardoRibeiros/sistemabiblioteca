@@ -4,6 +4,7 @@ import java.time.LocalDate;
 
 public class Multa {
 	private Cliente cliente;
+	private String Cpf;
 	private LocalDate data;
 	private float ValorMulta;
 
@@ -30,5 +31,15 @@ public class Multa {
 	public void setValorMulta(float valorMulta) {
 		ValorMulta = valorMulta;
 	}
+
+	public String getCpf() {
+		return Cpf;
+	}
+
+	public void setCpf(String cpf) {
+		Cpf = cpf;
+	}
+
+	
 
 }

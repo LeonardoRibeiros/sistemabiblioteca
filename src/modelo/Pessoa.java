@@ -3,11 +3,11 @@ package modelo;
 public abstract class Pessoa {
 
 	private String nome;
-	private long cpf;
+	private Long cpf;
 	private String tel;
 	private String cep;
 	private String email;
-	private int nCasa;
+	private Integer nCasa;
 
 	public String getNome() {
 		return nome;
@@ -41,11 +41,11 @@ public abstract class Pessoa {
 		this.cep = cep;
 	}
 
-	public int getnCasa() {
+	public Integer getnCasa() {
 		return nCasa;
 	}
 
-	public void setnCasa(int nCasa) {
+	public void setnCasa(Integer nCasa) {
 		this.nCasa = nCasa;
 	}
 

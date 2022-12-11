@@ -5,6 +5,8 @@ import java.util.ArrayList;
 
 import modelo.IMultaDAO;
 import modelo.Multa;
+import modelo.Cliente;
+import controle.ControleCliente;
 
 public class ControleMulta implements IMultaDAO{
 	private static ArrayList<Multa> tabelaMultas;
@@ -43,9 +45,9 @@ public class ControleMulta implements IMultaDAO{
 		return false;
 	}
 
-	public boolean deletar(Multa p, Long cpf) {
+	public boolean deletar(Multa p, String cpf) {
 		for (Multa multa : tabelaMultas) {
-			if (multa.getCliente().getCpf() == cpf) {
+			if (multa.getCpf() == cpf) {
 				tabelaMultas.remove(multa);
 				return true;
 			}

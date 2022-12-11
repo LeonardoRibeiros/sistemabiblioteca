@@ -1,11 +1,9 @@
 package visao;
 
 import java.awt.Color;
-import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.SystemColor;
 import javax.swing.JButton;
-import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -17,17 +15,13 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 
 import java.awt.event.ActionListener;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.awt.event.ActionEvent;
-import javax.swing.DefaultComboBoxModel;
 import javax.swing.JTable;
 
-import controle.ControleCliente;
+
 import controle.ControleMulta;
-import modelo.Livro;
-import modelo.Cliente;
 import modelo.Multa;
 
 public class TelaMulta extends JFrame {
@@ -37,10 +31,6 @@ public class TelaMulta extends JFrame {
 	 */
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
-	private JLabel lblNewLabel_1;
-	private JComboBox cBoxDia;
-	private JComboBox cBoxMes;
-	private JTextField txtAno;
 	private JLabel lblNewLabel;
 	private JTextField txtCpfCliente;
 	private JButton SalvarBT;
@@ -54,19 +44,95 @@ public class TelaMulta extends JFrame {
 	/**
 	 * Create the frame.
 	 */
+	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public TelaMulta() {
-		ControleMulta instance = ControleMulta.getInstancia();
-		ArrayList<Multa> arrayMulta = instance.listarMultas();
+		ControleMulta instanciaMul = ControleMulta.getInstancia();
+		ArrayList<Multa> Multas = instanciaMul.listarMultas();
+		
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 980, 506);
 		contentPane = new JPanel();
 		contentPane.setBackground(Color.DARK_GRAY);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
+		
+		// Panel-------------------------------------------------------------------
+		JPanel panel = new JPanel();
+		panel.setBackground(new Color(176, 196, 222));
+		panel.setBounds(10, 87, 328, 325);
+		contentPane.add(panel);
+		panel.setLayout(null);
+		
+		//Labels-------------------------------------------------------------------
+		JLabel lblNewLabel_8 = new JLabel("Multa");
+		lblNewLabel_8.setForeground(Color.WHITE);
+		lblNewLabel_8.setBackground(Color.WHITE);
+		lblNewLabel_8.setFont(new Font("Dialog", Font.PLAIN, 40));
+		lblNewLabel_8.setBounds(10, 21, 244, 43);
+		contentPane.add(lblNewLabel_8);
+		
+		lblNewLabel = new JLabel("CPF Cliente");
+		lblNewLabel.setBounds(7, 11, 244, 23);
+		panel.add(lblNewLabel);
+		lblNewLabel.setHorizontalAlignment(SwingConstants.LEFT);
+		lblNewLabel.setForeground(Color.DARK_GRAY);
+		lblNewLabel.setFont(new Font("Dialog", Font.PLAIN, 18));
+		
+		JLabel lblNewLabel_1_1 = new JLabel("Multa Vigente");
+		lblNewLabel_1_1.setBounds(7, 81, 244, 25);
+		panel.add(lblNewLabel_1_1);
+		lblNewLabel_1_1.setHorizontalAlignment(SwingConstants.LEFT);
+		lblNewLabel_1_1.setForeground(Color.DARK_GRAY);
+		lblNewLabel_1_1.setFont(new Font("Dialog", Font.PLAIN, 18));
+		
+		JLabel lblNewLabel_2 = new JLabel("R$");
+		lblNewLabel_2.setHorizontalAlignment(SwingConstants.LEFT);
+		lblNewLabel_2.setForeground(Color.DARK_GRAY);
+		lblNewLabel_2.setFont(new Font("Dialog", Font.PLAIN, 16));
+		lblNewLabel_2.setBounds(10, 117, 45, 23);
+		panel.add(lblNewLabel_2);
+		
+		//TextFields-------------------------------------------------------------------------------------------
+		txtCpfCliente = new JTextField();
+		txtCpfCliente.setForeground(Color.DARK_GRAY);
+		txtCpfCliente.setBounds(7, 45, 308, 25);
+		panel.add(txtCpfCliente);
+		txtCpfCliente.setFont(new Font("Dialog", Font.PLAIN, 16));
+		txtCpfCliente.setColumns(10);
+		txtCpfCliente.setBackground(SystemColor.menu);
+		
+		txtMulta = new JTextField();
+		txtMulta.setForeground(Color.DARK_GRAY);
+		txtMulta.setFont(new Font("Dialog", Font.PLAIN, 16));
+		txtMulta.setColumns(10);
+		txtMulta.setBackground(SystemColor.menu);
+		txtMulta.setBounds(37, 116, 278, 25);
+		panel.add(txtMulta);
+		
+		//ScrollPane + TableModel------------------------------------------------------------------------------
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBounds(348, 87, 606, 324);
+		contentPane.add(scrollPane);
+		
+		table = new JTable();
+		scrollPane.setViewportView(table);
 
+		modelo = new DefaultTableModel();
+		table.setModel(modelo);
+		modelo.addColumn("CPF Cliente");
+		modelo.addColumn("Data Devolução");
+		modelo.addColumn("Valor Multa");
+		
+		for (Multa p : Multas) {
+			Object[] mul = new Object[3];
+			mul[0] = p.getCpf();
+			mul[1] = p.getData();
+			mul[2] = p.getValorMulta();
+			modelo.addRow(mul);
+		}
+		//Buttons---------------------------------------------------------------------------------------------
 		JButton VoltarBT = new JButton("Voltar");
 		VoltarBT.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -82,133 +148,41 @@ public class TelaMulta extends JFrame {
 		VoltarBT.setFont(new Font("Dialog", Font.PLAIN, 12));
 		VoltarBT.setBounds(858, 433, 96, 23);
 		contentPane.add(VoltarBT);
-
-		JLabel lblNewLabel_8 = new JLabel("Multa");
-		lblNewLabel_8.setForeground(Color.WHITE);
-		lblNewLabel_8.setBackground(Color.WHITE);
-		lblNewLabel_8.setFont(new Font("Dialog", Font.PLAIN, 40));
-		lblNewLabel_8.setBounds(10, 21, 244, 43);
-		contentPane.add(lblNewLabel_8);
-		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(348, 87, 606, 324);
-		contentPane.add(scrollPane);
-		table = new JTable();
-		table.addMouseListener(new MouseAdapter() {
-			public void mouseClicked(MouseEvent e) {
-				int posicaoMulta = table.getSelectedRow();
-				multaSelecionada = arrayMulta.get(posicaoMulta);
-				txtCpfCliente.setText(String.valueOf(multaSelecionada.getCliente().getCpf()));
-				cBoxDia.setToolTipText(String.valueOf(multaSelecionada.getData().getDayOfYear()));
-				cBoxMes.setToolTipText(String.valueOf(multaSelecionada.getData().getMonth()));
-				txtAno.setText(String.valueOf(multaSelecionada.getData().getMonth()));
-				txtMulta.setText(String.valueOf(multaSelecionada.getValorMulta()));
-
-			}
-		});
-		scrollPane.setViewportView(table);
-
-		modelo = new DefaultTableModel();
-		table.setModel(modelo);
-		modelo.addColumn("CPF Cliente");
-		modelo.addColumn("Dia Devolução");
-		modelo.addColumn("Mes Devolução");
-		modelo.addColumn("Ano Devolução");
-		modelo.addColumn("Valor Multa");
-		JPanel panel = new JPanel();
-		panel.setBackground(new Color(176, 196, 222));
-		panel.setBounds(10, 87, 328, 325);
-		contentPane.add(panel);
-		panel.setLayout(null);
-
-		lblNewLabel = new JLabel("CPF Cliente");
-		lblNewLabel.setBounds(7, 11, 244, 23);
-		panel.add(lblNewLabel);
-		lblNewLabel.setHorizontalAlignment(SwingConstants.LEFT);
-		lblNewLabel.setForeground(Color.DARK_GRAY);
-		lblNewLabel.setFont(new Font("Dialog", Font.PLAIN, 18));
-
-		txtCpfCliente = new JTextField();
-		txtCpfCliente.setForeground(Color.DARK_GRAY);
-		txtCpfCliente.setBounds(7, 45, 308, 25);
-		panel.add(txtCpfCliente);
-		txtCpfCliente.setFont(new Font("Dialog", Font.PLAIN, 16));
-		txtCpfCliente.setColumns(10);
-		txtCpfCliente.setBackground(SystemColor.menu);
-
-		lblNewLabel_1 = new JLabel("Data de Devolu\u00E7\u00E3o");
-		lblNewLabel_1.setBounds(7, 81, 244, 25);
-		panel.add(lblNewLabel_1);
-		lblNewLabel_1.setHorizontalAlignment(SwingConstants.LEFT);
-		lblNewLabel_1.setForeground(Color.DARK_GRAY);
-		lblNewLabel_1.setFont(new Font("Dialog", Font.PLAIN, 18));
-
-		cBoxDia = new JComboBox();
-		cBoxDia.setForeground(Color.DARK_GRAY);
-		cBoxDia.setBounds(7, 117, 71, 24);
-		panel.add(cBoxDia);
-		cBoxDia.setModel(new DefaultComboBoxModel(new String[] { "*", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10",
-				"11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27",
-				"28", "29", "30", "31" }));
-		cBoxDia.setToolTipText("dia");
-		cBoxDia.setFont(new Font("Dialog", Font.PLAIN, 16));
-		cBoxDia.setBackground(SystemColor.menu);
-
-		cBoxMes = new JComboBox();
-		cBoxMes.setForeground(Color.DARK_GRAY);
-		cBoxMes.setBounds(88, 117, 71, 24);
-		panel.add(cBoxMes);
-		cBoxMes.setModel(new DefaultComboBoxModel(
-				new String[] { "*", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12" }));
-		cBoxMes.setFont(new Font("Dialog", Font.PLAIN, 16));
-		cBoxMes.setBackground(SystemColor.menu);
-
-		txtAno = new JTextField();
-		txtAno.setForeground(Color.DARK_GRAY);
-		txtAno.setBounds(169, 117, 146, 24);
-		panel.add(txtAno);
-		txtAno.setFont(new Font("Dialog", Font.PLAIN, 16));
-		txtAno.setColumns(10);
-		txtAno.setBackground(SystemColor.menu);
-
-		JLabel lblNewLabel_1_1 = new JLabel("Multa Vigente");
-		lblNewLabel_1_1.setBounds(7, 152, 244, 25);
-		panel.add(lblNewLabel_1_1);
-		lblNewLabel_1_1.setHorizontalAlignment(SwingConstants.LEFT);
-		lblNewLabel_1_1.setForeground(Color.DARK_GRAY);
-		lblNewLabel_1_1.setFont(new Font("Dialog", Font.PLAIN, 18));
-
+		
+		//-------------------------------------------------------------------------------------------------
 		SalvarBT = new JButton("Salvar");
 		SalvarBT.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Multa p = new Multa();
+				
+				
+				String Cpf = txtCpfCliente.getText();
+				String Multa = txtMulta.getText();
 
-				String cpfCliente = txtCpfCliente.getText();
-
-				if (cpfCliente.isEmpty() || cpfCliente == null) {
+				if (Cpf.isEmpty() || Cpf == null) {
 					JOptionPane.showMessageDialog(null, "Erro: Todos os Campos devem ser Preenchidos!");
-				} else if (cBoxDia.getSelectedItem().equals("*")) {
-					JOptionPane.showMessageDialog(null, "Erro: Todos os Campos devem ser Preenchidos!");
-				} else if (cBoxMes.getSelectedItem().equals("*")) {
-					JOptionPane.showMessageDialog(null, "Erro: Todos os Campos devem ser Preenchidos!");
-				} else if (txtAno.getText().isEmpty() || txtAno.getText() == null) {
-					JOptionPane.showMessageDialog(null, "Erro: Todos os Campos devem ser Preenchidos!");
-				} else if (txtMulta.getText().isEmpty() || txtMulta.getText() == null) {
+				}  else if (Multa.isEmpty() || Multa == null) {
 					JOptionPane.showMessageDialog(null, "Erro: Todos os Campos devem ser Preenchidos!");
 				} else {
-
-					p.setCpfCliente(cpfCliente);
-					p.setDia(cBoxDia.getSelectedItem().toString());
-					p.setMes(cBoxMes.getSelectedItem().toString());
-					p.setAnoDevolucao(Integer.valueOf(txtAno.getText().toString()));
-					p.setValorMulta(Float.valueOf(txtMulta.getText().toString()));
-//					arrayMulta.add(p);
 					
-					ControleMulta cMulta = ControleMulta.getInstancia();
-					cMulta.inserir(p)
-					
-					atualizarJTable(arrayMulta);
-					limparCampos();
-
+					modelo.getDataVector().removeAllElements();
+					p.setCpf(Cpf);
+					p.setData(LocalDate.now());
+					p.setValorMulta(Float.valueOf(Multa));
+					boolean valida = instanciaMul.inserir(p);
+					if (valida == true) {
+						for (Multa p1 : Multas) {
+							Object[] mul = new Object[3];
+							mul[0] = p1.getCpf();
+							mul[1] = p1.getData();
+							mul[2] = p1.getValorMulta();
+							modelo.addRow(mul);
+						}
+						JOptionPane.showInternalMessageDialog(null, "Multa CADASTRADA!");
+						limparCampos();
+					} else {
+						JOptionPane.showInternalMessageDialog(null, "ERRO ao cadastrar multa!");
+					}
 				}
 			}
 		});
@@ -217,16 +191,23 @@ public class TelaMulta extends JFrame {
 		SalvarBT.setForeground(Color.DARK_GRAY);
 		SalvarBT.setFont(new Font("Dialog", Font.PLAIN, 16));
 		SalvarBT.setBackground(SystemColor.menu);
-
+		
+		//-------------------------------------------------------------------------------------------------
 		LimparBT = new JButton("Excluir");
 		LimparBT.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if (multaSelecionada != null) {
-					arrayMulta.remove(multaSelecionada);
-					atualizarJTable(arrayMulta);
-					limparCampos();
-				}
+				Multa p = new Multa();
+				if (table.getSelectedRow() >= 0) {
+					instanciaMul.deletar(p, String.valueOf(table
+							.getValueAt(table.getSelectedRow(), table.getSelectedColumn())));
+					modelo.removeRow(table.getSelectedRow());
+					JOptionPane.showMessageDialog(null, "Cadastro EXCLUÍDO!");
+			} else {
+				JOptionPane.showMessageDialog(null, "Selecione um cadastro para excluir.");
 			}
+
+			}
+			
 		});
 		LimparBT.setBounds(113, 291, 96, 23);
 		panel.add(LimparBT);
@@ -234,48 +215,13 @@ public class TelaMulta extends JFrame {
 		LimparBT.setFont(new Font("Dialog", Font.PLAIN, 16));
 		LimparBT.setBackground(SystemColor.menu);
 
-		txtMulta = new JTextField();
-		txtMulta.setForeground(Color.DARK_GRAY);
-		txtMulta.setFont(new Font("Dialog", Font.PLAIN, 16));
-		txtMulta.setColumns(10);
-		txtMulta.setBackground(SystemColor.menu);
-		txtMulta.setBounds(37, 187, 278, 25);
-		panel.add(txtMulta);
-
-		JLabel lblNewLabel_2 = new JLabel("R$");
-		lblNewLabel_2.setHorizontalAlignment(SwingConstants.LEFT);
-		lblNewLabel_2.setForeground(Color.DARK_GRAY);
-		lblNewLabel_2.setFont(new Font("Dialog", Font.PLAIN, 16));
-		lblNewLabel_2.setBounds(10, 188, 45, 23);
-		panel.add(lblNewLabel_2);
-
+		//-----------------------------------------------------------------------------------------------
 		alterarBT = new JButton("Alterar");
 		alterarBT.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				int posicao = arrayMulta.indexOf(multaSelecionada);
-				String novoCpf = txtCpfCliente.getText();
-				String novoDia = cBoxDia.getToolTipText();
-				String novoMes = cBoxMes.getToolTipText();
-				String novoAno = txtAno.getText();
-				String novoMulta = txtMulta.getText();
-				multaSelecionada.setCpfCliente(novoCpf);
-				multaSelecionada.setDia(novoDia);
-				multaSelecionada.setMes(novoMes);
-				multaSelecionada.setAnoDevolucao(Integer.valueOf(novoAno));
-				multaSelecionada.setValorMulta(Float.valueOf(novoMulta));
-
-				arrayMulta.set(posicao, multaSelecionada);
 				
-				boolean valida = instance.alterar(multaSelecionada, Long cpf);
-				if(valida == true) {
-					JOptionPane.showMessageDialog(null,"Os dados foram alterados com Sucesso");
-				} else {
-					JOptionPane.showMessageDialog(null,"Erro ao alterar os dados");
-				}
-				
-				atualizarJTable(arrayMulta);
-				limparCampos();
 			}
+				
 		});
 		alterarBT.setForeground(Color.DARK_GRAY);
 		alterarBT.setFont(new Font("Dialog", Font.PLAIN, 16));
@@ -286,20 +232,9 @@ public class TelaMulta extends JFrame {
 
 	protected void limparCampos() {
 		txtCpfCliente.setText("");
-		txtAno.setText("");
 		txtMulta.setText("");
-		cBoxDia.setSelectedItem("*");
-		cBoxMes.setSelectedItem("*");
+		
 	}
 
-	protected void atualizarJTable(ArrayList<Multa> arrayMulta) {
-		DefaultTableModel modelo = new DefaultTableModel(new Object[][] {},
-				new String[] { "CPF Multa", "Data", "Valor Multa" });
-		for (int i = 0; i < arrayMulta.size(); i++) {
-			Multa p1 = arrayMulta.get(i);
-			modelo.addRow(new Object[] { p1.getCliente(), p1.getData(),p1.getValorMulta() });
-		}
-		table.setModel(modelo);
-
-	}
+	
 }
