@@ -30,9 +30,9 @@ public class ControleFuncionario implements IFuncionarioDAO{
 		return false;
 	}
 
-	public boolean alterar(Funcionario p, Long cpf) {
+	public boolean alterar(Funcionario p, String nome) {
 		for (Funcionario funcionario : tabelaFuncionarios) {
-			if (funcionario.getCpf() == cpf) {
+			if (funcionario.getNome() == nome) {
 				funcionario.setNome(p.getNome());
 				funcionario.setCpf(p.getCpf());
 				funcionario.setTel(p.getTel());
@@ -45,10 +45,10 @@ public class ControleFuncionario implements IFuncionarioDAO{
 		return false;
 	}
 
-	public boolean deletar(Funcionario p, Long cpf ) {
+	public boolean deletar(Funcionario p, String nome ) {
 
 		for (Funcionario funcionario : tabelaFuncionarios) {
-			if (funcionario.getCpf() == cpf) {
+			if (funcionario.getNome() == nome) {
 				tabelaFuncionarios.remove(funcionario);
 				return true;
 			}
@@ -59,5 +59,17 @@ public class ControleFuncionario implements IFuncionarioDAO{
 
 	public ArrayList<Funcionario> listarFuncionarios() {
 		return tabelaFuncionarios;
+	}
+
+	@Override
+	public boolean alterar(Funcionario p, Long cpf) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean deletar(Funcionario p, Long cpf) {
+		// TODO Auto-generated method stub
+		return false;
 	}
 }

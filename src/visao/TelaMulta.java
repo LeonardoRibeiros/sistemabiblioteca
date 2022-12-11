@@ -26,7 +26,7 @@ import javax.swing.JTable;
 
 import controle.ControleCliente;
 import controle.ControleMulta;
-import modelo.Acervo;
+import modelo.Livro;
 import modelo.Cliente;
 import modelo.Multa;
 

@@ -5,8 +5,6 @@ import java.awt.Font;
 import java.awt.SystemColor;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 
 import javax.swing.JButton;
@@ -23,6 +21,7 @@ import javax.swing.table.DefaultTableModel;
 import controle.ControleFuncionario;
 import modelo.Funcionario;
 
+
 import javax.swing.JTable;
 
 public class TelaFuncionario extends JFrame {
@@ -38,6 +37,7 @@ public class TelaFuncionario extends JFrame {
 	private JButton btnNewButton_1;
 	private JTable table;
 	private JLabel lblNewLabel_1;
+	String text = "";
 	private JTextField Cpf;
 	private JLabel lblNewLabel_2;
 	private JLabel lblNewLabel_3;
@@ -48,16 +48,16 @@ public class TelaFuncionario extends JFrame {
 	private JTextField txtEmail;
 	private JTextField txtNcasa;
 	private DefaultTableModel modelo;
-	private Funcionario funcionarioSelecionado;
 	private JButton alterarBT;
 	private JTextField txtCpf;
+	private Funcionario editarFuncionario;
 
 	/**
 	 * Create the frame.
 	 */
 	public TelaFuncionario() {
-		ControleFuncionario instance = ControleFuncionario.getInstancia();
-		ArrayList<Funcionario> arrayFuncionario = instance.listarFuncionarios();
+		ControleFuncionario instanciaFun = ControleFuncionario.getInstancia();
+		ArrayList<Funcionario> Funcionarios = instanciaFun.listarFuncionarios();
 
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -97,18 +97,6 @@ public class TelaFuncionario extends JFrame {
 		contentPane.add(scrollPane);
 
 		table = new JTable();
-		table.addMouseListener(new MouseAdapter() {
-			public void mouseClicked(MouseEvent e) {
-				int posicaoFuncionario = table.getSelectedRow();
-				funcionarioSelecionado = arrayFuncionario.get(posicaoFuncionario);
-				txtNome.setText(funcionarioSelecionado.getNome());
-				txtCpf.setText(String.valueOf(funcionarioSelecionado.getCpf()));
-				txtTelefone.setText(funcionarioSelecionado.getTel());
-				txtEmail.setText(funcionarioSelecionado.getEmail());
-				txtCep.setText(funcionarioSelecionado.getCep());
-				txtNcasa.setText(String.valueOf(funcionarioSelecionado.getnCasa()));
-			}
-		});
 		scrollPane.setViewportView(table);
 
 		modelo = new DefaultTableModel();
@@ -119,6 +107,18 @@ public class TelaFuncionario extends JFrame {
 		modelo.addColumn("Email");
 		modelo.addColumn("Cep");
 		modelo.addColumn("N casa");
+		
+		for (Funcionario p : Funcionarios) {
+			Object[] fun = new Object[6];
+			fun[0] = p.getNome();
+			fun[1] = p.getCpf();
+			fun[2] = p.getTel();
+			fun[3] = p.getEmail();
+			fun[4] = p.getCep();
+			fun[5] = p.getnCasa();
+			modelo.addRow(fun);
+		}
+
 
 		JPanel panel = new JPanel();
 		panel.setBackground(new Color(176, 196, 222));
@@ -147,11 +147,12 @@ public class TelaFuncionario extends JFrame {
 				Funcionario p = new Funcionario();
 
 				String Nome = txtNome.getText();
-				String Cpf = txtNome.getText();
-				String Telefone = txtNome.getText();
-				String Email = txtNome.getText();
-				String Cep = txtNome.getText();
-
+				String Cpf = txtCpf.getText();
+				String Telefone = txtTelefone.getText();
+				String Email = txtEmail.getText();
+				String Cep = txtCep.getText();
+				String Ncasa = txtNcasa.getText();
+				
 				if (Nome.isEmpty() || Nome == null) {
 					JOptionPane.showMessageDialog(null, "Erro: Todos os Campos devem ser Preenchidos!");
 				} else if (Cpf.isEmpty() || Cpf == null) {
@@ -162,24 +163,37 @@ public class TelaFuncionario extends JFrame {
 					JOptionPane.showMessageDialog(null, "Erro: Todos os Campos devem ser Preenchidos!");
 				} else if (Cep.isEmpty() || Cep == null) {
 					JOptionPane.showMessageDialog(null, "Erro: Todos os Campos devem ser Preenchidos!");
-				} else if (txtNcasa.getText().isEmpty() || txtNcasa.getText() == null) {
+				} else if (Ncasa.isEmpty() || Ncasa == null) {
 					JOptionPane.showMessageDialog(null, "Erro: Todos os Campos devem ser Preenchidos!");
 				} else {
-
+					
+					modelo.getDataVector().removeAllElements();
 					p.setNome(Nome);
 					p.setCpf(Long.valueOf(Cpf));
 					p.setTel(Telefone);
 					p.setEmail(Email);
 					p.setCep(Cep);
 					p.setnCasa(Integer.valueOf(txtNcasa.getText()));
-					arrayFuncionario.add(p);
-					limparCampos();
-					atualizarJTable(arrayFuncionario);
-
+					boolean valida = instanciaFun.inserir(p);
+					if (valida == true) {
+						for (Funcionario p1 : Funcionarios) {
+							Object[] fun = new Object[6];
+							fun[0] = p1.getNome();
+							fun[1] = p1.getCpf();
+							fun[2] = p1.getTel();
+							fun[3] = p1.getEmail();
+							fun[4] = p1.getCep();
+							fun[5] = p1.getnCasa();
+							modelo.addRow(fun);
+						}
+						JOptionPane.showInternalMessageDialog(null,"Funcionário CADASTRADO!");
+						limparCampos();
+					}else {
+						JOptionPane.showInternalMessageDialog(null,"ERRO ao cadastrar funcionário!");
+					}
 				}
-
 			}
-
+			
 		});
 		btnNewButton.setBounds(7, 378, 96, 23);
 		panel.add(btnNewButton);
@@ -190,11 +204,13 @@ public class TelaFuncionario extends JFrame {
 		btnNewButton_1 = new JButton("Excluir");
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if (funcionarioSelecionado != null) {
-					arrayFuncionario.remove(funcionarioSelecionado);
-					atualizarJTable(arrayFuncionario);
-					limparCampos();
-				}
+				Funcionario p = new Funcionario();
+				if (table.getSelectedRow() >= 0) {
+					instanciaFun.deletar(p, String.valueOf(table.getValueAt(table.getSelectedRow(), table.getSelectedColumn())));
+					table.setModel(modelo);
+			} else {
+				JOptionPane.showMessageDialog(null, "Você precisa selecionar um cadastro.");
+			}
 
 			}
 		});
@@ -282,22 +298,22 @@ public class TelaFuncionario extends JFrame {
 		alterarBT = new JButton("Alterar");
 		alterarBT.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				int posicao = arrayFuncionario.indexOf(funcionarioSelecionado);
+			//	if (table.getSelectedRow() >= 0) {
+				int linha = table.getSelectedRow();
+				String Nome = (String) table.getValueAt(linha, 0);
+				//editarFuncionario = instanciaFun.alterar(p, Cpf);
 
-				String novoNome = txtNome.getText();
-				String novoCpf = txtCpf.getText();
-				String novoTel = txtTelefone.getText();
-				// String novoCpf = txtCpf.getText();
-				// String novoCpf = txtCpf.getText();
+				//txtNome.setText(editarFuncinoario.getNome());
+				//txtPeso.setText(String.valueOf(treinadorAEditar.getPeso()));
+				//txtAltura.setText(String.valueOf(treinadorAEditar.getAltura()));
+				//txtData.setText(treinadorAEditar.getDateNasc());
+				//txtCpf.setText(treinadorAEditar.getCpf());
+				//comboBoxPok.setSelectedItem(treinadorAEditar.getPokFav());
 
-				funcionarioSelecionado.setNome(novoNome);
-				funcionarioSelecionado.setNome(novoCpf);
-				// funcionarioSelecionado.setValorMulta(Float.valueOf(novoMulta));
-
-				arrayFuncionario.set(posicao, funcionarioSelecionado);
-				atualizarJTable(arrayFuncionario);
-				limparCampos();
+			//} else {
+				JOptionPane.showMessageDialog(null, "Selecione uma linha para alterar.");
 			}
+			//}
 
 		});
 		alterarBT.setForeground(Color.DARK_GRAY);
@@ -324,17 +340,5 @@ public class TelaFuncionario extends JFrame {
 		txtEmail.setText("");
 	}
 
-	protected void atualizarJTable(ArrayList<Funcionario> arrayFuncionario) {
-		DefaultTableModel modelo = new DefaultTableModel(new Object[][] {},
-				new String[] { "Nome", "CPF", "Telefone", "Email", "CEP", "Número" });
-
-		for (int i = 0; i < arrayFuncionario.size(); i++) {
-			Funcionario p1 = arrayFuncionario.get(i);
-			modelo.addRow(
-					new Object[] { p1.getNome(), p1.getCpf(), p1.getTel(), p1.getEmail(), p1.getCep(), p1.getnCasa() });
-		}
-
-		table.setModel(modelo);
-
-	}
+	
 }
