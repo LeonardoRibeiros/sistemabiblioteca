@@ -19,6 +19,8 @@ import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
+import javax.swing.JSeparator;
+import javax.swing.ImageIcon;
 
 public class TelaPrincipal extends JFrame {
 
@@ -41,7 +43,7 @@ public class TelaPrincipal extends JFrame {
 	public TelaPrincipal() {
 		setBackground(Color.WHITE);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 511, 400);
+		setBounds(100, 100, 702, 489);
 
 		JMenuBar menuBar = new JMenuBar();
 		menuBar.setBorderPainted(false);
@@ -52,10 +54,11 @@ public class TelaPrincipal extends JFrame {
 		JMenu menuCadastrar = new JMenu("Cadastrar");
 		menuCadastrar.setBounds(new Rectangle(0, 0, 0, 11));
 		menuCadastrar.setBackground(Color.BLACK);
-		menuCadastrar.setFont(new Font("Dialog", Font.PLAIN, 18));
+		menuCadastrar.setFont(new Font("Dialog", Font.PLAIN, 21));
 		menuBar.add(menuCadastrar);
 
 		JMenuItem mnCliente = new JMenuItem("Cliente");
+		mnCliente.setIcon(new ImageIcon(TelaPrincipal.class.getResource("/imagem/seta.png")));
 		mnCliente.setFont(new Font("Dialog", Font.PLAIN, 18));
 		menuCadastrar.add(mnCliente);
 		mnCliente.addActionListener(new ActionListener() {
@@ -67,8 +70,12 @@ public class TelaPrincipal extends JFrame {
 			}
 		});
 		
+		JSeparator separator = new JSeparator();
+		menuCadastrar.add(separator);
+		
 
 		JMenuItem mnFuncionario = new JMenuItem("Funcion\u00E1rio");
+		mnFuncionario.setIcon(new ImageIcon(TelaPrincipal.class.getResource("/imagem/seta.png")));
 		mnFuncionario.setFont(new Font("Dialog", Font.PLAIN, 18));
 		menuCadastrar.add(mnFuncionario);
 		mnFuncionario.addActionListener(new ActionListener() {
@@ -89,7 +96,8 @@ public class TelaPrincipal extends JFrame {
 		setContentPane(contentPane);
 
 		JButton EmprestimoBT = new JButton("Empr\u00E9stimo");
-		EmprestimoBT.setBounds(133, 89, 217, 34);
+		EmprestimoBT.setIcon(new ImageIcon(TelaPrincipal.class.getResource("/imagem/seta.png")));
+		EmprestimoBT.setBounds(183, 112, 322, 48);
 		EmprestimoBT.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				// Fecha a tela atual
@@ -107,7 +115,8 @@ public class TelaPrincipal extends JFrame {
 		contentPane.add(EmprestimoBT);
 
 		JButton MultaBT = new JButton("Multas");
-		MultaBT.setBounds(133, 156, 217, 34);
+		MultaBT.setIcon(new ImageIcon(TelaPrincipal.class.getResource("/imagem/seta.png")));
+		MultaBT.setBounds(183, 203, 322, 48);
 		MultaBT.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				// Fecha a tela atual
@@ -124,7 +133,8 @@ public class TelaPrincipal extends JFrame {
 		contentPane.add(MultaBT);
 
 		JButton AcervoBT = new JButton("Acervo");
-		AcervoBT.setBounds(133, 224, 217, 34);
+		AcervoBT.setIcon(new ImageIcon(TelaPrincipal.class.getResource("/imagem/seta.png")));
+		AcervoBT.setBounds(183, 294, 322, 48);
 		AcervoBT.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				// Fecha a tela atual
@@ -141,7 +151,7 @@ public class TelaPrincipal extends JFrame {
 		contentPane.add(AcervoBT);
 
 		Button SairBT = new Button("Sair");
-		SairBT.setBounds(411, 302, 74, 24);
+		SairBT.setBounds(587, 386, 89, 24);
 		SairBT.setFont(new Font("Estrangelo Edessa", Font.PLAIN, 13));
 		SairBT.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -153,10 +163,10 @@ public class TelaPrincipal extends JFrame {
 		contentPane.add(SairBT);
 
 		JLabel lblNewLabel = new JLabel("BIBLIOTECA");
-		lblNewLabel.setBounds(84, 21, 322, 34);
+		lblNewLabel.setBounds(183, 32, 322, 40);
 		lblNewLabel.setBackground(SystemColor.menu);
 		lblNewLabel.setForeground(SystemColor.menu);
-		lblNewLabel.setFont(new Font("Dialog", Font.PLAIN, 40));
+		lblNewLabel.setFont(new Font("Dialog", Font.PLAIN, 48));
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		contentPane.add(lblNewLabel);
 	}

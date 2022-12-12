@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import modelo.Cliente;
 import modelo.IClienteDAO;
 
+
 public class ControleCliente implements IClienteDAO {
 	private static ArrayList<Cliente> tabelaClientes;
 	private static ControleCliente instancia;
@@ -34,11 +35,6 @@ public class ControleCliente implements IClienteDAO {
 		for (Cliente cliente : tabelaClientes) {
 			if (cliente.getNome() == nome) {
 				cliente.setNome(p.getNome());
-				cliente.setCpf(p.getCpf());
-				cliente.setTel(p.getTel());
-				cliente.setCep(p.getCep());
-				cliente.setEmail(p.getEmail());
-				cliente.setnCasa(p.getnCasa());
 				return true;
 			}
 		}
@@ -55,6 +51,15 @@ public class ControleCliente implements IClienteDAO {
 		}
 
 		return false;
+	}
+	
+	public Cliente nomecliente(String nome) {
+		for (Cliente cliente : tabelaClientes) {
+			if (cliente.getNome() == nome) {
+				return cliente;
+			}
+		}
+		return null;
 	}
 
 	public ArrayList<Cliente> listarClientes() {

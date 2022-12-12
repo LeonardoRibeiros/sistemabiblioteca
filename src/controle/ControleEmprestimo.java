@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 
 import modelo.Emprestimo;
+import modelo.Funcionario;
 import modelo.IEmprestimoDAO;
 
 
@@ -32,29 +33,39 @@ public class ControleEmprestimo implements IEmprestimoDAO {
 		return false;
 	}
 
-	public boolean alterar(Emprestimo p, Long cpf) {
+	public boolean alterar(Emprestimo p, String cpf) {
 		for (Emprestimo emprestimo : tabelaEmprestimos){
-			if (emprestimo.getCliente().getCpf() == cpf) {
+			if (emprestimo.getCpfcliente() == cpf) {
 				emprestimo.setNomeLivro(p.getNomeLivro());
-				emprestimo.setData(LocalDate.now());
+				
 				return true;
 			}
 		}
 		return false;
 	}
 
-	public boolean deletar(Emprestimo p, Long cpf) {
+	public boolean deletar(Emprestimo p, String cpf) {
 		for (Emprestimo emprestimo : tabelaEmprestimos){
-			if (emprestimo.getCliente().getCpf() == cpf) {
-				tabelaEmprestimos.remove(emprestimo);
+			if (emprestimo.getCpfcliente() == cpf) {
+				this.tabelaEmprestimos.remove(emprestimo);
 				return true;
 			}
 		}
 
 		return false;
+	}
+	
+	public Emprestimo cpfcliente(String cpf) {
+		for (Emprestimo emprestimo : tabelaEmprestimos) {
+			if (emprestimo.getCpfcliente() == cpf) {
+				return emprestimo;
+			}
+		}
+		return null;
 	}
 
 	public ArrayList<Emprestimo> listarEmprestimos() {
 		return tabelaEmprestimos;
 	}
+
 }

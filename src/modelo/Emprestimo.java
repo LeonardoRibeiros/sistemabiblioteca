@@ -3,9 +3,11 @@ package modelo;
 import java.time.LocalDate;
 
 public class Emprestimo {
-	private Cliente cliente;
+	private String cpfcliente;
+	private String cpffuncionario;
+	private LocalDate dataemp;
 	private String NomeLivro;
-	private LocalDate data;
+	private LocalDate datadev;
 
 
 	public String getNomeLivro() {
@@ -16,20 +18,39 @@ public class Emprestimo {
 		NomeLivro = nomeLivro;
 	}
 
-	public Cliente getCliente() {
-		return cliente;
+
+	public LocalDate getDataemp() {
+		return dataemp;
 	}
 
-	public void setCliente(Cliente cliente) {
-		this.cliente = cliente;
+	public void setDataemp(LocalDate dataemp) {
+		this.dataemp = dataemp;
 	}
 
-	public LocalDate getData() {
-		return data;
+	public LocalDate getDatadev() {
+		return datadev;
 	}
 
-	public void setData(LocalDate data) {
-		this.data = data;
+	public void setDatadev(LocalDate datadev) {
+		this.datadev = datadev;
 	}
+
+	public String getCpffuncionario() {
+		return cpffuncionario;
+	}
+
+	public void setCpffuncionario(String cpffuncionario) {
+		this.cpffuncionario = cpffuncionario;
+	}
+
+	public String getCpfcliente() {
+		return cpfcliente;
+	}
+
+	public void setCpfcliente(String cpfcliente) {
+		this.cpfcliente = cpfcliente;
+	}
+
+	
 
 }

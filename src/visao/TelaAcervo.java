@@ -15,14 +15,9 @@ import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 
-import controle.ControleCliente;
 import controle.ControleLivro;
-import modelo.Cliente;
-import modelo.Funcionario;
 import modelo.Livro;
 import java.awt.event.ActionListener;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 import javax.swing.DefaultComboBoxModel;
@@ -44,12 +39,14 @@ public class TelaAcervo extends JFrame {
 	private JTextField txtAutor;
 	private JTextField txtNpaginas;
 	private JButton salvarBT;
-	private JButton LimparBT;
+	private JButton excluirBT;
 	private JComboBox cBoxgenero;
 	private JComboBox cBoxestante;
 	private DefaultTableModel modelo;
-	private Livro livroSelecionado;
+	private Livro editarLivro;
 	private JTable table;
+	private JButton confirmarBT;
+	private JButton cancelarBT;
 
 	/**
 	 * Create the frame.
@@ -160,7 +157,8 @@ public class TelaAcervo extends JFrame {
 		cBoxestante.setBounds(196, 252, 119, 23);
 		panel.add(cBoxestante);
 
-		// ScrollPane + TableModel--------------------------------------------------------------
+		// ScrollPane +
+		// TableModel--------------------------------------------------------------
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setBounds(353, 87, 576, 342);
 		contentPane.add(scrollPane);
@@ -175,7 +173,7 @@ public class TelaAcervo extends JFrame {
 		modelo.addColumn("Gênero");
 		modelo.addColumn("N Páginas");
 		modelo.addColumn("Estante");
-		
+
 		for (Livro p : Livros) {
 			Object[] liv = new Object[5];
 			liv[0] = p.getNomeLivro();
@@ -258,8 +256,8 @@ public class TelaAcervo extends JFrame {
 		salvarBT.setBackground(SystemColor.menu);
 
 		// ---------------------------------------------------------------------------------------------
-		LimparBT = new JButton("Excluir");
-		LimparBT.addActionListener(new ActionListener() {
+		excluirBT = new JButton("Excluir");
+		excluirBT.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Livro p = new Livro();
 				if (table.getSelectedRow() >= 0) {
@@ -270,19 +268,38 @@ public class TelaAcervo extends JFrame {
 				} else {
 					JOptionPane.showMessageDialog(null, "Selecione um livro para excluir.");
 				}
-							
+
 			}
 		});
-		LimparBT.setBounds(113, 307, 96, 23);
-		panel.add(LimparBT);
-		LimparBT.setForeground(Color.DARK_GRAY);
-		LimparBT.setFont(new Font("Dialog", Font.PLAIN, 16));
-		LimparBT.setBackground(SystemColor.menu);
+		excluirBT.setBounds(113, 307, 96, 23);
+		panel.add(excluirBT);
+		excluirBT.setForeground(Color.DARK_GRAY);
+		excluirBT.setFont(new Font("Dialog", Font.PLAIN, 16));
+		excluirBT.setBackground(SystemColor.menu);
 
 		// --------------------------------------------------------------------------------------------
 		JButton alterarBT = new JButton("Alterar");
 		alterarBT.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				if (table.getSelectedRow() >= 0) {
+					salvarBT.setVisible(false);
+					excluirBT.setVisible(false);
+					alterarBT.setVisible(false);
+					confirmarBT.setVisible(true);
+					cancelarBT.setVisible(true);
+
+					int linha = table.getSelectedRow();
+					String nomeLivro = (String) table.getValueAt(linha, 0);
+					editarLivro = instanciaLiv.nomelivro(nomeLivro);
+
+					txtNomelivro.setText(editarLivro.getNomeLivro());
+					txtAutor.setText(editarLivro.getAutor());
+					txtNpaginas.setText(String.valueOf(editarLivro.getnPaginas()));
+					cBoxgenero.setSelectedItem(editarLivro.getGenero());
+					cBoxestante.setSelectedItem(editarLivro.getEstante());
+				} else {
+					JOptionPane.showMessageDialog(null, "Selecione um cadastro para alterar.");
+				}
 			}
 		});
 		alterarBT.setForeground(Color.DARK_GRAY);
@@ -290,14 +307,90 @@ public class TelaAcervo extends JFrame {
 		alterarBT.setBackground(SystemColor.menu);
 		alterarBT.setBounds(219, 307, 96, 23);
 		panel.add(alterarBT);
-	}
 
-	// ------------------------------------------------------------------------------------------------
-	protected void limparCampos() {
+		// ------------------------------------------------------------------------------------------------
+		confirmarBT = new JButton("Confirmar");
+		confirmarBT.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				boolean valida = instanciaLiv.alterar(editarLivro, editarLivro.getNomeLivro());
+				if (valida) {
+					String Nomelivro = txtNomelivro.getText();
+					String Autor = txtAutor.getText();
+					String Npaginas = txtNpaginas.getText();
+
+					if (Nomelivro.isEmpty() || Nomelivro == null) {
+						JOptionPane.showMessageDialog(null, "Erro: Todos os Campos devem ser Preenchidos!");
+					} else if (Autor.isEmpty() || Autor == null) {
+						JOptionPane.showMessageDialog(null, "Erro: Todos os Campos devem ser Preenchidos!");
+					} else if (cBoxgenero.getSelectedItem().equals("*")) {
+						JOptionPane.showMessageDialog(null, "Erro: Todos os Campos devem ser Preenchidos!");
+					} else if (Npaginas.isEmpty() || Npaginas == null) {
+						JOptionPane.showMessageDialog(null, "Erro: Todos os Campos devem ser Preenchidos!");
+					} else if (cBoxestante.getSelectedItem().equals("*")) {
+						JOptionPane.showMessageDialog(null, "Erro: Todos os Campos devem ser Preenchidos!");
+					} else {
+
+						modelo.getDataVector().removeAllElements();
+						editarLivro.setNomeLivro(Nomelivro);
+						editarLivro.setAutor(Autor);
+						editarLivro.setGenero(cBoxgenero.getSelectedItem().toString());
+						editarLivro.setnPaginas(Integer.valueOf(txtNpaginas.getText().toString()));
+						editarLivro.setEstante(cBoxestante.getSelectedItem().toString());
+						for (Livro p1 : Livros) {
+							Object[] liv = new Object[5];
+							liv[0] = p1.getNomeLivro();
+							liv[1] = p1.getAutor();
+							liv[2] = p1.getGenero();
+							liv[3] = p1.getnPaginas();
+							liv[4] = p1.getEstante();
+							modelo.addRow(liv);
+						}
+						salvarBT.setVisible(true);
+						excluirBT.setVisible(true);
+						alterarBT.setVisible(true);
+						confirmarBT.setVisible(false);
+						cancelarBT.setVisible(false);
+						limparCampos();
+						JOptionPane.showMessageDialog(null, "Cadastro ALTERADO!");
+					}
+				} else {
+					JOptionPane.showMessageDialog(null, "ERRO ao alterar cadastro");
+				}
+			}
+		});
+		confirmarBT.setBackground(SystemColor.menu);
+		confirmarBT.setForeground(Color.DARK_GRAY);
+		confirmarBT.setFont(new Font("Dialog", Font.PLAIN, 16));
+		confirmarBT.setBounds(7, 307, 107, 23);
+		panel.add(confirmarBT);
+		confirmarBT.setVisible(false);
+
+		// ------------------------------------------------------------------------------------------------
+		cancelarBT = new JButton("Cancelar");
+		cancelarBT.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				salvarBT.setVisible(true);
+				excluirBT.setVisible(true);
+				alterarBT.setVisible(true);
+				confirmarBT.setVisible(false);
+				cancelarBT.setVisible(false);
+				limparCampos();
+			}
+		});
+		cancelarBT.setBackground(SystemColor.menu);
+		cancelarBT.setForeground(Color.DARK_GRAY);
+		cancelarBT.setFont(new Font("Dialog", Font.PLAIN, 16));
+		cancelarBT.setBounds(208, 307, 107, 23);
+		panel.add(cancelarBT);
+		cancelarBT.setVisible(false);
+		}
+
+		// ------------------------------------------------------------------------------------------------
+		protected void limparCampos() {
 		txtNomelivro.setText("");
 		txtAutor.setText("");
 		txtNpaginas.setText("");
 		cBoxgenero.setSelectedItem("*");
 		cBoxestante.setSelectedItem("*");
-	}
-}
+			}
+		}

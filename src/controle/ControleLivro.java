@@ -2,6 +2,7 @@ package controle;
 
 import java.util.ArrayList;
 
+import modelo.Funcionario;
 import modelo.ILivroDAO;
 import modelo.Livro;
 
@@ -54,6 +55,15 @@ public class ControleLivro implements ILivroDAO{
 		}
 
 		return false;
+	}
+	
+	public Livro nomelivro(String nomeLivro) {
+		for (Livro livro : tabelaLivro) {
+			if (livro.getNomeLivro() == nomeLivro) {
+				return livro;
+			}
+		}
+		return null;
 	}
 
 	public ArrayList<Livro> listarLivros() {

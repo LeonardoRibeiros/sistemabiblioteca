@@ -2,10 +2,11 @@ package controle;
 
 import java.util.ArrayList;
 
+import modelo.Cliente;
 import modelo.Funcionario;
 import modelo.IFuncionarioDAO;
 
-public class ControleFuncionario implements IFuncionarioDAO{
+public class ControleFuncionario implements IFuncionarioDAO {
 	private static ArrayList<Funcionario> tabelaFuncionarios;
 	private static ControleFuncionario instancia;
 
@@ -45,7 +46,7 @@ public class ControleFuncionario implements IFuncionarioDAO{
 		return false;
 	}
 
-	public boolean deletar(Funcionario p, String nome ) {
+	public boolean deletar(Funcionario p, String nome) {
 
 		for (Funcionario funcionario : tabelaFuncionarios) {
 			if (funcionario.getNome() == nome) {
@@ -57,9 +58,19 @@ public class ControleFuncionario implements IFuncionarioDAO{
 		return false;
 	}
 
+	public Funcionario nomefuncionario(String nome) {
+		for (Funcionario funcionario : tabelaFuncionarios) {
+			if (funcionario.getNome() == nome) {
+				return funcionario;
+			}
+		}
+		return null;
+	}
+
 	public ArrayList<Funcionario> listarFuncionarios() {
 		return tabelaFuncionarios;
 	}
 
 	
+
 }

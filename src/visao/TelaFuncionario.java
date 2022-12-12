@@ -21,7 +21,6 @@ import javax.swing.table.DefaultTableModel;
 import controle.ControleFuncionario;
 import modelo.Funcionario;
 
-
 import javax.swing.JTable;
 
 public class TelaFuncionario extends JFrame {
@@ -33,8 +32,8 @@ public class TelaFuncionario extends JFrame {
 	private JPanel contentPane;
 	private JLabel lblNewLabel;
 	private JTextField txtNome;
-	private JButton btnNewButton;
-	private JButton btnNewButton_1;
+	private JButton salvarBT;
+	private JButton excluirBT;
 	private JTable table;
 	private JLabel lblNewLabel_1;
 	private JLabel lblNewLabel_2;
@@ -48,7 +47,8 @@ public class TelaFuncionario extends JFrame {
 	private DefaultTableModel modelo;
 	private JButton alterarBT;
 	private JTextField txtCpf;
-	private boolean editarFuncionario;
+	private Funcionario editarFuncionario;
+	private JButton cancelarBT;
 
 	/**
 	 * Create the frame.
@@ -65,36 +65,36 @@ public class TelaFuncionario extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-		
-		//Panel------------------------------------------------------------
+
+		// Panel------------------------------------------------------------
 		JPanel panel = new JPanel();
 		panel.setBackground(new Color(176, 196, 222));
 		panel.setBounds(10, 87, 331, 412);
 		contentPane.add(panel);
 		panel.setLayout(null);
-		
-		//Labels----------------------------------------------------------
+
+		// Labels----------------------------------------------------------
 		JLabel lblNewLabel_8 = new JLabel("Funcionario");
 		lblNewLabel_8.setForeground(Color.WHITE);
 		lblNewLabel_8.setBackground(Color.WHITE);
 		lblNewLabel_8.setFont(new Font("Dialog", Font.PLAIN, 40));
 		lblNewLabel_8.setBounds(10, 21, 244, 43);
 		contentPane.add(lblNewLabel_8);
-		
+
 		lblNewLabel = new JLabel("Nome ");
 		lblNewLabel.setBounds(7, 11, 244, 23);
 		panel.add(lblNewLabel);
 		lblNewLabel.setHorizontalAlignment(SwingConstants.LEFT);
 		lblNewLabel.setForeground(Color.DARK_GRAY);
 		lblNewLabel.setFont(new Font("Dialog", Font.PLAIN, 18));
-		
+
 		lblNewLabel_1 = new JLabel("CPF");
 		lblNewLabel_1.setHorizontalAlignment(SwingConstants.LEFT);
 		lblNewLabel_1.setForeground(Color.DARK_GRAY);
 		lblNewLabel_1.setFont(new Font("Dialog", Font.PLAIN, 18));
 		lblNewLabel_1.setBounds(7, 78, 244, 23);
 		panel.add(lblNewLabel_1);
-		
+
 		lblNewLabel_2 = new JLabel("Telefone");
 		lblNewLabel_2.setHorizontalAlignment(SwingConstants.LEFT);
 		lblNewLabel_2.setForeground(Color.DARK_GRAY);
@@ -108,22 +108,22 @@ public class TelaFuncionario extends JFrame {
 		lblNewLabel_3.setFont(new Font("Dialog", Font.PLAIN, 18));
 		lblNewLabel_3.setBounds(10, 288, 169, 23);
 		panel.add(lblNewLabel_3);
-		
+
 		lblNewLabel_4 = new JLabel("N\u00BA Casa");
 		lblNewLabel_4.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel_4.setForeground(Color.DARK_GRAY);
 		lblNewLabel_4.setFont(new Font("Dialog", Font.PLAIN, 18));
 		lblNewLabel_4.setBounds(189, 289, 113, 23);
 		panel.add(lblNewLabel_4);
-		
+
 		lblNewLabel_5 = new JLabel("Email");
 		lblNewLabel_5.setHorizontalAlignment(SwingConstants.LEFT);
 		lblNewLabel_5.setForeground(Color.DARK_GRAY);
 		lblNewLabel_5.setFont(new Font("Dialog", Font.PLAIN, 18));
 		lblNewLabel_5.setBounds(7, 218, 244, 23);
 		panel.add(lblNewLabel_5);
-		
-		//TextFields-----------------------------------------------------
+
+		// TextFields-----------------------------------------------------
 		txtNome = new JTextField();
 		txtNome.setForeground(Color.DARK_GRAY);
 		txtNome.setBounds(7, 45, 308, 25);
@@ -131,7 +131,7 @@ public class TelaFuncionario extends JFrame {
 		txtNome.setFont(new Font("Dialog", Font.PLAIN, 16));
 		txtNome.setColumns(10);
 		txtNome.setBackground(SystemColor.menu);
-		
+
 		txtCpf = new JTextField();
 		txtCpf.setForeground(Color.DARK_GRAY);
 		txtCpf.setFont(new Font("Dialog", Font.PLAIN, 16));
@@ -171,8 +171,8 @@ public class TelaFuncionario extends JFrame {
 		txtNcasa.setBackground(SystemColor.menu);
 		txtNcasa.setBounds(189, 322, 126, 25);
 		panel.add(txtNcasa);
-		
-		//ScrollPane + TableModel--------------------------------------------
+
+		// ScrollPane + TableModel--------------------------------------------
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setBounds(351, 87, 605, 412);
 		contentPane.add(scrollPane);
@@ -188,7 +188,7 @@ public class TelaFuncionario extends JFrame {
 		modelo.addColumn("Email");
 		modelo.addColumn("Cep");
 		modelo.addColumn("N casa");
-		
+
 		for (Funcionario p : Funcionarios) {
 			Object[] fun = new Object[6];
 			fun[0] = p.getNome();
@@ -199,8 +199,8 @@ public class TelaFuncionario extends JFrame {
 			fun[5] = p.getnCasa();
 			modelo.addRow(fun);
 		}
-		
-		//Buttons---------------------------------------------------------
+
+		// Buttons---------------------------------------------------------
 		JButton btnNewButton_2 = new JButton("Voltar");
 		btnNewButton_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -215,11 +215,11 @@ public class TelaFuncionario extends JFrame {
 		btnNewButton_2.setForeground(Color.DARK_GRAY);
 		btnNewButton_2.setFont(new Font("Dialog", Font.PLAIN, 16));
 		btnNewButton_2.setBounds(860, 510, 96, 23);
-		contentPane.add(btnNewButton_2);	
+		contentPane.add(btnNewButton_2);
 
-		//---------------------------------------------------------------------------------------------
-		btnNewButton = new JButton("Salvar");
-		btnNewButton.addActionListener(new ActionListener() {
+		// ---------------------------------------------------------------------------------------------
+		salvarBT = new JButton("Salvar");
+		salvarBT.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Funcionario p = new Funcionario();
 
@@ -229,7 +229,7 @@ public class TelaFuncionario extends JFrame {
 				String Email = txtEmail.getText();
 				String Cep = txtCep.getText();
 				String Ncasa = txtNcasa.getText();
-				
+
 				if (Nome.isEmpty() || Nome == null) {
 					JOptionPane.showMessageDialog(null, "ERRO: Todos os Campos devem ser Preenchidos!");
 				} else if (Cpf.isEmpty() || Cpf == null) {
@@ -243,7 +243,7 @@ public class TelaFuncionario extends JFrame {
 				} else if (Ncasa.isEmpty() || Ncasa == null) {
 					JOptionPane.showMessageDialog(null, "ERRO: Todos os Campos devem ser Preenchidos!");
 				} else {
-					
+
 					modelo.getDataVector().removeAllElements();
 					p.setNome(Nome);
 					p.setCpf(Long.valueOf(Cpf));
@@ -263,62 +263,133 @@ public class TelaFuncionario extends JFrame {
 							fun[5] = p1.getnCasa();
 							modelo.addRow(fun);
 						}
-						JOptionPane.showInternalMessageDialog(null,"Funcionário CADASTRADO!");
+						JOptionPane.showInternalMessageDialog(null, "Funcionário CADASTRADO!");
 						limparCampos();
-					}else {
-						JOptionPane.showInternalMessageDialog(null,"ERRO ao cadastrar funcionário!");
+					} else {
+						JOptionPane.showInternalMessageDialog(null, "ERRO ao cadastrar funcionário!");
 					}
 				}
 			}
-			
-		});
-		btnNewButton.setBounds(7, 378, 96, 23);
-		panel.add(btnNewButton);
-		btnNewButton.setForeground(Color.DARK_GRAY);
-		btnNewButton.setFont(new Font("Dialog", Font.PLAIN, 16));
-		btnNewButton.setBackground(SystemColor.menu);
 
-		//-------------------------------------------------------------------------------------------
-		btnNewButton_1 = new JButton("Excluir");
-		btnNewButton_1.addActionListener(new ActionListener() {
+		});
+		salvarBT.setBounds(7, 378, 96, 23);
+		panel.add(salvarBT);
+		salvarBT.setForeground(Color.DARK_GRAY);
+		salvarBT.setFont(new Font("Dialog", Font.PLAIN, 16));
+		salvarBT.setBackground(SystemColor.menu);
+
+		// -------------------------------------------------------------------------------------------
+		excluirBT = new JButton("Excluir");
+		excluirBT.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Funcionario p = new Funcionario();
 				if (table.getSelectedRow() >= 0) {
-					instanciaFun.deletar(p, 
+					instanciaFun.deletar(p,
 							String.valueOf(table.getValueAt(table.getSelectedRow(), table.getSelectedColumn())));
 					modelo.removeRow(table.getSelectedRow());
 					JOptionPane.showMessageDialog(null, "Cadastro EXCLUÍDO!");
-			} else {
-				JOptionPane.showMessageDialog(null, "Selecione um cadastro para excluir.");
-			}
+				} else {
+					JOptionPane.showMessageDialog(null, "Selecione um cadastro para excluir.");
+				}
 
 			}
 		});
-		btnNewButton_1.setBounds(113, 378, 96, 23);
-		panel.add(btnNewButton_1);
-		btnNewButton_1.setForeground(Color.DARK_GRAY);
-		btnNewButton_1.setFont(new Font("Dialog", Font.PLAIN, 16));
-		btnNewButton_1.setBackground(SystemColor.menu);
+		excluirBT.setBounds(113, 378, 96, 23);
+		panel.add(excluirBT);
+		excluirBT.setForeground(Color.DARK_GRAY);
+		excluirBT.setFont(new Font("Dialog", Font.PLAIN, 16));
+		excluirBT.setBackground(SystemColor.menu);
 
-		//----------------------------------------------------------------------------------------------
+		// ----------------------------------------------------------------------------------------------
+		JButton confirmarBT = new JButton("Confirmar");
+		confirmarBT.setBackground(SystemColor.menu);
+		confirmarBT.setForeground(Color.DARK_GRAY);
+		confirmarBT.setFont(new Font("Dialog", Font.PLAIN, 16));
+		confirmarBT.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				boolean valida = instanciaFun.alterar(editarFuncionario, editarFuncionario.getNome());
+				if (valida) {
+					String Nome = txtNome.getText();
+					String Cpf = txtCpf.getText();
+					String Telefone = txtTelefone.getText();
+					String Email = txtEmail.getText();
+					String Cep = txtCep.getText();
+					String Ncasa = txtNcasa.getText();
+
+					if (Nome.isEmpty() || Nome == null) {
+						JOptionPane.showMessageDialog(null, "ERRO: Todos os Campos devem ser Preenchidos!");
+					} else if (Cpf.isEmpty() || Cpf == null) {
+						JOptionPane.showMessageDialog(null, "ERRO: Todos os Campos devem ser Preenchidos!");
+					} else if (Telefone.isEmpty() || Telefone == null) {
+						JOptionPane.showMessageDialog(null, "ERRO: Todos os Campos devem ser Preenchidos!");
+					} else if (Email.isEmpty() || Email == null) {
+						JOptionPane.showMessageDialog(null, "ERRO: Todos os Campos devem ser Preenchidos!");
+					} else if (Cep.isEmpty() || Cep == null) {
+						JOptionPane.showMessageDialog(null, "ERRO: Todos os Campos devem ser Preenchidos!");
+					} else if (Ncasa.isEmpty() || Ncasa == null) {
+						JOptionPane.showMessageDialog(null, "ERRO: Todos os Campos devem ser Preenchidos!");
+					} else {
+
+						modelo.getDataVector().removeAllElements();
+						editarFuncionario.setNome(Nome);
+						editarFuncionario.setCpf(Long.valueOf(Cpf));
+						editarFuncionario.setTel(Telefone);
+						editarFuncionario.setEmail(Email);
+						editarFuncionario.setCep(Cep);
+						editarFuncionario.setnCasa(Integer.valueOf(Ncasa));
+						for (Funcionario p1 : Funcionarios) {
+							Object[] fun = new Object[6];
+							fun[0] = p1.getNome();
+							fun[1] = p1.getCpf();
+							fun[2] = p1.getTel();
+							fun[3] = p1.getEmail();
+							fun[4] = p1.getCep();
+							fun[5] = p1.getnCasa();
+							modelo.addRow(fun);
+						}
+						salvarBT.setVisible(true);
+						excluirBT.setVisible(true);
+						alterarBT.setVisible(true);
+						confirmarBT.setVisible(false);
+						cancelarBT.setVisible(false);
+						limparCampos();
+						JOptionPane.showMessageDialog(null, "Cadastro ALTERADO!");
+					}
+				} else {
+					JOptionPane.showMessageDialog(null, "ERRO ao alterar cadastro");
+				}
+			}
+
+		});
+		confirmarBT.setBounds(7, 378, 109, 23);
+		panel.add(confirmarBT);
+		confirmarBT.setVisible(false);
+
+		// ----------------------------------------------------------------------------------------------
 		alterarBT = new JButton("Alterar");
 		alterarBT.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {		
-				Funcionario p = new Funcionario();
+			public void actionPerformed(ActionEvent e) {
 				if (table.getSelectedRow() >= 0) {
-					
+					salvarBT.setVisible(false);
+					excluirBT.setVisible(false);
+					alterarBT.setVisible(false);
+					confirmarBT.setVisible(true);
+					cancelarBT.setVisible(true);
+
 					int linha = table.getSelectedRow();
-					String nome = (String) table.getValueAt(linha, 0);
-					boolean valida = instanciaFun.alterar(p,nome);
-					if (valida == true) {
-					JOptionPane.showInternalMessageDialog(null,"Cadastro de Funcionário ALTERADO");
-					limparCampos();
-				}else {
-					JOptionPane.showMessageDialog(null, "ERRO ao alterar cadastro de Funcionário");
-				}
-				}else {
+					String nomefuncionario = (String) table.getValueAt(linha, 0);
+					editarFuncionario = instanciaFun.nomefuncionario(nomefuncionario);
+
+					txtNome.setText(editarFuncionario.getNome());
+					txtCpf.setText(String.valueOf(editarFuncionario.getCpf()));
+					txtTelefone.setText(editarFuncionario.getTel());
+					txtCep.setText(editarFuncionario.getCep());
+					txtNcasa.setText(String.valueOf(editarFuncionario.getnCasa()));
+					txtEmail.setText(editarFuncionario.getEmail());
+				} else {
 					JOptionPane.showMessageDialog(null, "Selecione um cadastro para alterar.");
 				}
+
 			}
 		});
 		alterarBT.setForeground(Color.DARK_GRAY);
@@ -326,8 +397,30 @@ public class TelaFuncionario extends JFrame {
 		alterarBT.setBackground(SystemColor.menu);
 		alterarBT.setBounds(219, 378, 96, 23);
 		panel.add(alterarBT);
-
+		
+		
+	// ----------------------------------------------------------------------------------------------
+		cancelarBT = new JButton("Cancelar");
+		cancelarBT.setBackground(SystemColor.menu);
+		cancelarBT.addActionListener(new ActionListener() {
+		public void actionPerformed(ActionEvent e) {
+			salvarBT.setVisible(true);
+			excluirBT.setVisible(true);
+			alterarBT.setVisible(true);
+			confirmarBT.setVisible(false);
+			cancelarBT.setVisible(false);	
+			limparCampos();
+		}
+		});
+		cancelarBT.setForeground(Color.DARK_GRAY);
+		cancelarBT.setFont(new Font("Dialog", Font.PLAIN, 16));
+		cancelarBT.setBounds(206, 378, 109, 23);
+		panel.add(cancelarBT);
+		cancelarBT.setVisible(false);
 	}
+	
+	// ----------------------------------------------------------------------------------------------
+
 	protected void limparCampos() {
 		txtNome.setText("");
 		txtCpf.setText("");

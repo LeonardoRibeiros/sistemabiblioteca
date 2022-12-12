@@ -6,7 +6,6 @@ import java.awt.SystemColor;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
-
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -17,11 +16,8 @@ import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
-
 import controle.ControleCliente;
 import modelo.Cliente;
-import modelo.Funcionario;
-
 import javax.swing.JTable;
 
 public class TelaCliente extends JFrame {
@@ -33,8 +29,8 @@ public class TelaCliente extends JFrame {
 	private JPanel contentPane;
 	private JLabel lblNewLabel;
 	private JTextField txtNome;
-	private JButton btnNewButton;
-	private JButton btnNewButton_1;
+	private JButton salvarBT;
+	private JButton excluirBT;
 	private JTable tabela;
 	private JLabel lblNewLabel_1;
 	private JTextField txtCpf;
@@ -48,6 +44,8 @@ public class TelaCliente extends JFrame {
 	private JTextField txtNcasa;
 	private DefaultTableModel modelo;
 	private JButton alterarBT;
+	private Cliente editarCliente;
+	private JButton cancelarBT;
 
 	/**
 	 * Create the frame.
@@ -188,7 +186,7 @@ public class TelaCliente extends JFrame {
 		modelo.addColumn("Email");
 		modelo.addColumn("Cep");
 		modelo.addColumn("N casa");
-		
+
 		for (Cliente p : Clientes) {
 			Object[] cli = new Object[6];
 			cli[0] = p.getNome();
@@ -199,7 +197,7 @@ public class TelaCliente extends JFrame {
 			cli[5] = p.getnCasa();
 			modelo.addRow(cli);
 		}
-		
+
 		// Buttons------------------------------------------------------------------------
 		JButton btnNewButton_2 = new JButton("Voltar");
 		btnNewButton_2.addActionListener(new ActionListener() {
@@ -218,8 +216,8 @@ public class TelaCliente extends JFrame {
 		contentPane.add(btnNewButton_2);
 
 		// -------------------------------------------------------------------------------
-		btnNewButton = new JButton("Salvar");
-		btnNewButton.addActionListener(new ActionListener() {
+		salvarBT = new JButton("Salvar");
+		salvarBT.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Cliente p = new Cliente();
 
@@ -273,15 +271,15 @@ public class TelaCliente extends JFrame {
 			}
 
 		});
-		btnNewButton.setBounds(7, 378, 96, 23);
-		panel.add(btnNewButton);
-		btnNewButton.setForeground(Color.DARK_GRAY);
-		btnNewButton.setFont(new Font("Dialog", Font.PLAIN, 16));
-		btnNewButton.setBackground(SystemColor.menu);
+		salvarBT.setBounds(10, 378, 96, 23);
+		panel.add(salvarBT);
+		salvarBT.setForeground(Color.DARK_GRAY);
+		salvarBT.setFont(new Font("Dialog", Font.PLAIN, 16));
+		salvarBT.setBackground(SystemColor.menu);
 
 		// ------------------------------------------------------------------------------------------
-		btnNewButton_1 = new JButton("Excluir");
-		btnNewButton_1.addActionListener(new ActionListener() {
+		excluirBT = new JButton("Excluir");
+		excluirBT.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Cliente p = new Cliente();
 				if (tabela.getSelectedRow() >= 0) {
@@ -295,17 +293,102 @@ public class TelaCliente extends JFrame {
 
 			}
 		});
-		btnNewButton_1.setBounds(113, 378, 96, 23);
-		panel.add(btnNewButton_1);
-		btnNewButton_1.setForeground(Color.DARK_GRAY);
-		btnNewButton_1.setFont(new Font("Dialog", Font.PLAIN, 16));
-		btnNewButton_1.setBackground(SystemColor.menu);
+		excluirBT.setBounds(113, 378, 96, 23);
+		panel.add(excluirBT);
+		excluirBT.setForeground(Color.DARK_GRAY);
+		excluirBT.setFont(new Font("Dialog", Font.PLAIN, 16));
+		excluirBT.setBackground(SystemColor.menu);
 
+		//-----------------------------------------------------------------------------
+		JButton confirmarBT = new JButton("Confirmar");
+		confirmarBT.setBackground(SystemColor.menu);
+		confirmarBT.setForeground(Color.DARK_GRAY);
+		confirmarBT.setFont(new Font("Dialog", Font.PLAIN, 16));
+		confirmarBT.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				boolean valida = instanciaCli.alterar(editarCliente, editarCliente.getNome());
+				if (valida) {
+					String Nome = txtNome.getText();
+					String Cpf = txtCpf.getText();
+					String Telefone = txtTelefone.getText();
+					String Email = txtEmail.getText();
+					String Cep = txtCep.getText();
+					String Ncasa = txtNcasa.getText();
+
+					if (Nome.isEmpty() || Nome == null) {
+						JOptionPane.showMessageDialog(null, "ERRO: Todos os Campos devem ser Preenchidos!");
+					} else if (Cpf.isEmpty() || Cpf == null) {
+						JOptionPane.showMessageDialog(null, "ERRO: Todos os Campos devem ser Preenchidos!");
+					} else if (Telefone.isEmpty() || Telefone == null) {
+						JOptionPane.showMessageDialog(null, "ERRO: Todos os Campos devem ser Preenchidos!");
+					} else if (Email.isEmpty() || Email == null) {
+						JOptionPane.showMessageDialog(null, "ERRO: Todos os Campos devem ser Preenchidos!");
+					} else if (Cep.isEmpty() || Cep == null) {
+						JOptionPane.showMessageDialog(null, "ERRO: Todos os Campos devem ser Preenchidos!");
+					} else if (Ncasa.isEmpty() || Ncasa == null) {
+						JOptionPane.showMessageDialog(null, "ERRO: Todos os Campos devem ser Preenchidos!");
+					} else {
+
+						modelo.getDataVector().removeAllElements();
+						editarCliente.setNome(Nome);
+						editarCliente.setCpf(Long.valueOf(Cpf));
+						editarCliente.setTel(Telefone);
+						editarCliente.setEmail(Email);
+						editarCliente.setCep(Cep);
+						editarCliente.setnCasa(Integer.valueOf(Ncasa));
+						for (Cliente p1 : Clientes) {
+							Object[] cli = new Object[6];
+							cli[0] = p1.getNome();
+							cli[1] = p1.getCpf();
+							cli[2] = p1.getTel();
+							cli[3] = p1.getEmail();
+							cli[4] = p1.getCep();
+							cli[5] = p1.getnCasa();
+							modelo.addRow(cli);
+						}
+						salvarBT.setVisible(true);
+						excluirBT.setVisible(true);
+						alterarBT.setVisible(true);
+						confirmarBT.setVisible(false);
+						cancelarBT.setVisible(false);
+						limparCampos();
+						JOptionPane.showMessageDialog(null, "Cadastro ALTERADO!");
+					}
+				}else {
+					JOptionPane.showMessageDialog(null, "ERRO ao alterar cadastro");
+				}
+			}
+			
+		});
+		confirmarBT.setBounds(7, 378, 109, 23);
+		panel.add(confirmarBT);
+		confirmarBT.setVisible(false);
+		
 		// ---------------------------------------------------------------------------------------
 		alterarBT = new JButton("Alterar");
 		alterarBT.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-
+				if (tabela.getSelectedRow() >= 0) {
+					salvarBT.setVisible(false);
+					excluirBT.setVisible(false);
+					alterarBT.setVisible(false);
+					confirmarBT.setVisible(true);
+					cancelarBT.setVisible(true);
+					
+				
+					int linha = tabela.getSelectedRow();
+					String nomecliente = (String) tabela.getValueAt(linha, 0);
+					editarCliente = instanciaCli.nomecliente(nomecliente);
+					
+					txtNome.setText(editarCliente.getNome());
+					txtCpf.setText(String.valueOf(editarCliente.getCpf()));
+					txtTelefone.setText(editarCliente.getTel());
+					txtCep.setText(editarCliente.getCep());
+					txtNcasa.setText(String.valueOf(editarCliente.getnCasa()));
+					txtEmail.setText(editarCliente.getEmail());
+				}else {
+					JOptionPane.showMessageDialog(null, "Selecione um cadastro para alterar.");
+				}
 			}
 		});
 		alterarBT.setForeground(Color.DARK_GRAY);
@@ -313,9 +396,29 @@ public class TelaCliente extends JFrame {
 		alterarBT.setBackground(SystemColor.menu);
 		alterarBT.setBounds(219, 378, 96, 23);
 		panel.add(alterarBT);
+		
+		
+		//-------------------------------------------------------------------------------------------------
+		cancelarBT = new JButton("Cancelar");
+		cancelarBT.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				salvarBT.setVisible(true);
+				excluirBT.setVisible(true);
+				alterarBT.setVisible(true);
+				confirmarBT.setVisible(false);
+				cancelarBT.setVisible(false);	
+				limparCampos();
+			}
+		});
+		cancelarBT.setBackground(SystemColor.menu);
+		cancelarBT.setFont(new Font("Dialog", Font.PLAIN, 16));
+		cancelarBT.setBounds(206, 378, 109, 23);
+		panel.add(cancelarBT);
+		cancelarBT.setVisible(false);
 	}
 
-	//------------------------------------------------------------------------------------------
+	// ------------------------------------------------------------------------------------------
+	
 	protected void limparCampos() {
 		txtNome.setText("");
 		txtCpf.setText("");
@@ -324,5 +427,4 @@ public class TelaCliente extends JFrame {
 		txtNcasa.setText("");
 		txtEmail.setText("");
 	}
-
 }

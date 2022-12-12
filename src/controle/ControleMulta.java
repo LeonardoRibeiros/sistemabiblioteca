@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import modelo.IMultaDAO;
 import modelo.Multa;
 import modelo.Cliente;
+import modelo.Funcionario;
 import controle.ControleCliente;
 
 public class ControleMulta implements IMultaDAO{
@@ -33,10 +34,10 @@ public class ControleMulta implements IMultaDAO{
 		return false;
 	}
 
-	public boolean alterar(Multa p, Long cpf) {
+	public boolean alterar(Multa p, String cpf) {
 		for (Multa multa : tabelaMultas) {
-			if (multa.getCliente().getCpf() == cpf) {
-//				multa.setCpfCliente(p.getCliente().getCpf());
+			if (multa.getCpf() == cpf) {
+				multa.setCpf(p.getCpf());
 				multa.setData(LocalDate.now());
 				multa.setValorMulta(p.getValorMulta());
 				return true;
@@ -55,6 +56,16 @@ public class ControleMulta implements IMultaDAO{
 
 		return false;
 	}
+    
+	public Multa cpfcliente(String cpf) {
+		for (Multa multa : tabelaMultas) {
+			if (multa.getCpf() == cpf) {
+				return multa;
+			}
+		}
+		return null;
+	}
+	
 
 	public ArrayList<Multa> listarMultas() {
 		return tabelaMultas;
